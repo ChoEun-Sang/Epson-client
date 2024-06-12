@@ -12,7 +12,7 @@ assignees: ''
 -
 
 ## Todo
-- []  todo1
-- []  todo2
+- [ ]  todo1
+- [ ]  todo2
 
 ## 참고 자료
