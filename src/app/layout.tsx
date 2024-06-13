@@ -18,7 +18,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
       <body className={`${inter.className} w-[375px] h-full`}>
         <ReactQueryProvider>
           {children}
