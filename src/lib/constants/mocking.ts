@@ -1,7 +1,7 @@
 export const MAIN_MOCKING = {
   id: 0,
   username: "아이어를위하여",
-  img: "/next.svg",
+  img: "/iu_demo.jpeg",
   role: "general",
   createdAt: "2024-06-12T05:34:39.285Z",
   fandom: "유애나",
@@ -15,5 +15,7 @@ export const MAIN_MOCKING = {
   recently: [
     { latter: "/vercel.svg", title: "칼날여왕 ㅗdfㅗ" },
     { latter: "/vercel.svg", title: "칼날여왕 ㅗㅗ" },
+    { latter: "/vercel.svg", title: "칼날여왕 ㅗdfdsffㅗ" },
+    { latter: "/vercel.svg", title: "칼날여왕 " },
   ],
 };
