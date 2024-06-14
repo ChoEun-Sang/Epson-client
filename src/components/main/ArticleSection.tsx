@@ -4,9 +4,15 @@ import { MAIN_MOCKING } from "@/lib/constants/mocking";
 
 function ArticleSection() {
   return (
-    <article className="flex w-full h-full">
-      <aside className="w-40 h-40">
-        <Image src={MAIN_MOCKING.img} alt={`${MAIN_MOCKING.fandom} 메인 이미지`} width={160} height={160} />
+    <article className="flex w-full h-full gap-6 py-4">
+      <aside className="w-40 h-40 border-2 rounded-lg overflow-hidden">
+        <Image
+          src={MAIN_MOCKING.img}
+          alt={`${MAIN_MOCKING.fandom} 메인 이미지`}
+          width={160}
+          height={160}
+          className="object-cover w-full h-full"
+        />
       </aside>
 
       <div className="flex flex-col gap-4 space-y-2">
