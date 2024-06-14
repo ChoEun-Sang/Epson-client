@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import ReactQueryProvider from "../lib/util/ReactQueryProvider";
 import NavBar from "@/components/NavBar";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
         <ReactQueryProvider>
           {children}
           <NavBar />
+          <Toaster />
         </ReactQueryProvider>
       </body>
     </html>
