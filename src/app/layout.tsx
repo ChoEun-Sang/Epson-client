@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import ReactQueryProvider from "../lib/util/ReactQueryProvider";
 import NavBar from "@/components/common/navbar/NavBar";
 import "./globals.css";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
