@@ -66,8 +66,17 @@
   }
 }
 
+html {
+  max-width: 375px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #f2f2f2;
+}
+
 body {
   padding: 0 16px 0 16px;
+  background-color: #fff;
+  padding-bottom: 80px;
 }
 
 @layer utilities {
