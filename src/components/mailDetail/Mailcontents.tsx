@@ -13,12 +13,13 @@ function MailContents({ originalText, translatedText }: MailText) {
       const startIndex = match.index;
 
       styledSentence.push(
-        <span key={lastIndex} className="text-[#808080]">
+        <span key={lastIndex} className="text-text-info">
           {sentence.substring(lastIndex, startIndex)}
         </span>
       );
+
       styledSentence.push(
-        <span key={lastIndex + 1} className="text-[#DA073B] font-bold">
+        <span key={lastIndex + 1} className="text-primary-8 font-bold">
           {onlyWord}
         </span>
       );
@@ -27,7 +28,7 @@ function MailContents({ originalText, translatedText }: MailText) {
     }
 
     styledSentence.push(
-      <span key={lastIndex} className="text-[#808080]">
+      <span key={lastIndex} className="text-text-info">
         {sentence.substring(lastIndex)}
       </span>
     );
@@ -39,13 +40,13 @@ function MailContents({ originalText, translatedText }: MailText) {
       {originalText.map((sentence, index) => (
         <div key={index} className="flex flex-col">
           <button className="flex gap-2 p-2">
-            <span className="text-xs font-bold text-[#F89A97]">{index + 1}</span>
+            <span className="text-xs font-bold text-primary-3">{index + 1}</span>
             <div className="flex flex-col text-start">
               {renderStyledSentence(sentence)}
-              <p className="text-sm text-[#808080]">{translatedText[index]}</p>
+              <p className="text-sm text-text-info">{translatedText[index]}</p>
             </div>
           </button>
-          {index < originalText.length - 1 && <hr className="border-b border-gray-300 my-1" />}
+          {index < originalText.length - 1 && <hr className="border-b border-gray-1 my-1" />}
         </div>
       ))}
     </div>
