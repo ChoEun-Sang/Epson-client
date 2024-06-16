@@ -1,7 +1,12 @@
-import React from "react";
+"use client";
+
 import { MailText } from "@/lib/types/mailDetailTypes";
+import useMailDetailStore from "@/store/useMailDetailStore";
+import { useRouter } from "next/navigation";
 
 function MailContents({ originalText, translatedText }: MailText) {
+  const { setSelectedText, setSelectedTranslatedText } = useMailDetailStore();
+  const router = useRouter();
   const renderStyledSentence = (sentence: string) => {
     const regex = /\(([^)]+)\)/g;
     let match;
@@ -35,11 +40,17 @@ function MailContents({ originalText, translatedText }: MailText) {
     return <p>{styledSentence}</p>;
   };
 
+  const handleclickSentence = (sentence: string, index: number) => {
+    setSelectedText(sentence);
+    setSelectedTranslatedText(translatedText[index]);
+    router.push("/maildetail/keywords");
+  };
+
   return (
     <div className="w-full flex flex-col">
       {originalText.map((sentence, index) => (
         <div key={index} className="flex flex-col">
-          <button className="flex gap-2 p-2">
+          <button className="flex gap-2 p-2" onClick={() => handleclickSentence(sentence, index)}>
             <span className="text-xs font-bold text-primary-3">{index + 1}</span>
             <div className="flex flex-col text-start">
               {renderStyledSentence(sentence)}
