@@ -10,3 +10,16 @@ export const formatDate = (dateString: string) => {
 
   return `${year}.${month}.${day}.(${dayName})`;
 };
+
+export const getKeywordsInSentence = (sentence: string) => {
+  const regex = /\(([^)]+)\)/g;
+  const words = [];
+  let match;
+
+  while ((match = regex.exec(sentence)) !== null) {
+    const word = match[1];
+    words.push(word);
+  }
+
+  return words;
+};
