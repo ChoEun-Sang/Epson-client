@@ -19,3 +19,12 @@ export const MAIN_MOCKING = {
     { latter: "/vercel.svg", title: "칼날여왕 " },
   ],
 };
+
+export const MAIL_MOCKING = {
+  title: "아이유로부터 답장",
+  letterImageUrl: "url",
+  originalText: ["(안녕)하세요", "아이유 입니다", "(감사)합니다"],
+  translatedText: ["Hello", "I am IU.", "Thank you"],
+  createdAt: "2024-06-14T06:17:45.880Z",
+  sender: "아이유",
+};
