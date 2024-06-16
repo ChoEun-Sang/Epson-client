@@ -1,13 +1,8 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
-  content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
   prefix: "",
   theme: {
     container: {
@@ -24,13 +19,68 @@ const config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        warning: {
+          DEFAULT: "var(--color-warning-default)",
+          background: "var(--color-warning-background)",
+          sub: "var(--color-warning-sub)",
+          disabled: "var(--color-warning-disabled)",
+        },
+        critical: {
+          DEFAULT: "var(--color-critical-default)",
+          background: "var(--color-critical-background)",
+          sub: "var(--color-critical-sub)",
+          disabled: "var(--color-critical-disabled)",
+        },
+        success: {
+          DEFAULT: "var(--color-success-default)",
+          background: "var(--color-success-background)",
+          sub: "var(--color-success-sub)",
+          disabled: "var(--color-success-disabled)",
+        },
+        information: {
+          DEFAULT: "var(--color-information-default)",
+          background: "var(--color-information-background)",
+          sub: "var(--color-information-sub)",
+          disabled: "var(--color-information-disabled)",
+        },
+        white: "var(--color-white)",
+        text: {
+          DEFAULT: "var(--color-text-default)",
+          info: "var(--color-text-info)",
+          sub: "var(--color-text-sub)",
+          disabled: "var(--color-text-disabled)",
+        },
+        gray: {
+          1: "var(--color-gray-1)",
+          2: "var(--color-gray-2)",
+          3: "var(--color-gray-3)",
+          4: "var(--color-gray-4)",
+          5: "var(--color-gray-5)",
+          6: "var(--color-gray-6)",
+          7: "var(--color-gray-7)",
+          8: "var(--color-gray-8)",
+          9: "var(--color-gray-9)",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          1: "#FFF9F0",
+          2: "#FFE7DF",
+          3: "#FFC5BD",
+          4: "#FFB4AD",
+          5: "#FFA29C",
+          6: "#FF7F7B",
+          7: "#FC5B5C",
+          8: "#C31F2D",
+          9: "#9E000A",
+          10: "#790000",
+          main: "#C31F2D",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
+          1: "#f1edea",
+          2: "#999881",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
@@ -75,6 +125,6 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;
