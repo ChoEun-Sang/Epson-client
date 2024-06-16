@@ -4,6 +4,7 @@ import ReactQueryProvider from "../lib/util/ReactQueryProvider";
 import NavBar from "@/components/common/navbar/NavBar";
 import "./globals.css";
 import { Toaster } from "sonner";
+import Header from "@/components/header/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} w-[375px] h-full`}>
         <ReactQueryProvider>
+          <Header />
           {children}
           <NavBar />
           <Toaster />
