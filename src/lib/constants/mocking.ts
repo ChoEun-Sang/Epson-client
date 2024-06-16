@@ -19,3 +19,5 @@ export const MAIN_MOCKING = {
     { latter: "/vercel.svg", title: "칼날여왕 " },
   ],
 };
+
+export const ARTIST = ["아이유", "방탄소년단"];
