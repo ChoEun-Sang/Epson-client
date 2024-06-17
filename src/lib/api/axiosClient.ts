@@ -1,12 +1,13 @@
 import axios from "axios";
 
-const baseURL = "환경변수에서 가져온 api baseURL";
+const baseURL = "http://localhost:4000/api";
 
 const axiosClient = axios.create({
   baseURL,
   headers: {
     "Content-Type": "application/json",
   },
+  withCredentials: true,
 });
 
 axiosClient.interceptors.request.use(
