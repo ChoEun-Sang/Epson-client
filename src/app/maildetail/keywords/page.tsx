@@ -24,7 +24,7 @@ function SelectKeywords() {
   }, [selectedText, router]);
 
   return (
-    <section className="flex flex-col gap-y-3">
+    <section className="flex flex-col gap-y-3 h-screen">
       <KeywordSlider currentKeywordIndex={currentKeywordIndex} setCurrentKeywordIndex={setCurrentKeywordIndex} />
       <KeywordDetails currentKeyword={currentKeyword} isKeywordIncluded={isKeywordIncluded} />
       <AddedKeywordsList />
