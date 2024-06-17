@@ -1,13 +1,48 @@
 import Image from "next/image";
 import { ARTIST } from "@/lib/constants/mocking";
-import { useState } from "react";
+import { useEffect, useRef, useState, MouseEvent } from "react";
+import Signin from "./signin/Signin";
+import useAuthStore from "@/store/useAuthStore";
+import { getUserData } from "@/lib/api/api";
+import useUserStore from "@/store/useUserStore";
+import UserInfo from "./userInfo/UserInfo";
+import useOutsideClick from "@/hooks/useOutsideClick";
 
 function MainHeader() {
   const [selectedValue, setSelectedValue] = useState("아이유");
   const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLUListElement>(null);
 
-  const toggleList = () => {
-    setIsOpen(!isOpen);
+  const { userData, setUserData } = useUserStore();
+
+  const { accessToken } = useAuthStore();
+
+  useEffect(() => {
+    const getData = async () => {
+      if (!accessToken) return;
+      try {
+        const data = await getUserData();
+        setUserData({
+          img: data.img,
+          id: data.id,
+          username: data.username,
+          myFavorite: data.myFavorite,
+          epsonDevice: data.epsonDevice,
+        });
+        return data;
+      } catch (err) {
+        console.error("사용자 정보 확인에 실패:", err);
+      }
+    };
+
+    getData();
+  }, [accessToken, setUserData]);
+
+  useOutsideClick(dropdownRef, () => setIsOpen(false));
+
+  const toggleList = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    setIsOpen((prev) => !prev);
   };
 
   const handleItemClick = (value: string) => {
@@ -30,7 +65,7 @@ function MainHeader() {
           </div>
         </button>
         {isOpen && (
-          <ul className="absolute mt-1 bg-background border border-gray-300 rounded shadow-lg z-10">
+          <ul ref={dropdownRef} className="absolute mt-1 bg-background border border-gray-300 rounded shadow-lg z-10">
             {ARTIST.map((item) => (
               <li key={item}>
                 <button
@@ -50,7 +85,7 @@ function MainHeader() {
         <button>
           <Image src="/notifications.png" width={24} height={24} alt="notifications" />
         </button>
-        <button>로그인</button>
+        {userData.id === "" ? <Signin /> : <UserInfo />}
       </div>
     </div>
   );
