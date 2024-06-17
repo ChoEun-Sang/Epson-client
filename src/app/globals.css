@@ -103,17 +103,34 @@
   }
 }
 
-html {
+html,
+body {
   max-width: 375px;
+}
+
+html {
+  display: flex;
+  height: 100dvh;
+  align-items: center;
   margin-left: auto;
   margin-right: auto;
   background-color: #f2f2f2;
+  overflow: hidden;
 }
 
 body {
-  padding: 0 16px 0 16px;
+  padding: 0 16px 0 16px !important;
   background-color: #fff;
-  padding-bottom: 80px;
+  max-height: 812px;
+}
+
+.main {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.main::-webkit-scrollbar {
+  display: none;
 }
 
 @layer utilities {
