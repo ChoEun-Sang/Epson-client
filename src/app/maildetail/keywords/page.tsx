@@ -6,7 +6,7 @@ import KeywordSlider from "@/components/mailDetail/KeywordSlider";
 import { getKeywordsInSentence } from "@/lib/util/utilFunctions";
 import useMailDetailStore from "@/store/useMailDetailStore";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function SelectKeywords() {
   const router = useRouter();
@@ -17,9 +17,11 @@ function SelectKeywords() {
   const isKeywordIncluded = keywords.includes(currentKeyword);
 
   // 추후 letterId로 동적 라우팅 처리
-  if (!selectedText) {
-    router.push("/maildetail/");
-  }
+  useEffect(() => {
+    if (!selectedText) {
+      router.push("/maildetail/");
+    }
+  }, [selectedText, router]);
 
   return (
     <section className="flex flex-col gap-y-3">
