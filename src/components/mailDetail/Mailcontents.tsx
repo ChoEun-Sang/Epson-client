@@ -8,7 +8,7 @@ function MailContents({ originalText, translatedText }: MailText) {
   const { setSelectedText, setSelectedTranslatedText } = useMailDetailStore();
   const router = useRouter();
   const renderStyledSentence = (sentence: string) => {
-    const regex = /\(([^)]+)\)/g;
+    const regex = /\*\(([^)]+)\)\*/g;
     let match;
     let lastIndex = 0;
     const styledSentence = [];

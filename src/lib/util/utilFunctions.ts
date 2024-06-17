@@ -12,7 +12,7 @@ export const formatDate = (dateString: string) => {
 };
 
 export const getKeywordsInSentence = (sentence: string) => {
-  const regex = /\(([^)]+)\)/g;
+  const regex = /\*\(([^)]+)\)\*/g;
   const words = [];
   let match;
 
