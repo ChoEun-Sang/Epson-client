@@ -1,6 +1,7 @@
 // components/KeywordSlider.tsx
 "use client";
 
+import { motion } from "framer-motion";
 import useMailDetailStore from "@/store/useMailDetailStore";
 import { getKeywordsInSentence } from "@/lib/util/utilFunctions";
 import { Dispatch, SetStateAction } from "react";
@@ -14,11 +15,20 @@ function KeywordSlider({ currentKeywordIndex, setCurrentKeywordIndex }: KeywordS
   const { selectedText, selectedTranslatedText, keywords } = useMailDetailStore();
   const keywordsInSentence = getKeywordsInSentence(selectedText);
   const currentKeyword = keywordsInSentence[currentKeywordIndex];
-
+  const sliderVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  };
   return (
-    <div className="flex flex-col overflow-hidden bg-secondary-1 w-full">
+    <div className="flex flex-col bg-secondary-1 -ml-4 w-[375px] px-4">
       <span className="font-medium text-primary-5">number</span>
-      <div className="flex gap-x-2 w-[1000px] overflow-x-auto">
+      <motion.div
+        className="flex gap-x-2 whitespace-nowrap overflow-x-auto"
+        initial="hidden"
+        animate="visible"
+        variants={sliderVariants}
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      >
         {keywordsInSentence.map((keyword, index) => (
           <button
             className={`${keyword === currentKeyword ? "border-primary-5" : "border-gray-4"} ${
@@ -32,7 +42,7 @@ function KeywordSlider({ currentKeywordIndex, setCurrentKeywordIndex }: KeywordS
             {keyword}
           </button>
         ))}
-      </div>
+      </motion.div>
       <span className="font-medium text-text-info">{selectedTranslatedText}</span>
     </div>
   );
