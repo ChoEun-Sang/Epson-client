@@ -5,7 +5,7 @@ import useMailDetailStore from "@/store/useMailDetailStore";
 import { useRouter } from "next/navigation";
 
 function MailContents({ originalText, translatedText }: MailText) {
-  const { setSelectedText, setSelectedTranslatedText } = useMailDetailStore();
+  const { setSelectedText, setSelectedTranslatedText, keywords } = useMailDetailStore();
   const router = useRouter();
   const renderStyledSentence = (sentence: string) => {
     const regex = /\*\(([^)]+)\)\*/g;
@@ -24,7 +24,10 @@ function MailContents({ originalText, translatedText }: MailText) {
       );
 
       styledSentence.push(
-        <span key={lastIndex + 1} className="text-primary-8 font-bold">
+        <span
+          key={lastIndex + 1}
+          className={`${keywords.includes(onlyWord) ? "text-primary-8" : "text-text-disabled"} underline font-bold`}
+        >
           {onlyWord}
         </span>
       );
