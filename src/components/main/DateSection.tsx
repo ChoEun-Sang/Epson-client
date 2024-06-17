@@ -3,7 +3,9 @@ import WeeklyCalendar from "./WeeklyCalendar";
 function DateSection() {
   return (
     <section>
-      <h2 className="font-bold">일정</h2>
+      <div className="h-[73px] pt-8 pb-2">
+        <h2 className="font-bold">일정</h2>
+      </div>
       <WeeklyCalendar />
     </section>
   );

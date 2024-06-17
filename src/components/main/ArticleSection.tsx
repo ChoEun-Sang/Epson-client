@@ -4,7 +4,7 @@ import { MAIN_MOCKING } from "@/lib/constants/mocking";
 
 function ArticleSection() {
   return (
-    <article className="flex w-full h-full gap-6 py-4">
+    <article className="flex w-full gap-6 pt-4">
       <aside className="w-40 h-40 border-2 rounded-lg overflow-hidden">
         <Image
           src={MAIN_MOCKING.img}
@@ -15,7 +15,7 @@ function ArticleSection() {
         />
       </aside>
 
-      <div className="flex flex-col gap-4 space-y-2">
+      <div className="flex flex-col gap-4 ">
         <h2 className="font-bold"> 최신 기사</h2>
         {MAIN_MOCKING.news.map((item) =>
           Object.values(item).map((newsItem, newsIndex) => (

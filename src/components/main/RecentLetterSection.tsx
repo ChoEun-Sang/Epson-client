@@ -7,7 +7,9 @@ const DynamicLetterComponet = dynamic(() => import("./DynamicLetterComponet"), {
 function RecentLetterSection() {
   return (
     <section>
-      <h2 className="font-bold">최근 편지</h2>
+      <div className="h-[73px] pt-8 pb-2">
+        <h2 className="font-bold">받은편지</h2>
+      </div>
 
       <DynamicLetterComponet />
     </section>
