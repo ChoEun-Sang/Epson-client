@@ -9,3 +9,23 @@ export const postKeywords = async (keywords: string[]) => {
   const { data } = await axiosClient.post("keywords", keywords);
   return data;
 };
+
+export const signin = async (email: string, password: string) => {
+  try {
+    const { data } = await axiosClient.post("/auth/signin", { email, password });
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+export const getUserData = async () => {
+  try {
+    const { data } = await axiosClient.get("/user");
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
