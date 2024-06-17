@@ -19,7 +19,7 @@ function SelectKeywords() {
   // 추후 letterId로 동적 라우팅 처리
   useEffect(() => {
     if (!selectedText) {
-      router.push("/maildetail/");
+      router.replace("/maildetail/");
     }
   }, [selectedText, router]);
 
