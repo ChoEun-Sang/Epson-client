@@ -1,6 +1,7 @@
 "use client";
 
 import { MailText } from "@/lib/types/mailDetailTypes";
+import { getKeywordsInSentence } from "@/lib/util/utilFunctions";
 import useMailDetailStore from "@/store/useMailDetailStore";
 import { useRouter } from "next/navigation";
 
@@ -46,7 +47,9 @@ function MailContents({ originalText, translatedText }: MailText) {
   const handleclickSentence = (sentence: string, index: number) => {
     setSelectedText(sentence);
     setSelectedTranslatedText(translatedText[index]);
-    router.push("/maildetail/keywords");
+    if (getKeywordsInSentence(sentence).length) {
+      router.push("/maildetail/keywords");
+    }
   };
 
   return (
