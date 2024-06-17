@@ -28,3 +28,5 @@ export const MAIL_MOCKING = {
   createdAt: "2024-06-14T06:17:45.880Z",
   sender: "아이유",
 };
+
+export const ARTIST = ["아이유", "방탄소년단"];
