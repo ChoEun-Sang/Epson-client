@@ -7,7 +7,7 @@ import useMailDetailStore from "@/store/useMailDetailStore";
 import { useRouter } from "next/navigation";
 
 function MailContents({ originalText, translatedText }: MailText) {
-  const { setSelectedText, setSelectedTranslatedText, keywords } = useMailDetailStore();
+  const { setSelectedText, setSelectedTranslatedText, keywords, setTextNumber } = useMailDetailStore();
   const router = useRouter();
   const renderStyledSentence = (sentence: string) => {
     let match;
@@ -47,6 +47,7 @@ function MailContents({ originalText, translatedText }: MailText) {
   const handleclickSentence = (sentence: string, index: number) => {
     setSelectedText(sentence);
     setSelectedTranslatedText(translatedText[index]);
+    setTextNumber(index + 1);
     if (getKeywordsInSentence(sentence).length) {
       router.push("/maildetail/keywords");
     }

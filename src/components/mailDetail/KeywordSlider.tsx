@@ -12,16 +12,17 @@ interface KeywordSliderProps {
 }
 
 function KeywordSlider({ currentKeywordIndex, setCurrentKeywordIndex }: KeywordSliderProps) {
-  const { selectedText, selectedTranslatedText, keywords } = useMailDetailStore();
+  const { selectedText, selectedTranslatedText, keywords, textNumber } = useMailDetailStore();
   const keywordsInSentence = getKeywordsInSentence(selectedText);
   const currentKeyword = keywordsInSentence[currentKeywordIndex];
   const sliderVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
+
   return (
-    <div className="flex flex-col bg-secondary-1 -ml-4 w-[375px] px-4">
-      <span className="font-medium text-primary-5">number</span>
+    <div className="flex flex-col bg-secondary-1 -ml-4 w-[375px] px-4 pt-4 pb-6 gap-y-1">
+      <span className="font-medium text-primary-5">{textNumber}</span>
       <motion.div
         className="flex gap-x-2 whitespace-nowrap overflow-x-auto"
         initial="hidden"
