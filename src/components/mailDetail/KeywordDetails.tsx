@@ -39,8 +39,8 @@ function KeywordDetails({ currentKeyword, isKeywordIncluded, gptData }: KeywordD
       </div>
       <div className="flex flex-col gap-y-2">
         <p className="font-medium text-text-info">{data && JSON.parse(data).definition}</p>
-        <p className="font-medium text-text-info border-l-2 border-gray-3 pl-2">{data && JSON.parse(data).enexample}</p>
         <p className="font-medium text-text-info border-l-2 border-gray-3 pl-2">{data && JSON.parse(data).krexample}</p>
+        <p className="font-medium text-text-info border-l-2 border-gray-3 pl-2">{data && JSON.parse(data).enexample}</p>
         <ul className="flex gap-x-1.5 border-l-2 border-gray-3 flex-wrap pl-2">
           <Image src="/equal.svg" alt="" width={24} height={24} />
           {data &&
