@@ -9,7 +9,7 @@ function MailDeatil() {
   const mailDescriptionData = { title, letterImageUrl, createdAt, sender };
   const mailContentsData = { originalText, translatedText };
   return (
-    <section className="flex flex-col gap-y-6">
+    <section className="flex flex-col gap-y-6 h-full">
       <MailDescription {...mailDescriptionData} />
       <Mailcontents {...mailContentsData} />
     </section>

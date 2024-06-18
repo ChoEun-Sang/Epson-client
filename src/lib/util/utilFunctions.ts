@@ -1,3 +1,5 @@
+import { REG_EXP } from "../constants/constants";
+
 export const formatDate = (dateString: string) => {
   const date = new Date(dateString);
 
@@ -9,4 +11,16 @@ export const formatDate = (dateString: string) => {
   const dayName = dayNames[date.getDay()];
 
   return `${year}.${month}.${day}.(${dayName})`;
+};
+
+export const getKeywordsInSentence = (sentence: string) => {
+  const words = [];
+  let match;
+
+  while ((match = REG_EXP.exec(sentence)) !== null) {
+    const word = match[1];
+    words.push(word);
+  }
+
+  return words;
 };

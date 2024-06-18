@@ -1,14 +1,20 @@
-import React from "react";
+"use client";
+
+import { REG_EXP } from "@/lib/constants/constants";
 import { MailText } from "@/lib/types/mailDetailTypes";
+import { getKeywordsInSentence } from "@/lib/util/utilFunctions";
+import useMailDetailStore from "@/store/useMailDetailStore";
+import { useRouter } from "next/navigation";
 
 function MailContents({ originalText, translatedText }: MailText) {
+  const { setSelectedText, setSelectedTranslatedText, keywords, setTextNumber } = useMailDetailStore();
+  const router = useRouter();
   const renderStyledSentence = (sentence: string) => {
-    const regex = /\(([^)]+)\)/g;
     let match;
     let lastIndex = 0;
     const styledSentence = [];
 
-    while ((match = regex.exec(sentence)) !== null) {
+    while ((match = REG_EXP.exec(sentence)) !== null) {
       const [wordWithMark, onlyWord] = match;
       const startIndex = match.index;
 
@@ -19,7 +25,10 @@ function MailContents({ originalText, translatedText }: MailText) {
       );
 
       styledSentence.push(
-        <span key={lastIndex + 1} className="text-primary-8 font-bold">
+        <span
+          key={lastIndex + 1}
+          className={`${keywords.includes(onlyWord) ? "text-primary-8" : "text-text-disabled"} underline font-bold`}
+        >
           {onlyWord}
         </span>
       );
@@ -35,11 +44,20 @@ function MailContents({ originalText, translatedText }: MailText) {
     return <p>{styledSentence}</p>;
   };
 
+  const handleclickSentence = (sentence: string, index: number) => {
+    setSelectedText(sentence);
+    setSelectedTranslatedText(translatedText[index]);
+    setTextNumber(index + 1);
+    if (getKeywordsInSentence(sentence).length) {
+      router.push("/maildetail/keywords");
+    }
+  };
+
   return (
-    <div className="w-full flex flex-col">
+    <ul className="w-full flex flex-col overflow-auto main">
       {originalText.map((sentence, index) => (
-        <div key={index} className="flex flex-col">
-          <button className="flex gap-2 p-2">
+        <li key={index} className="flex flex-col">
+          <button className="flex gap-2 p-2" onClick={() => handleclickSentence(sentence, index)}>
             <span className="text-xs font-bold text-primary-3">{index + 1}</span>
             <div className="flex flex-col text-start">
               {renderStyledSentence(sentence)}
@@ -47,9 +65,9 @@ function MailContents({ originalText, translatedText }: MailText) {
             </div>
           </button>
           {index < originalText.length - 1 && <hr className="border-b border-gray-1 my-1" />}
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }
 

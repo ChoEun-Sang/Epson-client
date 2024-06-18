@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className={`${inter.className}`}>
         <ReactQueryProvider>
           <Header />
-          {children}
+          <main className="h-[634px]">{children}</main>
           <NavBar />
           <Toaster />
         </ReactQueryProvider>
