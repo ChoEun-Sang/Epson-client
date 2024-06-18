@@ -45,3 +45,13 @@ export interface LetterDetailDocument {
   ];
   letterId: 0;
 }
+
+export interface GPTData {
+  keyword: string;
+  translated: string;
+  definition: string;
+  synonyms: string[];
+  antonyms: string[];
+  enexample: string;
+  krexample: string;
+}
