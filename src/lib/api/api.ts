@@ -29,3 +29,13 @@ export const getUserData = async () => {
     throw error;
   }
 };
+
+export const getSentMails = async () => {
+  const { data } = await axiosClient.get("api/letter/received");
+  return data;
+};
+
+export const getRecivedMails = async () => {
+  const { data } = await axiosClient.get("/letter/received");
+  return data;
+};
