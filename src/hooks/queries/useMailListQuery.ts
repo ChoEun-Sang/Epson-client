@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import { getRecivedMails, getSentMails } from "@/lib/api/api";
+import { getReceivedMails, getSentMails } from "@/lib/api/api";
 
 const useMailListQuery = (object: string) => {
   return useQuery({
     queryKey: ["mailList", object],
     queryFn: async () => {
       if (object === "received") {
-        const data = await getRecivedMails();
+        const data = await getReceivedMails();
         return data;
       } else {
         const data = await getSentMails();

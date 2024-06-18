@@ -3,12 +3,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 function Mailbox() {
   return (
-    <Tabs defaultValue="recived" className="w-full">
+    <Tabs defaultValue="received" className="w-full">
       <TabsList className="w-full h-10 ">
-        <TabsTrigger value="recived">받은 편지</TabsTrigger>
+        <TabsTrigger value="received">받은 편지</TabsTrigger>
         <TabsTrigger value="sent">보낸 편지</TabsTrigger>
       </TabsList>
-      <TabsContent value="recived">
+      <TabsContent value="received">
         <MailList object="received" />
       </TabsContent>
       <TabsContent value="sent">
