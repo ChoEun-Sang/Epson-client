@@ -54,7 +54,7 @@ function MailContents({ originalText, translatedText }: MailText) {
   };
 
   return (
-    <ul className="w-full flex flex-col overflow-auto">
+    <ul className="w-full flex flex-col overflow-auto main">
       {originalText.map((sentence, index) => (
         <li key={index} className="flex flex-col">
           <button className="flex gap-2 p-2" onClick={() => handleclickSentence(sentence, index)}>
