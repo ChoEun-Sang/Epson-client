@@ -21,7 +21,7 @@ function MailDescription({ title, letterImageUrl, createdAt, sender }: MailDetai
             </Button>
           </DialogTrigger>
           <DialogPortal>
-            <DialogContent className="h-screen" hideCloseButton>
+            <DialogContent className="h-[800px] w-[375px]" hideCloseButton>
               {/* 추후 이미지 추가되면 구성 */}
               <div className="bg-pink-200">사진</div>
               <DialogClose className="w-10 h-5 absolute right-5 top-5">종료 버튼</DialogClose>
