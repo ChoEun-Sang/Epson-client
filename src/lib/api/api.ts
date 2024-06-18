@@ -47,11 +47,11 @@ export const getUserData = async () => {
 };
 
 export const getSentMails = async () => {
-  const { data } = await axiosClient.get("api/letter/received");
+  const { data } = await axiosClient.get("api/letter/sent");
   return data;
 };
 
-export const getRecivedMails = async () => {
+export const getReceivedMails = async () => {
   const { data } = await axiosClient.get("/letter/received");
   return data;
 };
