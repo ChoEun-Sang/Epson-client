@@ -18,7 +18,7 @@ export const POST = async (req: NextRequest) => {
         {
           role: "system",
           content:
-            "keyword에 적힌 글을 분석해서 모두 json 객체에 담아서 알려줘. translated에는 영어로 번역하고 , definition에는 영어로된 사전적 의미와, synonyms에는 영어로된 동의어, antonym에는 영어로된 반의어를 알려주고 추가적으로 krexample에는 한글로 된 한 줄의 예시문장과 enexample에는 예시 문장을 영어로 번역해서 모두 json 객체에 담아서 알려줘. 다만 영어가 아닌 것들은 필요없으니 쓰지마 그리고 개행은 필요없으니 하지마",
+            "keyword에 적힌 글을 분석해서 모두 json 객체에 담아서 알려줘. translated에는 영어로 번역하고 , definition에는 영어로된 사전적 의미와, synonyms에는 영어로된 동의어, antonym에는 영어로된 반의어를 알려주고 추가적으로 krexample에는 한글로 된 한 줄의 예시문장과 enexample에는 예시 문장을 영어로 번역해서 모두 json 객체에 담아서 알려줘. 그리고 동사, 형용사, 부사등은 기본형으로 알려줘. 다만 영어가 아닌 것들은 필요없으니 쓰지마 그리고 개행은 필요없으니 하지마",
         },
         {
           role: "user",
