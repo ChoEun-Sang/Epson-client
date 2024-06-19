@@ -14,7 +14,7 @@ export default function Home() {
   const { userData } = useUserStore();
 
   const handleSendMailClick = () => {
-    if (userData.id) {
+    if (userData?.id) {
       router.push("/sendmail");
     } else alert("로그인을 해주세요.");
   };
