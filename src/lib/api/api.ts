@@ -1,19 +1,30 @@
 import axios from "axios";
 import axiosClient from "./axiosClient";
 
+//임시!!!!!!!!!!!!!
 const axiosClient2 = axios.create({
   baseURL: "http://localhost:3000/",
   headers: { "Content-Type": "application/json" },
 });
 
 export const getLetterDetail = async (letterId: string) => {
-  const { data } = await axiosClient.get(`/letter/${letterId}`);
-  return data;
+  try {
+    const { data } = await axiosClient.get(`/letter/document/${letterId}`);
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 };
 
-export const postKeywords = async (keywords: string[]) => {
-  const { data } = await axiosClient.post("keywords", keywords);
-  return data;
+export const postKeywords = async (letterId: number, keywords: string[], title: string) => {
+  try {
+    const { data } = await axiosClient.post("/study", { letterId, keywords, title });
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 };
 
 export const getAITranslate = async (keyword: string) => {
