@@ -7,10 +7,10 @@ const useMailListQuery = (object: string) => {
     queryFn: async () => {
       if (object === "received") {
         const data = await getReceivedMails();
-        return data;
+        return data.receivedLetters;
       } else {
         const data = await getSentMails();
-        return data;
+        return data.sentLetters;
       }
     },
   });
