@@ -8,9 +8,11 @@ function BackButton() {
     router.back();
   };
   return (
-    <button onClick={handleBack} className="absolute">
-      <Image src="/arrow_back_ios.png" width={16} height={16} alt="arrow_back" />
-    </button>
+    <div className="flex py-2">
+      <button onClick={handleBack}>
+        <Image src="/arrow_back.png" width={24} height={24} alt="arrow_back" />
+      </button>
+    </div>
   );
 }
 
