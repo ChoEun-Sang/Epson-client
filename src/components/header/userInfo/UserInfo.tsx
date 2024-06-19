@@ -23,7 +23,7 @@ function UserInfo() {
     setIsOpen(false);
   };
 
-  const { img /* , id, username, myFavorite, epsonDevice */ } = userData;
+  const { img /* , id, username, myFavorite, epsonDevice */ } = userData || {};
 
   return (
     <>

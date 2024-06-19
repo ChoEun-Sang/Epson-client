@@ -12,7 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { signin } from "@/lib/api/api";
-import useAuthStore from "@/store/useAuthStore";
+import useUserStore from "@/store/useUserStore";
 import { ChangeEvent, useState } from "react";
 
 function Signin() {
@@ -20,9 +20,7 @@ function Signin() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  /*   const [userData, setUserData] = useState(); */
-
-  const { setAccessToken } = useAuthStore();
+  const { setUserData } = useUserStore();
 
   const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -37,8 +35,16 @@ function Signin() {
 
     try {
       const data = await signin(email, password);
-      setAccessToken(data.accessToken);
-      return data;
+      if (data) {
+        const userData = {
+          img: "",
+          id: data.userId,
+          username: data.username,
+          myFavorite: "",
+          epsonDevice: "",
+        };
+        setUserData(userData);
+      }
     } catch (err) {
       setError("로그인 실패. 다시 확인해주세요.");
       console.error("로그인 중 오류 발생:", err);
@@ -50,12 +56,14 @@ function Signin() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button>로그인</button>
+        <button className="body3">로그인</button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[21.5rem] ">
         <DialogHeader>
           <DialogTitle>로그인</DialogTitle>
-          <DialogDescription>환영합니다! 아이디와 비밀번호를 입력해주세요!</DialogDescription>
+          <DialogDescription className="text-gray-8 footnote2">
+            환영합니다! 아이디와 비밀번호를 입력해주세요!
+          </DialogDescription>
         </DialogHeader>
         <div className="flex items-center space-x-2">
           <div className="grid flex-1 gap-2">

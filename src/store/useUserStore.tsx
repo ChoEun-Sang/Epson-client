@@ -9,8 +9,8 @@ interface userData {
 }
 
 interface useUserStoreProps {
-  userData: userData;
-  setUserData: (newUserData: Partial<userData>) => void;
+  userData: userData | null;
+  setUserData: (userData: userData | null) => void;
   resetUserData: () => void;
 }
 
@@ -23,17 +23,8 @@ const initialUserData = {
 };
 
 const useUserStore = create<useUserStoreProps>((set) => ({
-  userData: {
-    img: "",
-    id: "",
-    username: "",
-    myFavorite: "",
-    epsonDevice: "",
-  },
-  setUserData: (newUserData) =>
-    set((state) => ({
-      userData: { ...state.userData, ...newUserData },
-    })),
+  userData: null,
+  setUserData: (userData) => set({ userData }),
   resetUserData: () => set({ userData: initialUserData }),
 }));
 

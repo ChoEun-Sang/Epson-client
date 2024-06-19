@@ -5,6 +5,7 @@ import NavBar from "@/components/common/navbar/NavBar";
 import "./globals.css";
 import { Toaster } from "sonner";
 import Header from "@/components/header/Header";
+import AuthGuard from "@/lib/util/AuthGuard";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,10 +23,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className}`}>
         <ReactQueryProvider>
-          <Header />
-          <main className="h-[634px]">{children}</main>
-          <NavBar />
-          <Toaster />
+          <AuthGuard>
+            <Header />
+            {children}
+            <NavBar />
+            <Toaster />
+          </AuthGuard>
         </ReactQueryProvider>
       </body>
     </html>

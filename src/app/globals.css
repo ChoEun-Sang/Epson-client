@@ -138,3 +138,114 @@ body {
     text-wrap: balance;
   }
 }
+
+.title1 {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%;
+}
+
+.title2 {
+  font-family: Pretendard;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%;
+}
+
+.title3 {
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%;
+}
+
+.headline {
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
+}
+
+.body1 {
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 24px */
+}
+
+.bdoy2 {
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 24px */
+}
+
+.bdoy3 {
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 24px */
+}
+
+.callout1 {
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 21px */
+}
+
+.callout2 {
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 21px */
+}
+
+.callout3 {
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 21px */
+}
+
+.footnote1 {
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 18px */
+}
+
+.footnote2 {
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 18px */
+}
+
+.footnote3 {
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 18px */
+}
+
+.caption {
+  font-family: Pretendard;
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 12px */
+}
