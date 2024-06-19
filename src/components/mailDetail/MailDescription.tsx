@@ -21,9 +21,29 @@ function MailDescription({ title, letterImageUrl, createdAt, sender }: MailDetai
             </Button>
           </DialogTrigger>
           <DialogPortal>
-            <DialogContent className="h-[800px] w-[375px]" hideCloseButton>
+            <DialogContent className="h-[800px] w-[375px] bg-pink-200" hideCloseButton>
               {/* 추후 이미지 추가되면 구성 */}
-              <div className="bg-pink-200">사진</div>
+              <div className="">사진</div>
+              <div className="relative w-full h-full">
+                <iframe
+                  src={"https://aigooback.blob.core.windows.net/test/test.pdf#toolbar=0&navpanes=0&scrollbar=0"}
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    border: "none",
+                  }}
+                />
+              </div>
+              {/* <iframe
+                // id="inlineFrameExample"
+                // title="Inline Frame Example"
+                width="300"
+                height="200"
+                src="https://aigooback.blob.core.windows.net/4c0e7b28-17b8-4103-b80e-c53b14fb91d1/6672e1a5c3cc69c0dd05174e.pdf"
+              ></iframe> */}
               <DialogClose className="w-10 h-5 absolute right-5 top-5">종료 버튼</DialogClose>
             </DialogContent>
           </DialogPortal>
