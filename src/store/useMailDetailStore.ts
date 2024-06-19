@@ -10,6 +10,7 @@ interface useMailDetailStore {
   setSelectedTranslatedText: (text: string) => void;
   addKeyword: (keyword: string) => void;
   deleteKeyword: (keyword: string) => void;
+  clearKeywords: () => void;
 }
 
 const useMailDetailStore = create<useMailDetailStore>((set) => ({
@@ -22,6 +23,7 @@ const useMailDetailStore = create<useMailDetailStore>((set) => ({
   setSelectedTranslatedText: (text) => set({ selectedTranslatedText: text }),
   addKeyword: (keyword) => set((state) => ({ keywords: [...state.keywords, keyword] })),
   deleteKeyword: (keyword) => set((state) => ({ keywords: state.keywords.filter((word) => word !== keyword) })),
+  clearKeywords: () => set({ keywords: [] }),
 }));
 
 export default useMailDetailStore;

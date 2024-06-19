@@ -3,9 +3,9 @@ import { Inter } from "next/font/google";
 import ReactQueryProvider from "../lib/util/ReactQueryProvider";
 import NavBar from "@/components/common/navbar/NavBar";
 import "./globals.css";
-import { Toaster } from "sonner";
 import Header from "@/components/header/Header";
 import AuthGuard from "@/lib/util/AuthGuard";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
