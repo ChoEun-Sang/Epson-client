@@ -27,9 +27,6 @@ function SelectKeywords() {
 
   return (
     <section className="flex flex-col gap-y-3 h-full">
-      <button className="bg-yellow-200" onClick={() => router.replace("/maildetail/")}>
-        임시 되돌아가기 버튼
-      </button>
       <KeywordSlider currentKeywordIndex={currentKeywordIndex} setCurrentKeywordIndex={setCurrentKeywordIndex} />
       <KeywordDetails
         currentKeyword={currentKeyword}
