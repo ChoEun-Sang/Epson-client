@@ -1,7 +1,12 @@
-import React from "react";
+"use client";
+import Materials from "@/components/material/Materials";
 
 function Material() {
-  return <div>Material</div>;
+  return (
+    <section>
+      <Materials />
+    </section>
+  );
 }
 
 export default Material;
