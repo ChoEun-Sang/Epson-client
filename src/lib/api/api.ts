@@ -1,4 +1,10 @@
+import axios from "axios";
 import axiosClient from "./axiosClient";
+
+const axiosClient2 = axios.create({
+  baseURL: "http://localhost:3000/",
+  headers: { "Content-Type": "application/json" },
+});
 
 export const getLetterDetail = async (letterId: string) => {
   const { data } = await axiosClient.get(`/letter/${letterId}`);
@@ -8,6 +14,16 @@ export const getLetterDetail = async (letterId: string) => {
 export const postKeywords = async (keywords: string[]) => {
   const { data } = await axiosClient.post("keywords", keywords);
   return data;
+};
+
+export const getAITranslate = async (keyword: string) => {
+  try {
+    const { data } = await axiosClient2.post(`/api/gptapi?keyword=${encodeURIComponent(keyword)}`);
+    return data.completion;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 };
 
 export const signin = async (email: string, password: string) => {
