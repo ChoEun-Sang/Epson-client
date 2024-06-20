@@ -3,6 +3,7 @@
 import useMailDetailStore from "@/store/useMailDetailStore";
 import { UseQueryResult } from "@tanstack/react-query";
 import Image from "next/image";
+import { Skeleton } from "../ui/skeleton";
 
 interface KeywordDetailsProps {
   currentKeyword: string;
@@ -39,7 +40,7 @@ function KeywordDetails({ currentKeyword, isKeywordIncluded, gptData }: KeywordD
             </button>
           </div>
           {isLoading ? (
-            <p>Loading...</p>
+            <Skeleton className="h-4 w-[150px]" />
           ) : (
             <span className="text-sm font-semibold text-text-disabled">[{parsedData.translated}]</span>
           )}
@@ -47,7 +48,13 @@ function KeywordDetails({ currentKeyword, isKeywordIncluded, gptData }: KeywordD
       </div>
       <div className="flex flex-col gap-y-2">
         {isLoading ? (
-          <p>Loading...</p>
+          <>
+            <Skeleton className="h-8 w-full" />
+            <Skeleton className="h-4 w-full pl-2" />
+            <Skeleton className="h-4 w-full pl-2" />
+            <Skeleton className="h-4 w-full pl-2" />
+            <Skeleton className="h-4 w-full pl-2" />
+          </>
         ) : (
           <>
             <p className="font-medium text-text-info">{parsedData.definition}</p>
