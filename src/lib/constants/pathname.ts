@@ -8,4 +8,4 @@ export const SCAN_PATH = "/mailscan/scan";
 export const MAIN_PATH = "/";
 export const MATERIAL_PATH = "/material";
 export const MAILBOX_PATH = "/mailbox";
-export const MAILBOXL_DETAIL_PATH = /^\/mailbox\/\d+$/;
+export const MAILBOXL_DETAIL_PATH = /^\/mailbox\/\w+$/;
