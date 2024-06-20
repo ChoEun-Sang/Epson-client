@@ -1,7 +1,7 @@
 import Image from "next/image";
 import BackButton from "../common/button/BackButton";
 import { usePathname } from "next/navigation";
-import { checkPathname } from "./RenderHeader";
+import { checkPathname } from "@/lib/util/CheckPathName";
 
 function PrintHeader() {
   const pathname = usePathname();
