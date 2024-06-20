@@ -11,22 +11,23 @@ import {
   PRINT_PATH,
   ORIGINALIMAGE_PATH,
   MATERIAL_DETAIL_PATH,
+  MAILBOXL_DETAIL_PATH,
 } from "@/lib/constants/pathname";
 
 const NavBar = () => {
   const pathname = usePathname();
-
   const invisiblePaths = [
-    MAILSCAN_PATH,
-    MAILUPLOAD_PATH,
-    SCAN_PATH,
-    KEYWORDS_PATH,
-    PRINT_PATH,
-    ORIGINALIMAGE_PATH,
-    MATERIAL_DETAIL_PATH,
+    MAILSCAN_PATH === pathname,
+    MAILUPLOAD_PATH === pathname,
+    SCAN_PATH === pathname,
+    KEYWORDS_PATH.test(pathname),
+    PRINT_PATH.test(pathname),
+    ORIGINALIMAGE_PATH.test(pathname),
+    MATERIAL_DETAIL_PATH.test(pathname),
+    MAILBOXL_DETAIL_PATH.test(pathname),
   ];
 
-  const invisibleNav = invisiblePaths.includes(pathname);
+  const invisibleNav = invisiblePaths.includes(true);
 
   return (
     !invisibleNav && (
