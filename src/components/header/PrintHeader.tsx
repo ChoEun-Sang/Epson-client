@@ -1,10 +1,11 @@
 import Image from "next/image";
 import BackButton from "../common/button/BackButton";
 import { usePathname } from "next/navigation";
-import { checkPathname } from "./RenderHeader";
+import { checkPathname } from "@/lib/util/CheckPathName";
 import CustomDialog from "../common/CustomDialog";
 import FontSizeSlider from "../mailDetail/FontSizeSlider";
 import { Dialog, DialogTrigger } from "../ui/dialog";
+
 
 function PrintHeader() {
   const pathname = usePathname();

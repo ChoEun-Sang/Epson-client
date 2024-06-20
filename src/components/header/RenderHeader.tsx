@@ -4,34 +4,19 @@ import { usePathname } from "next/navigation";
 import UserHeader from "./UserHeader";
 import SimpleHeader from "./SimpleHeader";
 import BackHeader from "./BackHeader";
-import { KEYWORDS_PATH, MATERIAL_DETAIL_PATH, ORIGINALIMAGE_PATH, PRINT_PATH } from "@/lib/constants/pathname";
 import PrintHeader from "./PrintHeader";
-
-export const checkPathname = (pathname: string) => {
-  const originalImage = ORIGINALIMAGE_PATH.test(pathname);
-  const print = PRINT_PATH.test(pathname);
-  const keywords = KEYWORDS_PATH.test(pathname);
-  const materialDetail = MATERIAL_DETAIL_PATH.test(pathname);
-
-  return { originalImage, print, keywords, materialDetail };
-};
+import { checkPathname } from "@/lib/util/CheckPathName";
 
 function RenderHeader() {
   const pathname = usePathname();
 
-  const { originalImage, print, keywords, materialDetail } = checkPathname(pathname);
-
-  const sendmailPaths = ["/sendmail", "/sendmail/scan"];
-  const userHeaderGroup = ["/", "/mailbox", "/material"];
-
-  const isSendmailPath = sendmailPaths.includes(pathname);
-  const isUserHeader = userHeaderGroup.includes(pathname);
+  const { originalImage, print, mailboxDetail, materialDetail, isSendmailPath, isUserHeader } = checkPathname(pathname);
 
   if (isUserHeader) {
     return <UserHeader />;
   } else if (isSendmailPath || originalImage || print) {
     return <SimpleHeader />;
-  } else if (keywords || materialDetail) {
+  } else if (mailboxDetail || materialDetail) {
     return <PrintHeader />;
   } else {
     return <BackHeader />;
