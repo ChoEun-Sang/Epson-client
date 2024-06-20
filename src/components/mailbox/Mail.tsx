@@ -20,7 +20,7 @@ interface MailProps {
 function Mail({ data }: { data: MailProps }) {
   return (
     <li className="p-4 mb-2 bg-gray-100 rounded-sm">
-      <Link href="#">
+      <Link href={`/mailbox/${data.letterDocumentId}`}>
         <div className="flex justify-between">
           <span>
             <strong>To.</strong> {data.receiver ? data.receiver.username : "유애나"}

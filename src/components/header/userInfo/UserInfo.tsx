@@ -3,6 +3,7 @@ import Image from "next/image";
 import useUserStore from "@/store/useUserStore";
 import { deleteAccessTokenFromCookie } from "@/lib/util/cookies";
 import useOutsideClick from "@/hooks/useOutsideClick";
+import { toast } from "sonner";
 
 function UserInfo() {
   const { userData, resetUserData } = useUserStore();
@@ -21,9 +22,10 @@ function UserInfo() {
     deleteAccessTokenFromCookie();
     resetUserData();
     setIsOpen(false);
+    toast.success("로그아웃 되었습니다!");
   };
 
-  const { img /* , id, username, myFavorite, epsonDevice */ } = userData || {};
+  const { img } = userData || {};
 
   return (
     <>

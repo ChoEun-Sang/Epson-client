@@ -6,7 +6,7 @@ import KeywordSlider from "@/components/mailDetail/KeywordSlider";
 import useGetGPTDataQueries from "@/hooks/queries/useGetGPTDataQuery";
 import { getKeywordsInSentence } from "@/lib/util/utilFunctions";
 import useMailDetailStore from "@/store/useMailDetailStore";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 function SelectKeywords() {
@@ -17,13 +17,13 @@ function SelectKeywords() {
   const currentKeyword = keywordsInSentence[currentKeywordIndex];
   const isKeywordIncluded = keywords.includes(currentKeyword);
   const queries = useGetGPTDataQueries(keywordsInSentence);
+  const { letterDocumentId } = useParams();
 
-  // 추후 letterId로 동적 라우팅 처리
   useEffect(() => {
     if (!selectedText) {
-      router.replace("/maildetail/");
+      router.replace(`/mailbox/${letterDocumentId}`);
     }
-  }, [selectedText, router]);
+  }, [selectedText, router, letterDocumentId]);
 
   return (
     <section className="flex flex-col gap-y-3 h-full">
