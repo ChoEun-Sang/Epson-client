@@ -124,6 +124,15 @@ body {
   max-height: 812px;
 }
 
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+button:disabled:hover {
+  background-color: initial;
+}
+
 .main {
   -ms-overflow-style: none;
   scrollbar-width: none;
