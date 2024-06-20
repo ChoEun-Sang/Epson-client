@@ -14,6 +14,12 @@ function KeywordDetails({ currentKeyword, isKeywordIncluded, gptData }: KeywordD
   const { addKeyword, deleteKeyword } = useMailDetailStore();
   const { data, isLoading, isError, error } = gptData;
 
+  const cleanJsonString = (jsonString: string) => {
+    return jsonString.replace(/```json|```|`/g, "").trim();
+  };
+
+  const parsedData = data ? JSON.parse(cleanJsonString(data)) : null;
+
   if (isError) return <p>오류: {error.message}</p>;
 
   return (
@@ -35,7 +41,7 @@ function KeywordDetails({ currentKeyword, isKeywordIncluded, gptData }: KeywordD
           {isLoading ? (
             <p>Loading...</p>
           ) : (
-            <span className="text-sm font-semibold text-text-disabled">[{data && JSON.parse(data).translated}]</span>
+            <span className="text-sm font-semibold text-text-disabled">[{parsedData.translated}]</span>
           )}
         </div>
       </div>
@@ -44,13 +50,9 @@ function KeywordDetails({ currentKeyword, isKeywordIncluded, gptData }: KeywordD
           <p>Loading...</p>
         ) : (
           <>
-            <p className="font-medium text-text-info">{data && JSON.parse(data).definition}</p>
-            <p className="font-medium text-text-info border-l-2 border-gray-3 pl-2">
-              {data && JSON.parse(data).krexample}
-            </p>
-            <p className="font-medium text-text-info border-l-2 border-gray-3 pl-2">
-              {data && JSON.parse(data).enexample}
-            </p>
+            <p className="font-medium text-text-info">{parsedData.definition}</p>
+            <p className="font-medium text-text-info border-l-2 border-gray-3 pl-2">{parsedData.krexample}</p>
+            <p className="font-medium text-text-info border-l-2 border-gray-3 pl-2">{parsedData.enexample}</p>
             <ul className="flex gap-x-1.5 border-l-2 border-gray-3 flex-wrap pl-2">
               <Image src="/equal.svg" alt="" width={24} height={24} />
               {data &&
