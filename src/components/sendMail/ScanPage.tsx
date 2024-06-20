@@ -105,7 +105,7 @@ function SendMailScanPage() {
   };
 
   return (
-    <section>
+    <section className="innerheight scrollon">
       <Spacing size={32} />
       <List number={1}>
         <div>

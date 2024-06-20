@@ -7,7 +7,7 @@ function MaterialPDF({ url }: { url: string }) {
   };
 
   return (
-    <section className="relative w-full h-full flex flex-col justify-center items-center gap-4">
+    <section className="relative w-full h-full flex flex-col justify-center items-center gap-4 innerheight scrollon">
       <button
         type="button"
         onClick={onClickToPrint}

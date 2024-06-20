@@ -3,7 +3,7 @@ import Materials from "@/components/material/Materials";
 
 function Material() {
   return (
-    <section>
+    <section className="innerheight scrollon">
       <Materials />
     </section>
   );
