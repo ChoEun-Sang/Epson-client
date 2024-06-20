@@ -11,25 +11,23 @@ export interface MailText {
 }
 
 export interface LetterDetailInfo {
-  letter: {
-    id: string;
-    title: "string";
-    letterDocumentId: "string";
+  id: string;
+  title: "string";
+  letterDocumentId: "string";
+  createdAt: "string";
+  sender: {
+    id: 0;
+    username: "string";
+    img: unknown;
+    role: "string";
     createdAt: "string";
-    sender: {
-      id: 0;
-      username: "string";
-      img: unknown;
-      role: "string";
-      createdAt: "string";
-    };
-    receiver: {
-      id: 0;
-      username: "string";
-      img: unknown;
-      role: "string";
-      createdAt: "string";
-    };
+  };
+  receiver: {
+    id: 0;
+    username: "string";
+    img: unknown;
+    role: "string";
+    createdAt: "string";
   };
 }
 
@@ -54,4 +52,9 @@ export interface GPTData {
   antonyms: string[];
   enexample: string;
   krexample: string;
+}
+
+export interface LetterDetailData {
+  letter: LetterDetailInfo;
+  letterDocument: LetterDetailDocument;
 }

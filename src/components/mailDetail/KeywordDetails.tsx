@@ -3,6 +3,7 @@
 import useMailDetailStore from "@/store/useMailDetailStore";
 import { UseQueryResult } from "@tanstack/react-query";
 import Image from "next/image";
+import { Skeleton } from "../ui/skeleton";
 
 interface KeywordDetailsProps {
   currentKeyword: string;
@@ -13,6 +14,12 @@ interface KeywordDetailsProps {
 function KeywordDetails({ currentKeyword, isKeywordIncluded, gptData }: KeywordDetailsProps) {
   const { addKeyword, deleteKeyword } = useMailDetailStore();
   const { data, isLoading, isError, error } = gptData;
+
+  const cleanJsonString = (jsonString: string) => {
+    return jsonString.replace(/```json|```|`/g, "").trim();
+  };
+
+  const parsedData = data ? JSON.parse(cleanJsonString(data)) : null;
 
   if (isError) return <p>오류: {error.message}</p>;
 
@@ -33,24 +40,32 @@ function KeywordDetails({ currentKeyword, isKeywordIncluded, gptData }: KeywordD
             </button>
           </div>
           {isLoading ? (
-            <p>Loading...</p>
+            <div className="flex items-center gap-x-0.5">
+              <span className="text-sm font-semibold  text-text-disabled">{"["}</span>
+              <Skeleton className="h-1 w-1 rounded-full" />
+              <Skeleton className="h-1 w-1 rounded-full" />
+              <Skeleton className="h-1 w-1 rounded-full" />
+              <span className="text-sm font-semibold  text-text-disabled">{"]"}</span>
+            </div>
           ) : (
-            <span className="text-sm font-semibold text-text-disabled">[{data && JSON.parse(data).translated}]</span>
+            <span className="text-sm font-semibold text-text-disabled">[{parsedData.translated}]</span>
           )}
         </div>
       </div>
       <div className="flex flex-col gap-y-2">
         {isLoading ? (
-          <p>Loading...</p>
+          <>
+            <Skeleton className="h-8 w-full" />
+            <Skeleton className="h-4 w-full pl-2" />
+            <Skeleton className="h-4 w-full pl-2" />
+            <Skeleton className="h-4 w-full pl-2" />
+            <Skeleton className="h-4 w-full pl-2" />
+          </>
         ) : (
           <>
-            <p className="font-medium text-text-info">{data && JSON.parse(data).definition}</p>
-            <p className="font-medium text-text-info border-l-2 border-gray-3 pl-2">
-              {data && JSON.parse(data).krexample}
-            </p>
-            <p className="font-medium text-text-info border-l-2 border-gray-3 pl-2">
-              {data && JSON.parse(data).enexample}
-            </p>
+            <p className="font-medium text-text-info">{parsedData.definition}</p>
+            <p className="font-medium text-text-info border-l-2 border-gray-3 pl-2">{parsedData.krexample}</p>
+            <p className="font-medium text-text-info border-l-2 border-gray-3 pl-2">{parsedData.enexample}</p>
             <ul className="flex gap-x-1.5 border-l-2 border-gray-3 flex-wrap pl-2">
               <Image src="/equal.svg" alt="" width={24} height={24} />
               {data &&
