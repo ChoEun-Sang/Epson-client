@@ -2,7 +2,7 @@
 
 import usePostKeywords from "@/hooks/mutations/usePostKeywords";
 import { REG_EXP } from "@/lib/constants/constants";
-import { MailText } from "@/lib/types/mailDetailTypes";
+import { LetterDetailDocument } from "@/lib/types/mailDetailTypes";
 import { getKeywordsInSentence } from "@/lib/util/utilFunctions";
 import useMailDetailStore from "@/store/useMailDetailStore";
 import { useRouter } from "next/navigation";
@@ -10,9 +10,14 @@ import { toast } from "sonner";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-function MailContents({ originalText, translatedText }: MailText) {
+interface MailContentsProps {
+  letterDocumentData: LetterDetailDocument | undefined;
+  letterDocumentId: string;
+}
+
+function MailContents({ letterDocumentData, letterDocumentId }: MailContentsProps) {
   const { setSelectedText, setSelectedTranslatedText, keywords, setTextNumber, clearKeywords } = useMailDetailStore();
-  const { mutate, isError, error, data } = usePostKeywords();
+  const { mutate, isError, error, data, isPending } = usePostKeywords();
   const router = useRouter();
   const [showToast, setShowToast] = useState(false);
 
@@ -22,7 +27,7 @@ function MailContents({ originalText, translatedText }: MailText) {
         duration: 3000,
         action: {
           label: "바로가기",
-          onClick: () => console.log("스낵바 클릭"),
+          onClick: () => router.push("/material"),
         },
       });
     };
@@ -69,48 +74,61 @@ function MailContents({ originalText, translatedText }: MailText) {
 
   const handleclickSentence = (sentence: string, index: number) => {
     setSelectedText(sentence);
-    setSelectedTranslatedText(translatedText[index]);
+    if (letterDocumentData) {
+      setSelectedTranslatedText(letterDocumentData?.pages[0].translatedText[index]);
+    }
     setTextNumber(index + 1);
     if (getKeywordsInSentence(sentence).length) {
-      router.push("/maildetail/keywords");
+      router.push(`/mailbox/${letterDocumentId}/keywords/`);
     }
   };
 
-  const letterId = 1; //추후 params에서 추가해야함
   const title = "임시 타이틀"; //추후 기능 추가
 
   if (isError) <p>오류: {error.message}</p>;
 
   return (
     <ul className="w-full flex flex-col overflow-auto main">
-      {originalText.map((sentence, index) => (
-        <li key={index} className="flex flex-col">
-          <button className="flex gap-2 p-2" onClick={() => handleclickSentence(sentence, index)}>
-            <span className="text-xs font-bold text-primary-3">{index + 1}</span>
-            <div className="flex flex-col text-start">
-              {renderStyledSentence(sentence)}
-              <p className="text-sm text-text-info">{translatedText[index]}</p>
-            </div>
-          </button>
-          {index < originalText.length - 1 && <hr className="border-b border-gray-1 my-1" />}
-        </li>
-      ))}
+      {letterDocumentData?.pages[0].originText
+        ? letterDocumentData?.pages[0].originText.map((sentence, index) => (
+            <li key={index} className="flex flex-col">
+              <button className="flex gap-2 p-2" onClick={() => handleclickSentence(sentence, index)}>
+                <span className="text-xs font-bold text-primary-3">{index + 1}</span>
+                <div className="flex flex-col text-start">
+                  {renderStyledSentence(sentence)}
+                  <p className="text-sm text-text-info">{letterDocumentData.pages[0].translatedText[index]}</p>
+                </div>
+              </button>
+              {index < letterDocumentData.pages[0].originText.length - 1 && (
+                <hr className="border-b border-gray-1 my-1" />
+              )}
+            </li>
+          ))
+        : null}
       {keywords.length ? (
         <button
           onClick={() => {
-            mutate([letterId, keywords, title], {
-              onSuccess: () => {
-                setShowToast(true);
-                clearKeywords();
-              },
-            });
+            if (letterDocumentData) {
+              mutate([letterDocumentData.letterId, keywords, title], {
+                onSuccess: () => {
+                  setShowToast(true);
+                  clearKeywords();
+                },
+              });
+            }
           }}
-          className="absolute bottom-8 self-center z-10 flex bg-gray-3 gap-x-3 border-2 border-gray-4 px-4 py-2 rounded-3xl"
+          className="absolute bottom-8 self-center z-10 flex bg-gray-3 gap-x-3 border-2 border-gray-4 px-4 py-2 rounded-3xl w-[300px]"
         >
           <Image src="/book.svg" alt="" width={24} height={24} />
-
           <p className="text-text-info font-bold">
-            키워드 <span className="text-primary-8">{keywords.length}</span>개 학습노트로 저장하기
+            {isPending ? (
+              <span>전송중...</span>
+            ) : (
+              <span>
+                {" "}
+                키워드 <span className="text-primary-8">{keywords.length}</span>개 학습노트로 저장하기
+              </span>
+            )}
           </p>
         </button>
       ) : null}
