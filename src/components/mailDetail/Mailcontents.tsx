@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import useFontSizeStore from "@/store/useFontSizeStore";
 
 interface MailContentsProps {
   letterDocumentData: LetterDetailDocument | undefined;
@@ -20,6 +21,7 @@ function MailContents({ letterDocumentData, letterDocumentId }: MailContentsProp
   const { mutate, isError, error, data, isPending } = usePostKeywords();
   const router = useRouter();
   const [showToast, setShowToast] = useState(false);
+  const { size } = useFontSizeStore();
 
   useEffect(() => {
     const renderToast = () => {
@@ -35,7 +37,7 @@ function MailContents({ letterDocumentData, letterDocumentId }: MailContentsProp
       renderToast();
       setShowToast(false);
     }
-  }, [data?.studyData.keywords.length, showToast]);
+  }, [data?.studyData.keywords.length, router, showToast]);
 
   const renderStyledSentence = (sentence: string) => {
     let match;
@@ -94,9 +96,11 @@ function MailContents({ letterDocumentData, letterDocumentId }: MailContentsProp
             <li key={index} className="flex flex-col">
               <button className="flex gap-2 p-2" onClick={() => handleclickSentence(sentence, index)}>
                 <span className="text-xs font-bold text-primary-3">{index + 1}</span>
-                <div className="flex flex-col text-start">
+                <div className="flex flex-col text-start" style={{ fontSize: size }}>
                   {renderStyledSentence(sentence)}
-                  <p className="text-sm text-text-info">{letterDocumentData.pages[0].translatedText[index]}</p>
+                  <p className="text-text-info" style={{ fontSize: size - 2 }}>
+                    {letterDocumentData.pages[0].translatedText[index]}
+                  </p>
                 </div>
               </button>
               {index < letterDocumentData.pages[0].originText.length - 1 && (
