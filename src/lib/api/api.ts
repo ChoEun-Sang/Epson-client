@@ -71,3 +71,13 @@ export const getStudyMateiral = async () => {
   const { data } = await axiosClient.get("/study");
   return data;
 };
+
+export const connectDevice = async (deviceId: string) => {
+  const { data } = await axiosClient.put(`/user/epsondevice?device=${deviceId}`);
+  return data;
+};
+
+export const connectDeviceVerify = async () => {
+  const { data } = await axiosClient.post("/auth");
+  return data;
+};
