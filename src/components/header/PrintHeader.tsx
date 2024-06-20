@@ -2,6 +2,9 @@ import Image from "next/image";
 import BackButton from "../common/button/BackButton";
 import { usePathname } from "next/navigation";
 import { checkPathname } from "./RenderHeader";
+import CustomDialog from "../common/CustomDialog";
+import FontSizeSlider from "../mailDetail/FontSizeSlider";
+import { Dialog, DialogTrigger } from "../ui/dialog";
 
 function PrintHeader() {
   const pathname = usePathname();
@@ -16,9 +19,16 @@ function PrintHeader() {
         {materialDetail ? (
           ""
         ) : (
-          <button>
-            <Image src="/custom_typography.png" width={18} height={18} alt="custom_typography" />
-          </button>
+          <Dialog>
+            <DialogTrigger asChild>
+              <button>
+                <Image src="/custom_typography.png" width={18} height={18} alt="custom_typography" />
+              </button>
+            </DialogTrigger>
+            <CustomDialog title="글자 크기 설정">
+              <FontSizeSlider />
+            </CustomDialog>
+          </Dialog>
         )}
         <button>
           <Image src="/print.png" width={24} height={24} alt="print" />
