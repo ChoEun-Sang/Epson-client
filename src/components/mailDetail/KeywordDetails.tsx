@@ -40,7 +40,13 @@ function KeywordDetails({ currentKeyword, isKeywordIncluded, gptData }: KeywordD
             </button>
           </div>
           {isLoading ? (
-            <Skeleton className="h-4 w-[150px]" />
+            <div className="flex items-center gap-x-0.5">
+              <span className="text-sm font-semibold  text-text-disabled">{"["}</span>
+              <Skeleton className="h-1 w-1 rounded-full" />
+              <Skeleton className="h-1 w-1 rounded-full" />
+              <Skeleton className="h-1 w-1 rounded-full" />
+              <span className="text-sm font-semibold  text-text-disabled">{"]"}</span>
+            </div>
           ) : (
             <span className="text-sm font-semibold text-text-disabled">[{parsedData.translated}]</span>
           )}
