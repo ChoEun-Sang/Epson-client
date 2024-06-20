@@ -119,7 +119,7 @@ html {
 }
 
 body {
-  padding: 0 16px 0 16px !important;
+  padding: 0 16px !important;
   background-color: #fff;
   max-height: 812px;
 }
@@ -257,4 +257,12 @@ button:disabled:hover {
   font-style: normal;
   font-weight: 700;
   line-height: 150%; /* 12px */
+}
+
+.innerheight {
+  @apply h-[634px];
+}
+
+.scrollon {
+  @apply overflow-x-hidden overflow-auto main;
 }

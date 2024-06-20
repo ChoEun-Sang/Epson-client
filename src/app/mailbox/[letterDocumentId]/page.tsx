@@ -13,10 +13,8 @@ function MailDeatil() {
     return <p>loading...</p>;
   }
 
-  console.log(data);
-
   return (
-    <section className="flex flex-col gap-y-6 h-full relative">
+    <section className="flex flex-col gap-y-6 relative innerheight">
       <MailDescription letterImageUrl={data?.letterDocument.pages[0].url} letterInfoData={data?.letter} />
       <Mailcontents letterDocumentData={data?.letterDocument} letterDocumentId={letterDocumentId as string} />
     </section>

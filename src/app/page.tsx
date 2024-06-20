@@ -8,7 +8,7 @@ import SendMailSelect from "@/components/main/SendMailSelect";
 
 export default function Home() {
   return (
-    <section>
+    <section className="innerheight scrollon">
       <div className="h-[82px] pt-4 pb-2">
         <h1>{MAIN_MOCKING.username} 님, 환영합니다!</h1>
       </div>
@@ -20,6 +20,6 @@ export default function Home() {
       <RecentLetterSection />
 
       <SendMailSelect />
-    </section>  
+    </section>
   );
 }

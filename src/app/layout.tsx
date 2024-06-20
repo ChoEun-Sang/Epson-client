@@ -25,7 +25,7 @@ export default function RootLayout({
         <ReactQueryProvider>
           <AuthGuard>
             <Header />
-            <main className="h-[634px] overflow-x-hidden overflow-auto main">{children}</main>
+            {children}
             <NavBar />
             <Toaster duration={1000} />
           </AuthGuard>

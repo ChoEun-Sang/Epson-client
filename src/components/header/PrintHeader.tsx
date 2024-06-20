@@ -5,7 +5,7 @@ import { checkPathname } from "@/lib/util/CheckPathName";
 import CustomDialog from "../common/CustomDialog";
 import FontSizeSlider from "../mailDetail/FontSizeSlider";
 import { Dialog, DialogTrigger } from "../ui/dialog";
-
+import Link from "next/link";
 
 function PrintHeader() {
   const pathname = usePathname();
@@ -31,9 +31,9 @@ function PrintHeader() {
             </CustomDialog>
           </Dialog>
         )}
-        <button>
+        <Link href={`${pathname}/print`}>
           <Image src="/print.png" width={24} height={24} alt="print" />
-        </button>
+        </Link>
       </div>
     </div>
   );
