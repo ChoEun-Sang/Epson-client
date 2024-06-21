@@ -3,10 +3,11 @@ import MaterialPDF from "@/components/material/MaterialPDF";
 import { useSearchParams } from "next/navigation";
 
 function PDF() {
-  const params = useSearchParams();
-  const url = params.get("url");
+  const searchParams = useSearchParams();
 
-  return <MaterialPDF url={`${url}`} />;
+  const pdfURL = searchParams.get("pdf");
+
+  return <MaterialPDF pdfURL={pdfURL || ""} />;
 }
 
 export default PDF;

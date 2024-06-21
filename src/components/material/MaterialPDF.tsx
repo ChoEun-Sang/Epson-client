@@ -1,24 +1,9 @@
-"use client";
-import Image from "next/image";
-
-function MaterialPDF({ url }: { url: string }) {
-  const onClickToPrint = () => {
-    console.log("onClickToPrint");
-  };
-
+function MaterialPDF({ pdfURL }: { pdfURL: string }) {
   return (
     <section className="relative w-full h-full flex flex-col justify-center items-center gap-4 innerheight scrollon">
-      <button
-        type="button"
-        onClick={onClickToPrint}
-        className="px-4 py-2 flex justify-center items-center gap-2 rounded-full border border-gray-8"
-      >
-        <Image src={"/printer.svg"} alt="printer" width={24} height={24} />
-        학습자료 인쇄하기
-      </button>
       <div className="relative w-full h-full">
         <iframe
-          src={url}
+          src={`https://aigooback.blob.core.windows.net${pdfURL}#toolbar=0&navpanes=0&scrollbar=0`}
           style={{
             position: "absolute",
             top: 0,

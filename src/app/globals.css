@@ -105,7 +105,7 @@
 
 html,
 body {
-  max-width: 375px;
+  width: 375px;
 }
 
 html {
@@ -119,18 +119,11 @@ html {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   padding: 0 16px !important;
   background-color: #fff;
-  max-height: 812px;
-}
-
-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
-button:disabled:hover {
-  background-color: initial;
+  height: 812px;
 }
 
 .main {
@@ -260,7 +253,7 @@ button:disabled:hover {
 }
 
 .innerheight {
-  @apply h-[634px];
+  @apply h-[714px] pb-[42px];
 }
 
 .scrollon {

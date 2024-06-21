@@ -10,11 +10,12 @@ import { checkPathname } from "@/lib/util/CheckPathName";
 function RenderHeader() {
   const pathname = usePathname();
 
-  const { originalImage, print, mailboxDetail, materialDetail, isSendmailPath, isUserHeader } = checkPathname(pathname);
+  const { originalImage, print, mailboxDetail, materialDetail, isSendmailPath, isUserHeader, isSacnPath } =
+    checkPathname(pathname);
 
   if (isUserHeader) {
     return <UserHeader />;
-  } else if (isSendmailPath || originalImage || print) {
+  } else if (isSendmailPath || originalImage || print || isSacnPath) {
     return <SimpleHeader />;
   } else if (mailboxDetail || materialDetail) {
     return <PrintHeader />;
