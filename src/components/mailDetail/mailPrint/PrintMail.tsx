@@ -6,7 +6,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import useGetMailDetail from "@/hooks/queries/useGetMailDetail";
 import { postEpsonPrint } from "@/lib/api/api";
-import { REG_EXP } from "@/lib/constants/constants";
+import { IMAGE_BASE_URL, NO_TOOL_BAR, REG_EXP } from "@/lib/constants/constants";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -15,6 +15,7 @@ function PrintMail() {
   const [printType, setPrintType] = useState<string>("image");
   const { letterDocumentId } = useParams();
   const { data, isLoading } = useGetMailDetail(letterDocumentId as string);
+  const imageURL = IMAGE_BASE_URL + data?.letterDocument.pages[0].url + NO_TOOL_BAR;
 
   // 현재는 사진만 인쇄하도록 전달
   // 추후 텍스트 인쇄 방식이 추가되면 기능 추가 예정
@@ -24,13 +25,7 @@ function PrintMail() {
       case "image":
         return (
           <div className="w-full h-full pb-20">
-            <iframe
-              scrolling="no"
-              className="main border-4"
-              src={`https://aigooback.blob.core.windows.net${data?.letterDocument.pages[0].url}#toolbar=0&navpanes=0&scrollbar=0`}
-              width={"100%"}
-              height={"100%"}
-            />
+            <iframe scrolling="no" className="main border-4" src={imageURL} width={"100%"} height={"100%"} />
           </div>
         );
       case "text":
@@ -51,13 +46,7 @@ function PrintMail() {
         return (
           <div className="flex-flex-col">
             <div className="w-full h-[300px] mb-4">
-              <iframe
-                scrolling="no"
-                className="main border-4"
-                src={`https://aigooback.blob.core.windows.net${data?.letterDocument.pages[0].url}#toolbar=0&navpanes=0&scrollbar=0`}
-                width={"100%"}
-                height={"100%"}
-              />
+              <iframe scrolling="no" className="main border-4" src={imageURL} width={"100%"} height={"100%"} />
             </div>
             <ul className="flex flex-col gap-y-3">
               {data?.letterDocument.pages[0].originText.map((originSentence, index) => (
