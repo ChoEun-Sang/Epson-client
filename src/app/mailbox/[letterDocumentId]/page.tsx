@@ -16,7 +16,11 @@ function MailDeatil() {
   return (
     <section className="flex flex-col gap-y-6 relative innerheight">
       <MailDescription letterImageUrl={data?.letterDocument.pages[0].url} letterInfoData={data?.letter} />
-      <Mailcontents letterDocumentData={data?.letterDocument} letterDocumentId={letterDocumentId as string} />
+      <Mailcontents
+        letterDocumentData={data?.letterDocument}
+        letterDocumentId={letterDocumentId as string}
+        letterTitle={data?.letter.title}
+      />
     </section>
   );
 }

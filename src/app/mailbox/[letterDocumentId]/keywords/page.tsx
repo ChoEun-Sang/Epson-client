@@ -26,7 +26,7 @@ function SelectKeywords() {
   }, [selectedText, router, letterDocumentId]);
 
   return (
-    <section className="flex flex-col gap-y-3 innerheight scrollon">
+    <section className="flex flex-col gap-y-3 innerheight">
       <KeywordSlider currentKeywordIndex={currentKeywordIndex} setCurrentKeywordIndex={setCurrentKeywordIndex} />
       <div className="gap-y-3 flex flex-col scrollon">
         <KeywordDetails
