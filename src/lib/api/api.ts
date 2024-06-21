@@ -81,3 +81,9 @@ export const connectDeviceVerify = async () => {
   const { data } = await axiosClient.post("/auth");
   return data;
 };
+
+export const requestScanDevice = async (artist: string, title: string) => {
+  const { data } = await axiosClient.post(`/letter/by-scan/${artist}`, { title });
+
+  return data;
+};
