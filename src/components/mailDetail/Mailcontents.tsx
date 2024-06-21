@@ -19,26 +19,40 @@ interface MailContentsProps {
 
 function MailContents({ letterDocumentData, letterDocumentId, letterTitle }: MailContentsProps) {
   const { setSelectedText, setSelectedTranslatedText, keywords, setTextNumber, clearKeywords } = useMailDetailStore();
-  const { mutate, isError, error, data, isPending } = usePostKeywords();
+  const { mutateAsync, isError, error, data } = usePostKeywords();
   const router = useRouter();
   const [showToast, setShowToast] = useState(false);
   const { size } = useFontSizeStore();
 
   useEffect(() => {
     const renderToast = () => {
-      return toast.success(`학습노트에 키워드 ${data.studyData.keywords.length}개를 저장했어요.`, {
-        duration: 3000,
-        action: {
-          label: "바로가기",
-          onClick: () => router.push("/material"),
-        },
-      });
+      if (letterDocumentData && letterTitle) {
+        return toast.promise(mutateAsync([letterDocumentData.letterId, keywords, letterTitle]), {
+          duration: 3000,
+          loading: "전송 중...",
+          success: (data) => {
+            if (data) {
+              return `학습노트에 키워드 ${data.studyData.keywords.length}개를 저장했어요.`;
+            }
+          },
+        });
+      }
     };
     if (showToast) {
       renderToast();
+      clearKeywords();
       setShowToast(false);
     }
-  }, [data?.studyData.keywords.length, router, showToast]);
+  }, [
+    clearKeywords,
+    data?.studyData.keywords.length,
+    keywords,
+    letterDocumentData,
+    letterTitle,
+    mutateAsync,
+    router,
+    showToast,
+  ]);
 
   const renderStyledSentence = (sentence: string) => {
     let match;
@@ -111,27 +125,15 @@ function MailContents({ letterDocumentData, letterDocumentId, letterTitle }: Mai
       {keywords.length ? (
         <button
           onClick={() => {
-            if (letterDocumentData && letterTitle) {
-              mutate([letterDocumentData.letterId, keywords, letterTitle], {
-                onSuccess: () => {
-                  setShowToast(true);
-                  clearKeywords();
-                },
-              });
-            }
+            setShowToast(true);
           }}
-          className="absolute bottom-8 self-center z-10 flex bg-gray-3 gap-x-3 border-2 border-gray-4 px-4 py-2 rounded-3xl w-[300px]"
+          className="absolute bottom-8 self-center z-10 flex bg-gray-3 gap-x-2 border-2 border-gray-4 px-4 py-2 rounded-3xl w-[300px]"
         >
           <Image src="/book.svg" alt="" width={24} height={24} />
           <p className="text-text-info font-bold">
-            {isPending ? (
-              <span>전송중...</span>
-            ) : (
-              <span>
-                {" "}
-                키워드 <span className="text-primary-8">{keywords.length}</span>개 학습노트로 저장하기
-              </span>
-            )}
+            <span>
+              키워드 <span className="text-primary-8">{keywords.length}</span>개 학습노트로 저장하기
+            </span>
           </p>
         </button>
       ) : null}
