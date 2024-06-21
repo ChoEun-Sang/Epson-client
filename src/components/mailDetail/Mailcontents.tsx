@@ -14,9 +14,10 @@ import useFontSizeStore from "@/store/useFontSizeStore";
 interface MailContentsProps {
   letterDocumentData: LetterDetailDocument | undefined;
   letterDocumentId: string;
+  letterTitle?: string;
 }
 
-function MailContents({ letterDocumentData, letterDocumentId }: MailContentsProps) {
+function MailContents({ letterDocumentData, letterDocumentId, letterTitle }: MailContentsProps) {
   const { setSelectedText, setSelectedTranslatedText, keywords, setTextNumber, clearKeywords } = useMailDetailStore();
   const { mutate, isError, error, data, isPending } = usePostKeywords();
   const router = useRouter();
@@ -85,8 +86,6 @@ function MailContents({ letterDocumentData, letterDocumentId }: MailContentsProp
     }
   };
 
-  const title = "임시 타이틀"; //추후 기능 추가
-
   if (isError) <p>오류: {error.message}</p>;
 
   return (
@@ -112,8 +111,8 @@ function MailContents({ letterDocumentData, letterDocumentId }: MailContentsProp
       {keywords.length ? (
         <button
           onClick={() => {
-            if (letterDocumentData) {
-              mutate([letterDocumentData.letterId, keywords, title], {
+            if (letterDocumentData && letterTitle) {
+              mutate([letterDocumentData.letterId, keywords, letterTitle], {
                 onSuccess: () => {
                   setShowToast(true);
                   clearKeywords();
