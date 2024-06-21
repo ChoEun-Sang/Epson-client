@@ -2,9 +2,9 @@
 
 import { LetterDetailInfo } from "@/lib/types/mailDetailTypes";
 import { formatDate } from "@/lib/util/utilFunctions";
-import CustomDialog from "../common/CustomDialog";
-import { Dialog, DialogTrigger } from "../ui/dialog";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogTrigger } from "@radix-ui/react-dialog";
+import CustomDialog from "@/components/common/CustomDialog";
 
 interface MailDescriptionProps {
   letterInfoData: LetterDetailInfo | undefined;

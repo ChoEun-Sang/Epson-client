@@ -1,9 +1,9 @@
 "use client";
 
+import { Skeleton } from "@/components/ui/skeleton";
 import useMailDetailStore from "@/store/useMailDetailStore";
 import { UseQueryResult } from "@tanstack/react-query";
 import Image from "next/image";
-import { Skeleton } from "../ui/skeleton";
 
 interface KeywordDetailsProps {
   currentKeyword: string;
