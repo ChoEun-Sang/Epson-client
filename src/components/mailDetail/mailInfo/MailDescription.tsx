@@ -5,6 +5,7 @@ import { formatDate } from "@/lib/util/utilFunctions";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogTrigger } from "@radix-ui/react-dialog";
 import CustomDialog from "@/components/common/CustomDialog";
+import { IMAGE_BASE_URL, NO_TOOL_BAR } from "@/lib/constants/constants";
 
 interface MailDescriptionProps {
   letterInfoData: LetterDetailInfo | undefined;
@@ -13,6 +14,8 @@ interface MailDescriptionProps {
 }
 
 function MailDescription({ letterInfoData, letterImageUrl, dialog = true }: MailDescriptionProps) {
+  const imageURL = IMAGE_BASE_URL + letterImageUrl + NO_TOOL_BAR;
+
   return (
     <div className="w-full flex flex-col gap-y-1">
       <p className="font-bold text-[22px] text-text-sub">{letterInfoData?.title}</p>
@@ -29,13 +32,7 @@ function MailDescription({ letterInfoData, letterImageUrl, dialog = true }: Mail
               </Button>
             </DialogTrigger>
             <CustomDialog title="편지 원본">
-              <iframe
-                scrolling="no"
-                className="main"
-                src={`https://aigooback.blob.core.windows.net${letterImageUrl}#toolbar=0&navpanes=0&scrollbar=0`}
-                width={"100%"}
-                height={"100%"}
-              />
+              <iframe scrolling="no" className="main" src={imageURL} width={"100%"} height={"100%"} />
             </CustomDialog>
           </Dialog>
         )}

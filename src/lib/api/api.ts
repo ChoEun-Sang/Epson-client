@@ -7,7 +7,7 @@ const axiosClient2 = axios.create({
   headers: { "Content-Type": "application/json" },
 });
 
-const imageBaseURL = "https://aigooback.blob.core.windows.net";
+const imageBaseURL = process.env.NEXT_PUBLIC_FILE_URL;
 
 export const getLetterDetail = async (letterId: string) => {
   try {

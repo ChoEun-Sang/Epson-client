@@ -1,9 +1,11 @@
+import { IMAGE_BASE_URL, NO_TOOL_BAR } from "@/lib/constants/constants";
+
 function MaterialPDF({ pdfURL }: { pdfURL: string }) {
   return (
     <section className="relative w-full h-full flex flex-col justify-center items-center gap-4 innerheight scrollon">
       <div className="relative w-full h-full">
         <iframe
-          src={`https://aigooback.blob.core.windows.net${pdfURL}#toolbar=0&navpanes=0&scrollbar=0`}
+          src={IMAGE_BASE_URL + pdfURL + NO_TOOL_BAR}
           style={{
             position: "absolute",
             top: 0,
