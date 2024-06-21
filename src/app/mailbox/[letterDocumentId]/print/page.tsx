@@ -1,5 +1,6 @@
 "use client";
 
+import MailDescription from "@/components/mailDetail/MailDescription";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
@@ -71,6 +72,8 @@ function PrintMail() {
 
   return (
     <section className="innerheight flex flex-col justify-between gap-3">
+      <MailDescription letterInfoData={data?.letter} dialog={false} />
+
       {isLoading ? (
         <Skeleton className="w-full h-[300px]" />
       ) : (
