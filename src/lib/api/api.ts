@@ -84,6 +84,11 @@ export const connectDeviceVerify = async () => {
   return data;
 };
 
+
+export const requestScanDevice = async (artist: string, title: string) => {
+  const { data } = await axiosClient.post(`/letter/by-scan/${artist}`, { title });
+
+
 export const getSingleMateiral = async (id: string) => {
   const { data } = await axiosClient.get(`/study/${id}`);
   return data;
@@ -96,5 +101,6 @@ export const postEpsonPrint = async (url: string) => {
 
 export const putDeviceSetting = async () => {
   const { data } = await axiosClient.put(`/user/epsondevice?device=mdy4265n8m7195@print.epsonconnect.com`);
+
   return data;
 };
