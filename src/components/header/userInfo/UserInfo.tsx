@@ -29,7 +29,7 @@ function UserInfo() {
 
   return (
     <>
-      <div className="flex justify-center w-12">
+      <div className="flex">
         <button className="w-6 h-6 rounded-full" onClick={toggleMyList}>
           <Image src={img || `/default_profile.svg`} width={24} height={24} alt="프로필 이미지" />
         </button>

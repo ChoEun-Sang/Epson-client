@@ -9,6 +9,7 @@ import {
   MATERIAL_PATH,
   ORIGINALIMAGE_PATH,
   PRINT_PATH,
+  SCAN_PATH,
 } from "../constants/pathname";
 
 export const checkPathname = (pathname: string) => {
@@ -21,10 +22,11 @@ export const checkPathname = (pathname: string) => {
   const sendmailPaths = [MAILSCAN_PATH, MAILUPLOAD_PATH];
   const userHeaderGroup = [MAIN_PATH, MAILBOX_PATH, MATERIAL_PATH];
 
+  const isSacnPath = SCAN_PATH.includes(pathname);
   const isSendmailPath = sendmailPaths.includes(pathname);
   const isUserHeader = userHeaderGroup.includes(pathname);
 
-  return { originalImage, print, keywords, mailboxDetail, materialDetail, isSendmailPath, isUserHeader };
+  return { originalImage, print, keywords, mailboxDetail, materialDetail, isSendmailPath, isUserHeader, isSacnPath };
 };
 
 function CheckPathName() {
