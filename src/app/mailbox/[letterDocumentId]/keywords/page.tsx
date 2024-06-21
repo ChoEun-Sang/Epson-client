@@ -26,14 +26,16 @@ function SelectKeywords() {
   }, [selectedText, router, letterDocumentId]);
 
   return (
-    <section className="flex flex-col gap-y-3 innerheight">
+    <section className="flex flex-col gap-y-3 innerheight scrollon">
       <KeywordSlider currentKeywordIndex={currentKeywordIndex} setCurrentKeywordIndex={setCurrentKeywordIndex} />
-      <KeywordDetails
-        currentKeyword={currentKeyword}
-        isKeywordIncluded={isKeywordIncluded}
-        gptData={queries[currentKeywordIndex]}
-      />
-      <AddedKeywordsList />
+      <div className="gap-y-3 flex flex-col scrollon">
+        <KeywordDetails
+          currentKeyword={currentKeyword}
+          isKeywordIncluded={isKeywordIncluded}
+          gptData={queries[currentKeywordIndex]}
+        />
+        <AddedKeywordsList />
+      </div>
     </section>
   );
 }
