@@ -79,7 +79,7 @@ function PrintMail() {
       ) : (
         <div className="w-full h-full scrollon">{renderPrintContent(printType)}</div>
       )}
-      <div className="flex flex-col gap-y-2 items-center pb-4">
+      <div className="flex flex-col gap-y-2 items-center">
         <ToggleGroup type="single" defaultValue={printType} onValueChange={(value) => setPrintType(value)}>
           <ToggleGroupItem value="image">원본</ToggleGroupItem>
           <ToggleGroupItem value="text">텍스트</ToggleGroupItem>
