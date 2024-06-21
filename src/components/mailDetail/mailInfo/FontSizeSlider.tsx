@@ -1,7 +1,7 @@
 "use client";
 
 import useFontSizeStore from "@/store/useFontSizeStore";
-import { Slider } from "../ui/slider";
+import { Slider } from "@radix-ui/react-slider";
 
 function FontSizeSlider() {
   const { size, setSize } = useFontSizeStore();

@@ -13,12 +13,13 @@ export const POST = async (req: NextRequest) => {
       return new Response(JSON.stringify({ error: "키워드가 필요합니다." }), { status: 400 });
     }
     const response = await openai.chat.completions.create({
+      response_format: { type: "json_object" },
       model: "gpt-4o",
       messages: [
         {
           role: "system",
           content:
-            "keyword에 적힌 글을 분석해서 모두 json 객체에 담아서 알려줘. translated에는 영어로 번역하고 , definition에는 영어로된 사전적 의미와, synonyms에는 영어로된 동의어, antonym에는 영어로된 반의어를 알려주고 추가적으로 krexample에는 한글로 된 한 줄의 예시문장과 enexample에는 krexample에 썼던 예시 문장을 영어로 번역해서 모두 JSON 객체에 담아서 줘. 그리고 동사, 형용사, 부사등은 기본형으로 알려줘. 다만 영어가 아닌 것들은 필요없으니 쓰지마 그리고 개행은 필요없으니 하지마. 추가적으로 JSON 데이터로 보낼 때, ```json``` 이런 형태로 보낼 필요 없고 그냥 JSON 객체만 보내.",
+            "keyword를 분석하여 JSON 객체로 반환해. keyword가 한글이라면 translated: keyword를 영어로 번역한 값, definition: keyword의 영어 사전적 의미, synonyms: 한글 동의어 리스트, antonyms: 한글 반의어 리스트, example: 한글로 된 예시 문장, translatedExample: example을 영어로 번역한 값. keyword가 영어라면 translated: keyword를 한글로 번역한 값,definition: keyword의 한글 사전적 의미, synonyms: 영어 동의어 리스트, antonyms: 영어 반의어 리스트, example: 영어로 된 예시 문장, translatedExample: example을 한글로 번역한 값.",
         },
         {
           role: "user",
