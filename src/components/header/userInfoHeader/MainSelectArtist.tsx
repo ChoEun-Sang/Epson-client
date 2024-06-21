@@ -21,7 +21,7 @@ function MainSelectArtist() {
   return (
     <div>
       <button
-        className={`flex items-center text-2xl font-bold ${isOpen ? "on" : ""}  py-2 focus:outline-none`}
+        className={`flex items-center text-2xl font-bold ${isOpen ? "on" : ""} focus:outline-none`}
         onClick={toggleList}
       >
         {selectedValue}
