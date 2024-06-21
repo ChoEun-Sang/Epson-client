@@ -64,8 +64,8 @@ function KeywordDetails({ currentKeyword, isKeywordIncluded, gptData }: KeywordD
         ) : (
           <>
             <p className="font-medium text-text-info">{parsedData.definition}</p>
-            <p className="font-medium text-text-info border-l-2 border-gray-3 pl-2">{parsedData.krexample}</p>
-            <p className="font-medium text-text-info border-l-2 border-gray-3 pl-2">{parsedData.enexample}</p>
+            <p className="font-medium text-text-info border-l-2 border-gray-3 pl-2">{parsedData.example}</p>
+            <p className="font-medium text-text-info border-l-2 border-gray-3 pl-2">{parsedData.translatedExample}</p>
             <ul className="flex gap-x-1.5 border-l-2 border-gray-3 flex-wrap pl-2">
               <Image src="/equal.svg" alt="" width={24} height={24} />
               {data &&
