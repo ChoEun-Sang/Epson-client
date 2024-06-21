@@ -13,6 +13,7 @@ interface User {
 interface MailProps {
   id: number;
   title: string;
+  status: string;
   letterDocumentId: string;
   createdAt: string;
   receiver?: User;
@@ -28,7 +29,7 @@ function MailList({ object }: { object: string }) {
   return (
     <ul>
       {data.map((value: MailProps) => (
-        <Mail key={value.id} data={value} />
+        <Mail key={value.id} data={value} object={object} />
       ))}
     </ul>
   );

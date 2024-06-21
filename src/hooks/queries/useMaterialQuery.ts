@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { getStudyMateiral } from "@/lib/api/api";
+import { getStudyMateirals } from "@/lib/api/api";
 
 const useMaterialQuery = () => {
   return useQuery({
     queryKey: ["material"],
     queryFn: async () => {
-      const data = await getStudyMateiral();
+      const data = await getStudyMateirals();
       return data.studyDatas;
     },
   });

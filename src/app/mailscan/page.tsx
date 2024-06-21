@@ -1,4 +1,4 @@
-import SendMailScanPage from "@/components/sendMail/ScanPage";
+import SendMailScanPage from "@/components/sendMail/SendMailScanPage";
 
 const page = () => {
   return <SendMailScanPage />;

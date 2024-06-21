@@ -17,7 +17,7 @@ function UserHeader() {
         {pathname === "/" ? <MainSelectArtist /> : pathname === "/material" ? <MaterialHeader /> : <MailBox />}
       </div>
 
-      <div className="flex justify-end w-full gap-6 py-2">
+      <div className="flex justify-end w-full gap-6">
         <button>
           <Image src="/notifications.png" width={24} height={24} alt="notifications" />
         </button>
