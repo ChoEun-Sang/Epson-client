@@ -104,3 +104,25 @@ export const putDeviceSetting = async () => {
 
   return data;
 };
+
+export const sendLetterUpload = async (
+  file: File | Blob,
+  pageTypes: ("text" | "picture")[],
+  title: string,
+  artist: string
+) => {
+  if (!file) return;
+
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("pageTypes", JSON.stringify(pageTypes));
+  formData.append("files", file);
+
+  const { data } = await axiosClient.post(`/letter/${artist}`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+
+  return data;
+};

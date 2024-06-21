@@ -1,4 +1,4 @@
-import ScanPage from "@/components/scan/ScanPage";
+import ScanPage from "@/components/sendFlow/ScanPage";
 
 function page() {
   return <ScanPage />;
