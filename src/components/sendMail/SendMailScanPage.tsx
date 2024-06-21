@@ -22,7 +22,9 @@ export default function SendMailScanPage() {
     device,
     setDevice,
     isDeviceValid,
+    setIsDeviceValid,
     deviceTouched,
+    setDeviceTouched,
     isDeviceConnected,
     setIsDeviceConnected,
     isLoading,
@@ -35,9 +37,11 @@ export default function SendMailScanPage() {
     if (userData?.epsonDevice) {
       const deviceEmail = userData.epsonDevice.split("@")[0];
       setDevice(deviceEmail);
+      setIsDeviceValid(true);
+      setDeviceTouched(true);
       setIsDeviceConnected(true);
     }
-  }, [userData, setDevice, setIsDeviceConnected]);
+  }, [userData, setDevice, setIsDeviceConnected, setIsDeviceValid, setDeviceTouched]);
 
   const validateTitle = (title: string) => {
     return title.trim() !== "";
