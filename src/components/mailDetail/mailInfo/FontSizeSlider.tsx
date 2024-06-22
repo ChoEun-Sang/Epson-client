@@ -1,12 +1,12 @@
 "use client";
 
+import { Slider } from "@/components/ui/slider";
 import useFontSizeStore from "@/store/useFontSizeStore";
-import { Slider } from "@radix-ui/react-slider";
 
 function FontSizeSlider() {
   const { size, setSize } = useFontSizeStore();
   return (
-    <div>
+    <>
       <div className="flex gap-x-2 h-fit items-center pt-8 pb-4">
         <span className="font-medium text-xs">가</span>
         <Slider
@@ -32,7 +32,7 @@ function FontSizeSlider() {
           문장이 길어지면 어떻게 되냐면요 이렇게 됩니다.
         </p>
       </div>
-    </div>
+    </>
   );
 }
 
