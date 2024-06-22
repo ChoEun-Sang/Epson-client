@@ -72,7 +72,7 @@ function MailContents({ letterDocumentData, letterDocumentId, letterTitle }: Mai
       styledSentence.push(
         <span
           key={lastIndex + 1}
-          className={`${keywords.includes(onlyWord) ? "text-primary-8" : "text-text-disabled"} underline font-bold`}
+          className={`${keywords.includes(onlyWord) ? "text-primary-7" : "text-text-info"} font-bold`}
         >
           {onlyWord}
         </span>
