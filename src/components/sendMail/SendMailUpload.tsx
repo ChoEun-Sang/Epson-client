@@ -63,14 +63,13 @@ export default function SendMailScanPage() {
 
   const handleUpload = async () => {
     if (!imgFile) return;
-
+    setSent(true);
     setIsLoadingUpload(true);
 
     try {
-      const data = await sendLetterUpload(imgFile, ["text"], title, "1");
+      const data = await sendLetterUpload(imgFile, ["text"], title, "2");
 
       if (data) {
-        setSent(true);
         toast.success("편지를 보내고 있어요!");
       }
     } catch (error) {
@@ -138,7 +137,7 @@ export default function SendMailScanPage() {
       <Spacing size={24} />
       <List number={3}>
         <div>
-          <p>다음 페이지에서 눌렀어요 버튼을 누르면</p>
+          <p>보내기 버튼을 누르면</p>
         </div>
       </List>
       <Spacing size={24} />
