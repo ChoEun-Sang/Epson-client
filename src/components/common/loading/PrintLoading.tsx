@@ -8,9 +8,10 @@ interface PrintLoadingProps {
   isPending: boolean;
   isSuccess: boolean;
   isError: boolean;
+  study?: boolean;
 }
 
-function PrintLoading({ isPending, isSuccess, isError }: PrintLoadingProps) {
+function PrintLoading({ isPending, isSuccess, isError, study }: PrintLoadingProps) {
   const { setPrint } = usePrintStateStore();
   const renderImage = () => {
     if (isPending) {
@@ -26,8 +27,8 @@ function PrintLoading({ isPending, isSuccess, isError }: PrintLoadingProps) {
   };
 
   const renderMessage = () => {
-    if (isPending) return "편지 인쇄중";
-    if (isSuccess) return "편지 인쇄 성공!";
+    if (isPending) return study ? "자료 인쇄 중" : "편지 인쇄 중";
+    if (isSuccess) return study ? "인쇄 성공!" : "편지 인쇄 성공!";
     if (isError) return "에러 발생!";
     return "";
   };

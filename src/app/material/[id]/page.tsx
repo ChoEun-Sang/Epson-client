@@ -13,7 +13,7 @@ function PDF() {
   return (
     <>
       {print ? (
-        <PrintLoading isPending={isPending} isSuccess={isSuccess} isError={isError} />
+        <PrintLoading isPending={isPending} isSuccess={isSuccess} isError={isError} study />
       ) : (
         <MaterialPDF pdfURL={pdfURL || ""} />
       )}
