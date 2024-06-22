@@ -31,7 +31,7 @@ const NavBar = () => {
 
   return (
     !invisibleNav && (
-      <nav className="bg-background w-[343px] h-20 sticky bottom-0 left-0 right-0 mx-auto">
+      <nav className="bg-background w-[343px] h-20 sticky bottom-0 left-0 right-0 mx-auto shrink-0">
         <ul className="h-full flex justify-around items-center">
           {ITEMS.map((item) => (
             <NavMenu key={item.ko} path={item.path}>
