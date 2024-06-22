@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import useSentStore from "@/store/useSentStore";
+import usePrintStateStore from "@/store/usePrintStateStore";
 import Image from "next/image";
 
 interface PrintLoadingProps {
@@ -11,7 +11,7 @@ interface PrintLoadingProps {
 }
 
 function PrintLoading({ isPending, isSuccess, isError }: PrintLoadingProps) {
-  const { setSent } = useSentStore();
+  const { setPrint } = usePrintStateStore();
   const renderImage = () => {
     if (isPending) {
       return <Image src="/printing.gif" width={240} height={240} alt="printing" />;
@@ -41,7 +41,7 @@ function PrintLoading({ isPending, isSuccess, isError }: PrintLoadingProps) {
         </div>
       </div>
       {(isSuccess || isError) && (
-        <Button onClick={() => setSent(false)} className="w-full h-14 bg-primary-8 font-bold absolute bottom-9">
+        <Button onClick={() => setPrint(false)} className="w-full h-14 bg-primary-8 font-bold absolute bottom-9">
           닫기
         </Button>
       )}
