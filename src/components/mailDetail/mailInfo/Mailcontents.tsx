@@ -29,10 +29,10 @@ function MailContents({ letterDocumentData, letterDocumentId, letterTitle }: Mai
       if (letterDocumentData && letterTitle) {
         return toast.promise(mutateAsync([letterDocumentData.letterId, keywords, letterTitle]), {
           duration: 3000,
-          loading: "전송 중...",
+          loading: "Saving...",
           success: (data) => {
             if (data) {
-              return `학습노트에 키워드 ${data.studyData.keywords.length}개를 저장했어요.`;
+              return `Saved ${data.studyData.keywords.length}keywords in study note.`;
             }
           },
         });
@@ -72,7 +72,7 @@ function MailContents({ letterDocumentData, letterDocumentId, letterTitle }: Mai
       styledSentence.push(
         <span
           key={lastIndex + 1}
-          className={`${keywords.includes(onlyWord) ? "text-primary-8" : "text-text-disabled"} underline font-bold`}
+          className={`${keywords.includes(onlyWord) ? "text-primary-7" : "text-text-info"} font-bold`}
         >
           {onlyWord}
         </span>
@@ -127,12 +127,12 @@ function MailContents({ letterDocumentData, letterDocumentId, letterTitle }: Mai
           onClick={() => {
             setShowToast(true);
           }}
-          className="absolute bottom-8 self-center z-10 flex bg-gray-3 gap-x-2 border-2 border-gray-4 px-4 py-2 rounded-3xl w-[300px]"
+          className="absolute bottom-8 self-center z-10 flex bg-gray-3 gap-x-1 border-2 border-gray-4 px-3 py-2 rounded-3xl w-[300px]"
         >
           <Image src="/book.svg" alt="" width={24} height={24} />
           <p className="text-text-info font-bold">
             <span>
-              키워드 <span className="text-primary-8">{keywords.length}</span>개 학습노트로 저장하기
+              Save <span className="text-primary-8">{keywords.length}</span> keywords to study note
             </span>
           </p>
         </button>

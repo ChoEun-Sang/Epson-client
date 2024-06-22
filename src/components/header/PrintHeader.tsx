@@ -6,48 +6,35 @@ import { checkPathname } from "@/lib/util/CheckPathName";
 import CustomDialog from "../common/CustomDialog";
 import FontSizeSlider from "../mailDetail/mailInfo/FontSizeSlider";
 import { Dialog, DialogTrigger } from "../ui/dialog";
-import { postEpsonPrint, putDeviceSetting } from "@/lib/api/api";
 import Link from "next/link";
-import { toast } from "sonner";
+import usePrintStateStore from "@/store/usePrintStateStore";
+import { useEffect } from "react";
+import usePrintHandler from "@/hooks/usePrintHandler";
 
 function PrintHeader() {
   const params = useSearchParams();
   const pdfURL = params.get("pdf") || "";
-
   const pathname = usePathname();
-
   const { materialDetail } = checkPathname(pathname);
+  const { handlePrint, isError, isPending, isSuccess } = usePrintHandler(pdfURL);
+  const { setState, print } = usePrintStateStore();
 
-  const onClickPrintBtn = async () => {
-    try {
-      await putDeviceSetting();
-      const res = await postEpsonPrint(pdfURL);
-      return res;
-    } catch (error) {
-      return error;
-    }
-  };
+  useEffect(() => {
+    setState("isError", isError);
+    setState("isPending", isPending);
+    setState("isSuccess", isSuccess);
+  }, [isError, isPending, isSuccess, setState]);
 
   return (
     <div className="flex items-end w-full">
-      <BackButton />
+      {!print && <BackButton />}
 
       <div className="flex justify-end w-full gap-6 py-2">
         {materialDetail ? (
           <button
             type="button"
-            onClick={() => {
-              return toast.promise(onClickPrintBtn, {
-                duration: 2000,
-                loading: "인쇄 요청 중...",
-                success: (data) => {
-                  if (data) {
-                    return "인쇄 요청이 완료 되었습니다.";
-                  }
-                },
-                error: "Error",
-              });
-            }}
+            onClick={() => handlePrint(pdfURL)}
+            style={{ visibility: print ? "hidden" : "visible" }}
           >
             <Image src="/print.png" width={24} height={24} alt="print" />
           </button>
@@ -59,7 +46,7 @@ function PrintHeader() {
                   <Image src="/custom_typography.png" width={18} height={18} alt="custom_typography" />
                 </button>
               </DialogTrigger>
-              <CustomDialog title="글자 크기 설정">
+              <CustomDialog title="Font Size Setting">
                 <FontSizeSlider />
               </CustomDialog>
             </Dialog>

@@ -11,7 +11,7 @@ function AddedKeywordsList() {
   return (
     <>
       <div className="flex items-center gap-x-2">
-        <span className="font-bold text-[22px] text-text-sub">이 문장에서 추가한 단어</span>
+        <span className="font-bold text-[22px] text-text-sub">Added Keywords</span>
         <span className="text-sm text-primary-5 font-bold">{addedKeywordsInThisSentence.length}</span>
       </div>
       <ul className="flex gap-x-2">
