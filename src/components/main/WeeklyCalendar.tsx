@@ -36,13 +36,15 @@ const WeeklyCalendar: React.FC = () => {
         <div
           key={i}
           className={`flex flex-col items-center p-2 ${
-            isToday ? "bg-black text-white rounded-[18px] w-[42px] h-16" : ""
+            isToday ? "bg-primary-3 text-white rounded-[18px] w-[42px] h-16" : ""
           }`}
         >
           <div
-            className={`text-sm ${
+            className={`text-sm footnote2 ${
               isToday
-                ? isSaturday
+                ? isSunday
+                  ? "text-red-500"
+                  : isSaturday
                   ? "text-blue-500"
                   : "font-bold"
                 : isSunday
@@ -55,9 +57,11 @@ const WeeklyCalendar: React.FC = () => {
             {getDayName(day)}
           </div>
           <div
-            className={`text-lg ${
+            className={`text-lg body2 ${
               isToday
-                ? isSaturday
+                ? isSunday
+                  ? "text-red-500"
+                  : isSaturday
                   ? "text-blue-500"
                   : "font-bold"
                 : isSunday

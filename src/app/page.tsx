@@ -9,7 +9,7 @@ import SendMailSelect from "@/components/main/SendMailSelect";
 export default function Home() {
   return (
     <section className="innerheight scrollon">
-      <div className="h-[82px] pt-4 pb-2">
+      <div className="h-[82px] pt-4 pb-2 title2">
         <h1>{MAIN_MOCKING.username} 님, 환영합니다!</h1>
       </div>
 
