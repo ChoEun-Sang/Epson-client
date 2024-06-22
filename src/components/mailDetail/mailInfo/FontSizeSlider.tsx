@@ -8,7 +8,7 @@ function FontSizeSlider() {
   return (
     <>
       <div className="flex gap-x-2 h-fit items-center pt-8 pb-4">
-        <span className="font-medium text-xs">가</span>
+        <span className="font-medium text-xs">A</span>
         <Slider
           defaultValue={[16]}
           min={12}
@@ -17,19 +17,20 @@ function FontSizeSlider() {
           value={[size]}
           onValueChange={(value) => setSize(value[0])}
         />
-        <span className="font-bold text-2xl">가</span>
+        <span className="font-bold text-2xl">A</span>
       </div>
       <div className="flex flex-col text-start">
         <p className="text-text-info font-semibold flex gap-x-2 py-2" style={{ fontSize: size }}>
           <span className="text-primary-3 font-bold text-xs align-text-top">1</span>
           <p>
-            <span className="text-primary-8">아빠</span>가 멋진 <span className="text-primary-8">가방</span>에
-            들어가십니다.
+            The <span className="text-primary-7 font-bold">quick </span>brown fox{" "}
+            <span className="text-primary-7 font-bold">jumps </span>
+            over the <span className="text-primary-7 font-bold">lazy </span>dog
           </p>
         </p>
         <p className="text-text-info font-semibold flex gap-x-2 py-2" style={{ fontSize: size }}>
           <span className="text-primary-3 font-bold text-xs align-text-top">2</span>
-          문장이 길어지면 어떻게 되냐면요 이렇게 됩니다.
+          When the sentence gets longer, it looks like this.
         </p>
       </div>
     </>

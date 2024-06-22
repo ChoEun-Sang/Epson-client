@@ -28,10 +28,10 @@ function MailDescription({ letterInfoData, letterImageUrl, dialog = true }: Mail
           <Dialog>
             <DialogTrigger asChild>
               <Button variant="destructive" className="bg-primary-8 font-bold text-xs px-2 h-[32px]">
-                원본보기
+                Original Letter
               </Button>
             </DialogTrigger>
-            <CustomDialog title="편지 원본">
+            <CustomDialog title="Original Letter">
               <iframe src={imageURL} width={"100%"} height={"100%"} />
             </CustomDialog>
           </Dialog>

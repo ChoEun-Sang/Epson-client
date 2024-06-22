@@ -25,9 +25,9 @@ function KeywordDetails({ currentKeyword, isKeywordIncluded, gptData }: KeywordD
 
   return (
     <div className="flex flex-col gap-y-2 mb-6">
-      <div className="flex gap-x-2">
-        <span className="font-bold text-primary-5 text-xs">뜻</span>
-        <div className="flex flex-col w-full">
+      <div className="flex flex-col">
+        <span className="font-bold text-primary-5 text-xs">meaning</span>
+        <div className="flex flex-col w-full pl-2">
           <div className="flex justify-between">
             <p className="font-bold text-text-sub py-1">{currentKeyword}</p>
             <button
@@ -36,7 +36,7 @@ function KeywordDetails({ currentKeyword, isKeywordIncluded, gptData }: KeywordD
               } font-bold rounded-lg text-xs px-2 whitespace-nowrap`}
               onClick={() => (isKeywordIncluded ? deleteKeyword(currentKeyword) : addKeyword(currentKeyword))}
             >
-              {isKeywordIncluded ? "제거하기" : "추가하기"}
+              {isKeywordIncluded ? "Remove" : "Add"}
             </button>
           </div>
           {isLoading ? (

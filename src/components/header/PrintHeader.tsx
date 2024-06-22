@@ -46,7 +46,7 @@ function PrintHeader() {
                   <Image src="/custom_typography.png" width={18} height={18} alt="custom_typography" />
                 </button>
               </DialogTrigger>
-              <CustomDialog title="글자 크기 설정">
+              <CustomDialog title="Font Size Setting">
                 <FontSizeSlider />
               </CustomDialog>
             </Dialog>

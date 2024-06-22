@@ -27,9 +27,9 @@ function PrintLoading({ isPending, isSuccess, isError, study }: PrintLoadingProp
   };
 
   const renderMessage = () => {
-    if (isPending) return study ? "자료 인쇄 중" : "편지 인쇄 중";
-    if (isSuccess) return study ? "인쇄 성공!" : "편지 인쇄 성공!";
-    if (isError) return "에러 발생!";
+    if (isPending) return study ? "Printing Note" : "Printing letter";
+    if (isSuccess) return study ? "Printing success!" : "Letter printing success!";
+    if (isError) return "Print Error!";
     return "";
   };
 
@@ -43,7 +43,7 @@ function PrintLoading({ isPending, isSuccess, isError, study }: PrintLoadingProp
       </div>
       {(isSuccess || isError) && (
         <Button onClick={() => setPrint(false)} className="w-full h-14 bg-primary-8 font-bold absolute bottom-9">
-          닫기
+          Close Print
         </Button>
       )}
     </section>

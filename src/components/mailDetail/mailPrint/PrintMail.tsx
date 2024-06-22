@@ -81,15 +81,15 @@ function PrintMail() {
           )}
           <div className="flex flex-col gap-y-3 items-center">
             <ToggleGroup type="single" defaultValue={printType} onValueChange={(value) => setPrintType(value)}>
-              <ToggleGroupItem value="image">원본</ToggleGroupItem>
-              <ToggleGroupItem value="text">텍스트</ToggleGroupItem>
-              <ToggleGroupItem value="all">모두</ToggleGroupItem>
+              <ToggleGroupItem value="image">Image</ToggleGroupItem>
+              <ToggleGroupItem value="text">Text</ToggleGroupItem>
+              <ToggleGroupItem value="all">All</ToggleGroupItem>
             </ToggleGroup>
             <Button
               onClick={() => data && handlePrint(data?.letterDocument.pages[0].url)}
               className="bg-primary-8 w-full font-bold h-14"
             >
-              인쇄하기
+              Print
             </Button>
           </div>
         </section>
