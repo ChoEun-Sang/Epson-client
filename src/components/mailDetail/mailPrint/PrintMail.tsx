@@ -25,7 +25,7 @@ function PrintMail() {
       case "image":
         return (
           <div className="w-full h-full pb-20">
-            <iframe scrolling="no" className="main border-4" src={imageURL} width={"100%"} height={"100%"} />
+            <iframe className="border-4" src={imageURL} width={"100%"} height={"100%"} />
           </div>
         );
       case "text":
@@ -46,7 +46,7 @@ function PrintMail() {
         return (
           <div className="flex-flex-col">
             <div className="w-full h-[300px] mb-4">
-              <iframe scrolling="no" className="main border-4" src={imageURL} width={"100%"} height={"100%"} />
+              <iframe className="border-4" src={imageURL} width={"100%"} height={"100%"} />
             </div>
             <ul className="flex flex-col gap-y-3">
               {data?.letterDocument.pages[0].originText.map((originSentence, index) => (

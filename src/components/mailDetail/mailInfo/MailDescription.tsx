@@ -32,7 +32,7 @@ function MailDescription({ letterInfoData, letterImageUrl, dialog = true }: Mail
               </Button>
             </DialogTrigger>
             <CustomDialog title="편지 원본">
-              <iframe scrolling="no" className="main" src={imageURL} width={"100%"} height={"100%"} />
+              <iframe src={imageURL} width={"100%"} height={"100%"} />
             </CustomDialog>
           </Dialog>
         )}
