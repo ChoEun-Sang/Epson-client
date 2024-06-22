@@ -135,6 +135,14 @@ body {
   display: none;
 }
 
+.custom-box-shadow {
+  box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.16);
+}
+
+.navbar_border {
+  border-top: 1px solid var(--color-gray-3);
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
