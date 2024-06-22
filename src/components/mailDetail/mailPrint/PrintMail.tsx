@@ -1,21 +1,24 @@
 "use client";
 
+import PrintLoading from "@/components/common/loading/PrintLoading";
 import MailDescription from "@/components/mailDetail/mailInfo/MailDescription";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import useGetMailDetail from "@/hooks/queries/useGetMailDetail";
-import { postEpsonPrint } from "@/lib/api/api";
+import usePrintHandler from "@/hooks/usePrintHandler";
 import { IMAGE_BASE_URL, NO_TOOL_BAR, REG_EXP } from "@/lib/constants/constants";
+import usePrintStateStore from "@/store/usePrintStateStore";
 import { useParams } from "next/navigation";
 import { useState } from "react";
-import { toast } from "sonner";
 
 function PrintMail() {
   const [printType, setPrintType] = useState<string>("image");
   const { letterDocumentId } = useParams();
   const { data, isLoading } = useGetMailDetail(letterDocumentId as string);
   const imageURL = IMAGE_BASE_URL + data?.letterDocument.pages[0].url + NO_TOOL_BAR;
+  const { print } = usePrintStateStore();
+  const { handlePrint, isError, isPending, isSuccess } = usePrintHandler(imageURL);
 
   // 현재는 사진만 인쇄하도록 전달
   // 추후 텍스트 인쇄 방식이 추가되면 기능 추가 예정
@@ -65,40 +68,33 @@ function PrintMail() {
   };
 
   return (
-    <section className="innerheight flex flex-col justify-between gap-3">
-      <MailDescription letterInfoData={data?.letter} dialog={false} />
-
-      {isLoading ? (
-        <Skeleton className="w-full h-[300px]" />
+    <>
+      {print ? (
+        <PrintLoading isPending={isPending} isSuccess={isSuccess} isError={isError} />
       ) : (
-        <div className="w-full h-full scrollon">{renderPrintContent(printType)}</div>
+        <section className="innerheight flex flex-col justify-between gap-3">
+          <MailDescription letterInfoData={data?.letter} dialog={false} />
+          {isLoading ? (
+            <Skeleton className="w-full h-[300px]" />
+          ) : (
+            <div className="w-full h-full scrollon">{renderPrintContent(printType)}</div>
+          )}
+          <div className="flex flex-col gap-y-3 items-center">
+            <ToggleGroup type="single" defaultValue={printType} onValueChange={(value) => setPrintType(value)}>
+              <ToggleGroupItem value="image">원본</ToggleGroupItem>
+              <ToggleGroupItem value="text">텍스트</ToggleGroupItem>
+              <ToggleGroupItem value="all">모두</ToggleGroupItem>
+            </ToggleGroup>
+            <Button
+              onClick={() => data && handlePrint(data?.letterDocument.pages[0].url)}
+              className="bg-primary-8 w-full font-bold h-14"
+            >
+              인쇄하기
+            </Button>
+          </div>
+        </section>
       )}
-      <div className="flex flex-col gap-y-3 items-center">
-        <ToggleGroup type="single" defaultValue={printType} onValueChange={(value) => setPrintType(value)}>
-          <ToggleGroupItem value="image">원본</ToggleGroupItem>
-          <ToggleGroupItem value="text">텍스트</ToggleGroupItem>
-          <ToggleGroupItem value="all">모두</ToggleGroupItem>
-        </ToggleGroup>
-        <Button
-          onClick={() => {
-            if (data) {
-              return toast.promise(postEpsonPrint(data?.letterDocument.pages[0].url), {
-                duration: 2000,
-                loading: "인쇄 요청 중...",
-                success: (data) => {
-                  if (data && data.success) {
-                    return "인쇄 요청이 완료 되었습니다.";
-                  }
-                },
-              });
-            }
-          }}
-          className="bg-primary-8 w-full font-bold h-14"
-        >
-          인쇄하기
-        </Button>
-      </div>
-    </section>
+    </>
   );
 }
 

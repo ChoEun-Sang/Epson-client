@@ -6,34 +6,36 @@ import { checkPathname } from "@/lib/util/CheckPathName";
 import CustomDialog from "../common/CustomDialog";
 import FontSizeSlider from "../mailDetail/mailInfo/FontSizeSlider";
 import { Dialog, DialogTrigger } from "../ui/dialog";
-import { postEpsonPrint, putDeviceSetting } from "@/lib/api/api";
 import Link from "next/link";
+import usePrintStateStore from "@/store/usePrintStateStore";
+import { useEffect } from "react";
+import usePrintHandler from "@/hooks/usePrintHandler";
 
 function PrintHeader() {
   const params = useSearchParams();
   const pdfURL = params.get("pdf") || "";
-
   const pathname = usePathname();
-
   const { materialDetail } = checkPathname(pathname);
+  const { handlePrint, isError, isPending, isSuccess } = usePrintHandler(pdfURL);
+  const { setState, print } = usePrintStateStore();
 
-  const onClickPrintBtn = async () => {
-    try {
-      await putDeviceSetting();
-      await postEpsonPrint(pdfURL);
-      //To do: 성공 메시지 추가
-    } catch (error) {
-      // 에러 메시지 추가
-    }
-  };
+  useEffect(() => {
+    setState("isError", isError);
+    setState("isPending", isPending);
+    setState("isSuccess", isSuccess);
+  }, [isError, isPending, isSuccess, setState]);
 
   return (
     <div className="flex items-end w-full">
-      <BackButton />
+      {!print && <BackButton />}
 
       <div className="flex justify-end w-full gap-6 py-2">
         {materialDetail ? (
-          <button type="button" onClick={onClickPrintBtn}>
+          <button
+            type="button"
+            onClick={() => handlePrint(pdfURL)}
+            style={{ visibility: print ? "hidden" : "visible" }}
+          >
             <Image src="/print.png" width={24} height={24} alt="print" />
           </button>
         ) : (
