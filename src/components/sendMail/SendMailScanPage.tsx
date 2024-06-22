@@ -66,7 +66,7 @@ export default function SendMailScanPage() {
   const handleRequest = async () => {
     setIsLoadingRequest(true);
     try {
-      const data = await requestScanDevice("1", title);
+      const data = await requestScanDevice("2", title);
       if (data) {
         toast.success("스캔에 요청을 하였습니다!");
       }
@@ -102,7 +102,7 @@ export default function SendMailScanPage() {
           onChange={handleChangeDevice}
         />
         <Button
-          className={`${isDeviceConnected ? "bg-green-500" : !isDeviceValid || isLoading ? "" : "bg-primary-8"}`}
+          className={`${isDeviceConnected && "bg-green-500"}`}
           onClick={handleConnectDevice}
           disabled={!isDeviceValid || isLoading || isDeviceConnected}
         >
@@ -138,7 +138,7 @@ export default function SendMailScanPage() {
         </div>
       </List>
       <Spacing size={24} />
-      <List number={4}>
+      <List number={4} backgroundColor="#949494" color="white">
         <div>
           <p>아이유에게 편지 전송 완료!💌</p>
         </div>
@@ -146,9 +146,7 @@ export default function SendMailScanPage() {
       <Spacing size={330} />
       <Link href="/mailscan/scan">
         <Button
-          className={`w-full h-14 body1 ${
-            !isDeviceValid || !isTitleValid || !isDeviceConnected || isLoading || isLoadingRequest ? "" : "bg-primary-8"
-          }`}
+          className={`w-full h-14 body1`}
           onClick={handleRequest}
           disabled={!isDeviceValid || !isTitleValid || !isDeviceConnected || isLoading || isLoadingRequest}
         >
