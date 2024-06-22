@@ -9,7 +9,7 @@ const axiosClient2 = axios.create({
 
 const imageBaseURL = process.env.NEXT_PUBLIC_FILE_URL;
 
-export const getLetterDetail = async (letterId: string) => {
+export const getLetterDetail = async (letterId: string | null) => {
   try {
     const { data } = await axiosClient.get(`/letter/document/${letterId}`);
     return data;
