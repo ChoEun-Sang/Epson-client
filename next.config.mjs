@@ -6,6 +6,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "aigooback.blob.core.windows.net",
       },
+      {
+        protocol: "http",
+        hostname: "localhost",
+      },
     ],
   },
 };
