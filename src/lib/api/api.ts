@@ -120,3 +120,9 @@ export const sendLetterUpload = async (
 
   return data;
 };
+
+export const authUser = async () => {
+  const { data } = await axiosClient.get(`/auth`);
+
+  return data;
+};

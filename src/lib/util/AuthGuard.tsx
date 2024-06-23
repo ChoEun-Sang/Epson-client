@@ -2,19 +2,22 @@
 
 import useUserStore from "@/store/useUserStore";
 import { ReactNode, useEffect, useState } from "react";
-import { getAccessTokenFromCookie } from "@/lib/util/cookies";
-import { getUserData } from "@/lib/api/api";
+import { authUser, getUserData } from "@/lib/api/api";
 
 const AuthGuard = ({ children }: { children: ReactNode }) => {
   const [init, setInit] = useState(false);
   const { setUserData } = useUserStore();
 
   useEffect(() => {
-    const accessToken = getAccessTokenFromCookie();
-    if (!accessToken) {
-      setInit(true);
-      return;
-    }
+    const getAuthUser = async () => {
+      try {
+        await authUser();
+        setInit(true);
+      } catch (error) {
+        setInit(false);
+        console.error(error);
+      }
+    };
 
     const getData = async () => {
       try {
@@ -34,6 +37,7 @@ const AuthGuard = ({ children }: { children: ReactNode }) => {
     };
 
     getData();
+    getAuthUser();
   }, [setUserData]);
 
   if (!init) {
