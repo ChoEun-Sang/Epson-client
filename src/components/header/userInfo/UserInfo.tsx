@@ -1,12 +1,14 @@
-import { MouseEvent, useRef, useState } from "react";
+import { MouseEvent, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import useUserStore from "@/store/useUserStore";
-import { deleteAccessTokenFromCookie } from "@/lib/util/cookies";
 import useOutsideClick from "@/hooks/useOutsideClick";
 import { toast } from "sonner";
+import { loggedOut } from "@/lib/api/api";
+import useRecentLettersStore from "@/store/useRecentLettersStore";
 
 function UserInfo() {
-  const { userData, resetUserData } = useUserStore();
+  const { userData, setUserData } = useUserStore();
+  const { setRecentLetters } = useRecentLettersStore();
 
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLUListElement>(null);
@@ -18,12 +20,19 @@ function UserInfo() {
     setIsOpen((prev) => !prev);
   };
 
-  const handleSignout = () => {
-    deleteAccessTokenFromCookie();
-    resetUserData();
+  const handleSignout = async () => {
+    await loggedOut();
+    setUserData(null);
     setIsOpen(false);
+    setRecentLetters([]);
     toast.success("You've been logged out!");
   };
+
+  useEffect(() => {
+    if (!userData) {
+      toast.success("Please log in to access the service!");
+    }
+  }, [userData]);
 
   const { img } = userData || {};
 

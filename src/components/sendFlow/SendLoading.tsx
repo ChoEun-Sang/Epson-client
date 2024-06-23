@@ -10,7 +10,7 @@ function SendLoading() {
           <Image src="/send_loading.gif" width={240} height={240} alt="loading" />
         </div>
         <div className="text-center title2 mt-8">
-          <p>편지 보내는 중</p>
+          <p>Sending letter</p>
         </div>
       </div>
     </section>

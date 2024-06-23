@@ -1,8 +1,9 @@
 "use client";
 
 import useMailListQuery from "@/hooks/queries/useMailListQuery";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import LetterImage from "./LetterImage";
+import useRecentLettersStore from "@/store/useRecentLettersStore";
 
 export interface MailItem {
   id: number;
@@ -15,14 +16,14 @@ export interface MailItem {
 
 function DynamicLetterComponent() {
   const { data: mailListData } = useMailListQuery("received");
-  const [recentLetters, setRecentLetters] = useState<MailItem[]>([]);
+  const { recentLetters, setRecentLetters } = useRecentLettersStore();
 
   useEffect(() => {
     if (mailListData) {
       const slicedData = mailListData.slice(0, 4);
       setRecentLetters(slicedData);
     }
-  }, [mailListData]);
+  }, [mailListData, setRecentLetters]);
 
   return (
     <div className="gap-2 grid grid-cols-2">
