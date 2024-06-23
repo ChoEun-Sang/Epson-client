@@ -9,28 +9,40 @@ const AuthGuard = ({ children }: { children: ReactNode }) => {
   const { userData, setUserData } = useUserStore();
 
   useEffect(() => {
-    const initialize = async () => {
-      if (!userData) {
-        return setInit(true);
-      }
+    const getAuthUser = async () => {
+      if (!userData) return;
       try {
         await authUser();
-        const { img, id, username, myFavorite, epsonDevice } = await getUserData();
-        setUserData({
-          img,
-          id,
-          username,
-          myFavorite,
-          epsonDevice,
-        });
         setInit(true);
       } catch (error) {
         setInit(false);
-        console.error("Failed to authenticate user or fetch data:", error);
+        console.error(error);
       }
     };
 
-    initialize();
+    const getData = async () => {
+      if (!userData) {
+        try {
+          const data = await getUserData();
+          setUserData({
+            img: data.img,
+            id: data.id,
+            username: data.username,
+            myFavorite: data.myFavorite,
+            epsonDevice: data.epsonDevice,
+          });
+        } catch (err) {
+          console.error("사용자 정보 확인에 실패:", err);
+        } finally {
+          setInit(true);
+        }
+      } else {
+        setInit(true);
+      }
+    };
+
+    getData();
+    getAuthUser();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setUserData]);
 
