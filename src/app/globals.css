@@ -1,0 +1,269 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --color-warning-default: #ffc400;
+    --color-warning-background: #fff8de;
+    --color-warning-sub: #d0aa12;
+    --color-warning-disabled: #ffe990;
+
+    --color-critical-default: #ff3b30;
+    --color-critical-background: #ffe5ed;
+    --color-critical-sub: #d7362d;
+    --color-critical-disabled: #ffbbb7;
+
+    --color-success-default: #34c759;
+    --color-success-background: #d3ffdd;
+    --color-success-sub: #37a552;
+    --color-success-disabled: #a3e8b4;
+
+    --color-information-default: #007aff;
+    --color-information-background: #e5f4ff;
+    --color-information-sub: #0363cc;
+    --color-information-disabled: #a4d0ff;
+
+    --color-white: #ffffff;
+
+    --color-text-default: #1b1b1b;
+    --color-text-info: #808080;
+    --color-text-sub: #4c4c4c;
+    --color-text-disabled: #bfbfbf;
+
+    --color-gray-1: #fafafa;
+    --color-gray-2: #f5f5f5;
+    --color-gray-3: #eeeeee;
+    --color-gray-4: #e0e0e0;
+    --color-gray-5: #d3d3d3;
+    --color-gray-6: #c2c2c2;
+    --color-gray-7: #b5b5b5;
+    --color-gray-8: #ababab;
+    --color-gray-9: #9f9f9f;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+html,
+body {
+  width: 375px;
+}
+
+html {
+  display: flex;
+  height: 100dvh;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #f2f2f2;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px !important;
+  background-color: #fff;
+  height: 812px;
+}
+
+.main {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.main::-webkit-scrollbar {
+  display: none;
+}
+
+.custom-box-shadow {
+  box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.16);
+}
+
+.navbar_border {
+  border-top: 1px solid var(--color-gray-3);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.title1 {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%;
+}
+
+.title2 {
+  font-family: Pretendard;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%;
+}
+
+.title3 {
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%;
+}
+
+.headline {
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
+}
+
+.body1 {
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 24px */
+}
+
+.body2 {
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 24px */
+}
+
+.body3 {
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 24px */
+}
+
+.callout1 {
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 21px */
+}
+
+.callout2 {
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 21px */
+}
+
+.callout3 {
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 21px */
+}
+
+.footnote1 {
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 18px */
+}
+
+.footnote2 {
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 18px */
+}
+
+.footnote3 {
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 18px */
+}
+
+.caption {
+  font-family: Pretendard;
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 12px */
+}
+
+.innerheight {
+  @apply h-[714px] /* pb-[42px] */;
+}
+
+.scrollon {
+  @apply overflow-x-hidden overflow-auto main;
+}
