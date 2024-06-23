@@ -11,7 +11,9 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import useMailListQuery from "@/hooks/queries/useMailListQuery";
 import { signin } from "@/lib/api/api";
+import useRecentLettersStore from "@/store/useRecentLettersStore";
 import useUserStore from "@/store/useUserStore";
 import { ChangeEvent, useState, FormEvent } from "react";
 import { toast } from "sonner";
@@ -22,6 +24,8 @@ function Signin() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const { setUserData } = useUserStore();
+  const { data: mailListData, isLoading: isMailListLoading } = useMailListQuery("received");
+  const { setRecentLetters } = useRecentLettersStore();
 
   const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -37,6 +41,14 @@ function Signin() {
 
     try {
       const data = await signin(email, password);
+
+      if (!isMailListLoading && mailListData) {
+        const slicedData = mailListData.slice(0, 4);
+        setRecentLetters(slicedData);
+      } else {
+        setRecentLetters([]);
+      }
+
       if (data) {
         const userData = {
           img: "",
@@ -45,6 +57,7 @@ function Signin() {
           myFavorite: "",
           epsonDevice: "",
         };
+
         setUserData(userData);
         toast.success(`Welcome, ${userData.username}!`);
       }

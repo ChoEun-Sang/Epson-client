@@ -2,7 +2,9 @@
 
 > AI로 읽고 배우는 손편지 서비스!<br/>
 > 개발기간: 2024.06.07 ~ 2024.06.23 <br/>
-
+> [AIGOO 데모 페이지](https://www.aigoo.online/)
+> 테스트 계정 <br/>
+> ID: aigoo@gmail.com PW: 1234
 <br/>
 
 ## 개발 팀원 소개
