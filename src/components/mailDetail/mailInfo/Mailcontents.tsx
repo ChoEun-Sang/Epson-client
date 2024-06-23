@@ -120,9 +120,7 @@ function MailContents({ letterDocumentData, letterDocumentId, letterTitle }: Mai
                 <button
                   className="flex gap-2 p-2"
                   onClick={() => {
-                    if (isEnglish) {
-                      handleclickSentence(krSentence, isEnglish, index);
-                    }
+                    handleclickSentence(krSentence, isEnglish, index);
                   }}
                 >
                   <span className="text-xs font-bold text-primary-3">{index + 1}</span>
