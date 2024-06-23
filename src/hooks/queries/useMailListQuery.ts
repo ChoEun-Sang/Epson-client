@@ -1,7 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { getReceivedMails, getSentMails } from "@/lib/api/api";
+import useUserStore from "@/store/useUserStore";
 
 const useMailListQuery = (object: string) => {
+  const { userData } = useUserStore();
   return useQuery({
     queryKey: ["mailList", object],
     queryFn: async () => {
@@ -13,6 +15,7 @@ const useMailListQuery = (object: string) => {
         return data.sentLetters;
       }
     },
+    enabled: !!userData,
   });
 };
 
