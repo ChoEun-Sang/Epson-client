@@ -33,7 +33,7 @@ function DynamicLetterComponent() {
           </div>
         ))
       ) : (
-        <div className="col-span-2 text-center w-full h-[252px]">No recent letters available</div>
+        <div className="col-span-2 text-center w-full h-[252px] body2 text-text-info">No recent letters available</div>
       )}
     </div>
   );
