@@ -19,7 +19,7 @@ function ScanGuideLine({ onScanClick }: ScanGuideLineProps) {
           <p>press the &quot;scan&quot; button.</p>
         </div>
       </div>
-      <div className="w-full flex items-end" onClick={onScanClick}>
+      <div className="w-full flex items-end mb-4" onClick={onScanClick}>
         <Button className="bg-primary-8 w-full h-14 body1">Pressed!</Button>
       </div>
     </section>
