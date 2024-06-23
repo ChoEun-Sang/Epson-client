@@ -1,5 +1,5 @@
 function MailBox() {
-  return <span>편지함</span>;
+  return <span>MailBox</span>;
 }
 
 export default MailBox;

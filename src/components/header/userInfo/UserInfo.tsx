@@ -22,7 +22,7 @@ function UserInfo() {
     deleteAccessTokenFromCookie();
     resetUserData();
     setIsOpen(false);
-    toast.success("로그아웃 되었습니다!");
+    toast.success("You've been logged out!");
   };
 
   const { img } = userData || {};
@@ -31,14 +31,14 @@ function UserInfo() {
     <>
       <div className="flex">
         <button className="w-6 h-6 rounded-full" onClick={toggleMyList}>
-          <Image src={img || `/default_profile.svg`} width={24} height={24} alt="프로필 이미지" />
+          <Image src={img || `/default_profile.svg`} width={24} height={24} alt="profile_image" />
         </button>
       </div>
       {isOpen && (
         <ul ref={dropdownRef} className="absolute bg-background border border-gray-300 rounded shadow-lg z-10 mt-10">
           <li>
             <button type="button" className="w-full text-left py-2 px-4 hover:bg-gray-100" onClick={handleSignout}>
-              로그아웃
+              Log Out
             </button>
           </li>
         </ul>

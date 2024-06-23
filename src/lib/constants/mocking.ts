@@ -49,4 +49,4 @@ export const MAIL_MOCKING = {
   sender: "아이유",
 };
 
-export const ARTIST = ["아이유", "방탄소년단"];
+export const ARTIST = ["아이유"];

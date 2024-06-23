@@ -59,7 +59,7 @@ const DropdownMenuContent = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content>
 >(({ className, sideOffset = 4, ...props }, ref) => (
   <DropdownMenuPrimitive.Portal>
-    <div className="w-full flex justify-end absolute h-full bg-black-30 ml-[-16px]">
+    <div className="w-full flex justify-end absolute h-full bg-black-30 ml-[-16px] z-30">
       <DropdownMenuPrimitive.Content
         ref={ref}
         sideOffset={sideOffset}

@@ -20,7 +20,7 @@ const WeeklyCalendar: React.FC = () => {
   };
 
   const getDayName = (date: Date): string => {
-    return new Intl.DateTimeFormat("ko-KR", { weekday: "short" }).format(date);
+    return new Intl.DateTimeFormat("en-GB", { weekday: "short" }).format(date);
   };
 
   const renderDays = (): JSX.Element[] => {

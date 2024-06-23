@@ -46,12 +46,12 @@ function Signin() {
           epsonDevice: "",
         };
         setUserData(userData);
-        toast.success(`${userData.username}님 환영합니다!`);
+        toast.success(`Welcome, ${userData.username}!`);
       }
     } catch (err) {
-      setError("로그인 실패. 다시 확인해주세요.");
-      console.error("로그인 중 오류 발생:", err);
-      toast.error("로그인에 실패했습니다!");
+      setError("Login failed. Please check again.");
+      console.error("Error occurred during login:", err);
+      toast.error("Login failed!");
     } finally {
       setLoading(false);
     }
@@ -60,34 +60,34 @@ function Signin() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className="body3">로그인</button>
+        <button className="body3">Log In</button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[21.5rem] ">
         <DialogHeader>
-          <DialogTitle>로그인</DialogTitle>
+          <DialogTitle className="callout2">Log In</DialogTitle>
           <DialogDescription className="text-gray-8 footnote2">
-            환영합니다! 아이디와 비밀번호를 입력해주세요!
+            Welcome! Please enter your ID and password!
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSignin}>
           <div className="flex items-center space-x-2">
             <div className="grid flex-1 gap-1">
-              <Label htmlFor="아이디" className="sr-only">
-                아이디
+              <Label htmlFor="ID" className="sr-only">
+                ID
               </Label>
               <Input
-                id="아이디"
-                placeholder="아이디를 입력해주세요."
+                id="ID"
+                placeholder="Please enter your ID."
                 value={email}
                 onChange={handleChangeEmail}
                 className="focus-visible:ring-transparent"
               />
-              <Label htmlFor="비밀번호" className="sr-only">
-                비밀번호
+              <Label htmlFor="Password" className="sr-only">
+                Password
               </Label>
               <Input
-                id="비밀번호"
-                placeholder="비밀번호를 입력해주세요."
+                id="Password"
+                placeholder="Please enter your Password."
                 value={password}
                 onChange={handleChangePassword}
                 className="focus-visible:ring-transparent"
@@ -97,7 +97,7 @@ function Signin() {
           <Spacing size={8} />
           <DialogFooter className="sm:justify-start">
             <Button className="w-full bg-primary-8" type="submit" disabled={loading}>
-              {loading ? "로그인 중..." : "로그인"}
+              {loading ? "Loggin in" : "Login"}
             </Button>
           </DialogFooter>
           {error && <p style={{ color: "red" }}>{error}</p>}

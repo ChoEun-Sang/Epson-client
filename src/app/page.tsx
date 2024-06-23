@@ -3,14 +3,22 @@
 import ArticleSection from "@/components/main/ArticleSection";
 import DateSection from "@/components/main/DateSection";
 import RecentLetterSection from "@/components/main/RecentLetterSection";
-import { MAIN_MOCKING } from "@/lib/constants/mocking";
 import SendMailSelect from "@/components/main/SendMailSelect";
+import useUserStore from "@/store/useUserStore";
 
 export default function Home() {
+  const { userData } = useUserStore();
+  const userName = userData?.username;
   return (
     <section className="innerheight scrollon">
       <div className="h-[82px] pt-4 pb-2 title2">
-        <h1>{MAIN_MOCKING.username} 님, 환영합니다!</h1>
+        {userName ? (
+          <h1>Dear {userData?.username}, only one day left until the solo concert!</h1>
+        ) : (
+          <>
+            <h1>only one day left until the solo concert!</h1>
+          </>
+        )}
       </div>
 
       <ArticleSection />

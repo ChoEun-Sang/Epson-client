@@ -68,11 +68,11 @@ export default function SendMailScanPage() {
     try {
       const data = await requestScanDevice("2", title);
       if (data) {
-        toast.success("스캔에 요청을 하였습니다!");
+        toast.success("Requested a scan!");
       }
     } catch (error) {
-      console.error("스캔에 실패:", error);
-      toast.error("스캔에 실패하였습니다!");
+      console.error("Scan failed:", error);
+      toast.error("Scan failed!");
     } finally {
       setIsLoadingRequest(false);
     }
@@ -84,7 +84,7 @@ export default function SendMailScanPage() {
       <List number={1}>
         <div>
           <Label htmlFor="connect" className="body1">
-            엑세스 키를 적어 복합기에 연결하고
+            Enter the access key to connect to the printer
           </Label>
         </div>
       </List>
@@ -93,7 +93,7 @@ export default function SendMailScanPage() {
         <Input
           id="connect"
           type="text"
-          placeholder="복합기 엑세스 키를 입력해주세요."
+          placeholder="Please enter a print access key."
           className={`focus-visible:ring-transparent border ${
             !deviceTouched ? "border-gray-300" : isDeviceValid ? "border-green-500" : "border-red-500"
           }`}
@@ -106,14 +106,14 @@ export default function SendMailScanPage() {
           onClick={handleConnectDevice}
           disabled={!isDeviceValid || isLoading || isDeviceConnected}
         >
-          연결
+          Connect
         </Button>
       </div>
       <Spacing size={24} />
       <List number={2}>
         <div>
           <Label htmlFor="title" className="body1">
-            편지 제목을 적은 후
+            Enter the letter title
           </Label>
         </div>
       </List>
@@ -122,7 +122,7 @@ export default function SendMailScanPage() {
         <Input
           id="title"
           type="text"
-          placeholder="제목을 입력하세요."
+          placeholder="Please enter a title."
           className={`focus-visible:ring-transparent border ${
             !titleTouched ? "border-gray-300" : isTitleValid ? "border-green-500" : "border-red-500"
           }`}
@@ -134,23 +134,23 @@ export default function SendMailScanPage() {
       <Spacing size={24} />
       <List number={3}>
         <div>
-          <p>다음 페이지에서 눌렀어요 버튼을 누르면</p>
+          <p>If you press the &quot;pressed&quot; button on the next page</p>
         </div>
       </List>
       <Spacing size={24} />
       <List number={4} backgroundColor="#949494" color="white">
         <div>
-          <p>아이유에게 편지 전송 완료!💌</p>
+          <p>Letter sent to IU!💌</p>
         </div>
       </List>
-      <Spacing size={330} />
+      <Spacing size={282} />
       <Link href="/mailscan/scan">
         <Button
           className={`w-full h-14 body1`}
           onClick={handleRequest}
           disabled={!isDeviceValid || !isTitleValid || !isDeviceConnected || isLoading || isLoadingRequest}
         >
-          다음
+          Next
         </Button>
       </Link>
     </section>

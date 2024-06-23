@@ -21,7 +21,7 @@ function MainSelectArtist() {
   return (
     <div>
       <button
-        className={`flex items-center text-2xl font-bold ${isOpen ? "on" : ""} focus:outline-none`}
+        className={`flex items-center text-2xl title2 ${isOpen ? "on" : ""} focus:outline-none`}
         onClick={toggleList}
       >
         {selectedValue}
@@ -37,7 +37,7 @@ function MainSelectArtist() {
             <li key={item}>
               <button
                 type="button"
-                className="w-full text-left py-2 px-4 hover:bg-gray-100"
+                className="w-full text-left py-2 px-4 body2 hover:bg-gray-100"
                 onClick={() => handleItemClick(item)}
               >
                 {item}

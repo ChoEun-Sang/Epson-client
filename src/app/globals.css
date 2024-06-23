@@ -261,7 +261,7 @@ body {
 }
 
 .innerheight {
-  @apply h-[714px] pb-[42px];
+  @apply h-[714px] /* pb-[42px] */;
 }
 
 .scrollon {

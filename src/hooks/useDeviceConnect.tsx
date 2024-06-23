@@ -45,12 +45,12 @@ const useDeviceRegistration = () => {
           epsonDevice: data.epsonDevice,
         };
         setUserData(userData);
-        toast.success("기기에 성공적으로 연결했습니다!");
+        toast.success("You have successfully connected to your device!");
       }
       setIsDeviceConnected(true);
     } catch (error) {
-      console.error("기기 연결 도중 오류 발생:", error);
-      toast.error("기기 연결에 실패했습니다!");
+      console.error("Error connecting device:", error);
+      toast.error("Device connection failed!");
     } finally {
       setIsLoading(false);
     }

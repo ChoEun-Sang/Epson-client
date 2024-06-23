@@ -1,5 +1,5 @@
 function SendHeader() {
-  return <p className="w-full text-center title2">편지원본</p>;
+  return <p className="w-full text-center title2">Original letter</p>;
 }
 
 export default SendHeader;
