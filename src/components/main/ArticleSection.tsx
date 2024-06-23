@@ -16,10 +16,14 @@ function ArticleSection() {
       </aside>
 
       <div className="flex flex-col gap-4 ">
-        <h2 className="font-bold"> 최신 기사</h2>
+        <h2 className="title3 text-text-sub"> 최근 소식</h2>
         {MAIN_MOCKING.news.map((item) =>
           Object.values(item).map((newsItem, newsIndex) => (
-            <Link href="#" key={newsIndex} className="whitespace-nowrap overflow-hidden text-ellipsis max-w-40">
+            <Link
+              href="#"
+              key={newsIndex}
+              className="whitespace-nowrap overflow-hidden text-ellipsis max-w-40 body2 text-text-info"
+            >
               {newsItem}
             </Link>
           ))
