@@ -27,25 +27,33 @@ function Materials() {
   };
 
   return (
-    <section className="w-full h-full relative">
-      <div className="relative w-full h-10 my-4">
-        <input
-          type="text"
-          placeholder="Enter search term"
-          className="relative px-4 w-full h-full border-2 border-gray-2 placeholder-text-disabled rounded-md "
-        />
-        <Image src="/search_check_2.svg" alt="search icon" width={24} height={24} className="absolute right-4 top-2" />
+    <section ref={receivedRef} className="scrollon innerheight">
+      <div className="w-full h-full relative">
+        <div className="w-full h-14 sticky pt-4 top-0 bg-white">
+          <input
+            type="text"
+            placeholder="Enter search term"
+            className="px-4 w-full h-full border-2 border-gray-2 placeholder-text-disabled rounded-md relative"
+          />
+          <Image
+            src="/search_check_2.svg"
+            alt="search icon"
+            width={24}
+            height={24}
+            className="absolute right-4 top-6"
+          />
+        </div>
+        <div className="h-full pt-2">
+          {data && (
+            <ul>
+              {data.map((value: MaterialProps, idx: number) => (
+                <Material key={value.id} data={value} idx={idx} />
+              ))}
+            </ul>
+          )}
+        </div>
+        <ScrollTopBtn onClick={scrollToTop} />
       </div>
-      <div ref={receivedRef} className="scrollon h-full overflow-auto">
-        {data && (
-          <ul>
-            {data.map((value: MaterialProps, idx: number) => (
-              <Material key={value.id} data={value} idx={idx} />
-            ))}
-          </ul>
-        )}
-      </div>
-      <ScrollTopBtn onClick={scrollToTop} />
     </section>
   );
 }

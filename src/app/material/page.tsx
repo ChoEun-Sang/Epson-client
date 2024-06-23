@@ -2,11 +2,7 @@
 import Materials from "@/components/material/Materials";
 
 function Material() {
-  return (
-    <section className="innerheight scrollon">
-      <Materials />
-    </section>
-  );
+  return <Materials />;
 }
 
 export default Material;
