@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogTrigger } from "@radix-ui/react-dialog";
 import CustomDialog from "@/components/common/CustomDialog";
 import { IMAGE_BASE_URL, NO_TOOL_BAR } from "@/lib/constants/constants";
+import Image from "next/image";
 
 interface MailDescriptionProps {
   letterInfoData: LetterDetailInfo | undefined;
@@ -15,6 +16,13 @@ interface MailDescriptionProps {
 
 function MailDescription({ letterInfoData, letterImageUrl, dialog = true }: MailDescriptionProps) {
   const imageURL = IMAGE_BASE_URL + letterImageUrl + NO_TOOL_BAR;
+
+  const renderImage = (url: string) => {
+    if (imageURL.includes("pdf")) {
+      return <iframe src={url} width={"100%"} height={"100%"} />;
+    }
+    return <Image src={url} alt="" fill />;
+  };
 
   return (
     <div className="w-full flex flex-col gap-y-1">
@@ -32,7 +40,7 @@ function MailDescription({ letterInfoData, letterImageUrl, dialog = true }: Mail
               </Button>
             </DialogTrigger>
             <CustomDialog title="Original Letter">
-              <iframe src={imageURL} width={"100%"} height={"100%"} />
+              <div className="relative h-full">{renderImage(imageURL)}</div>
             </CustomDialog>
           </Dialog>
         )}
