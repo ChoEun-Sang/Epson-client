@@ -23,16 +23,7 @@ interface MailProps {
 function MailList({ object }: { object: string }) {
   const { data } = useMailListQuery(object);
 
-  if (!data) {
-    return <div>No data available</div>;
-  }
-  return (
-    <ul>
-      {data.map((value: MailProps) => (
-        <Mail key={value.id} data={value} object={object} />
-      ))}
-    </ul>
-  );
+  return <ul>{data && data.map((value: MailProps) => <Mail key={value.id} data={value} object={object} />)}</ul>;
 }
 
 export default MailList;

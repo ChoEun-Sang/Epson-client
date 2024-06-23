@@ -25,20 +25,22 @@ function Mail({ data, object }: { data: MailProps; object: string }) {
   const userData = useUserStore((state) => state.userData);
   const date = dayjs(data.createdAt).format("YYYY-MM-DD (ddd) hh:mm");
 
-  const isPendding = data.status === "pedding" ? "opacity-50 pointer-events-none" : "";
+  const isPendding = data.status === "pendding";
+
+  const penddingStyles = isPendding ? "opacity-50 pointer-events-none" : "";
 
   return (
-    <li className={`p-4 mb-2 bg-gray-100 rounded-sm ${isPendding}`}>
-      <Link href={`/mailbox/${data.letterDocumentId}`}>
+    <li className={`p-4 mb-2 bg-gray-100 rounded-sm ${penddingStyles}`}>
+      <Link href={`/mailbox/${data.letterDocumentId}`} className="space-y-2">
         <div className="flex justify-between">
-          <span className="text-text-info">
+          <span className="callout1 text-text-info">
             <strong>To.</strong> {object === "sent" ? data.receiver?.username : userData?.username}
           </span>
-          <strong className="text-text-sub">{data.title}</strong>
+          <strong className="body1 text-text-sub">{isPendding ? "˙ ˙ ˙" : data.title}</strong>
         </div>
         <div className="flex justify-between">
-          <span className="text-text-disabled">{date}</span>
-          <span className="text-text-info">
+          <span className="footnote3 text-text-disabled">{isPendding ? "Loading Letter" : date}</span>
+          <span className="callout1 text-text-info">
             <strong>From.</strong> {object === "sent" ? userData?.username : data.sender?.username}
           </span>
         </div>
