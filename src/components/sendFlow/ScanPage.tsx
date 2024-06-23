@@ -14,7 +14,7 @@ function ScanPage() {
     if (scanned) {
       const timer = setTimeout(() => {
         router.push("/");
-      }, 3000);
+      }, 2000);
       return () => clearTimeout(timer);
     }
   }, [scanned, router, setScanned]);
