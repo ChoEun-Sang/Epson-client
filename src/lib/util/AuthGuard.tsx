@@ -44,7 +44,7 @@ const AuthGuard = ({ children }: { children: ReactNode }) => {
     getData();
     getAuthUser();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [setUserData]);
+  }, [setUserData, userData]);
 
   if (!init) {
     return null;
