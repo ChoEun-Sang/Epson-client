@@ -24,7 +24,7 @@ function Signin() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const { setUserData } = useUserStore();
-  const { data: mailListData } = useMailListQuery("received");
+  const { data: mailListData, isLoading: isMailListLoading } = useMailListQuery("received");
   const { setRecentLetters } = useRecentLettersStore();
 
   const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
@@ -41,6 +41,14 @@ function Signin() {
 
     try {
       const data = await signin(email, password);
+
+      if (!isMailListLoading && mailListData) {
+        const slicedData = mailListData.slice(0, 4);
+        setRecentLetters(slicedData);
+      } else {
+        setRecentLetters([]);
+      }
+
       if (data) {
         const userData = {
           img: "",
@@ -51,8 +59,6 @@ function Signin() {
         };
 
         setUserData(userData);
-        const slicedData = mailListData.slice(0, 4);
-        setRecentLetters(slicedData);
         toast.success(`Welcome, ${userData.username}!`);
       }
     } catch (err) {
