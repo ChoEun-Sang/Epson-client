@@ -72,7 +72,7 @@ function PrintMail() {
       {print ? (
         <PrintLoading isPending={isPending} isSuccess={isSuccess} isError={isError} />
       ) : (
-        <section className="innerheight flex flex-col justify-between gap-3">
+        <section className="innerheight flex flex-col justify-between gap-5">
           <MailDescription letterInfoData={data?.letter} dialog={false} />
           {isLoading ? (
             <Skeleton className="w-full h-[300px]" />
