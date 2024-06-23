@@ -1,12 +1,6 @@
 import axios from "axios";
 import axiosClient from "./axiosClient";
 
-//임시!!!!!!!!!!!!!
-const axiosClient2 = axios.create({
-  baseURL: "http://localhost:3000/",
-  headers: { "Content-Type": "application/json" },
-});
-
 const imageBaseURL = process.env.NEXT_PUBLIC_FILE_URL;
 
 export const getLetterDetail = async (letterId: string | null) => {
@@ -31,7 +25,7 @@ export const postKeywords = async (letterId: number, keywords: string[], title: 
 
 export const getAITranslate = async (keyword: string) => {
   try {
-    const { data } = await axiosClient2.post(`/api/gptapi?keyword=${encodeURIComponent(keyword)}`);
+    const { data } = await axios.post(`/api/gptapi?keyword=${encodeURIComponent(keyword)}`);
     return data.completion;
   } catch (error) {
     console.error(error);
