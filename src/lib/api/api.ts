@@ -4,6 +4,7 @@ import axiosClient from "./axiosClient";
 const imageBaseURL = process.env.NEXT_PUBLIC_FILE_URL;
 
 export const getLetterDetail = async (letterId: string | null) => {
+  if (!letterId) return;
   try {
     const { data } = await axiosClient.get(`/letter/document/${letterId}`);
     return data;
