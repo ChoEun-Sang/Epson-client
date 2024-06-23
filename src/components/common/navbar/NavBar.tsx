@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import NavMenu from "./NavMenu";
 import { ITEMS } from "@/lib/constants/navMenuItems";
@@ -14,8 +15,18 @@ import {
   MAILBOXL_DETAIL_PATH,
 } from "@/lib/constants/pathname";
 
+import useIsCheckedStore from "@/store/useIsCheckedStore";
+import { useEffect } from "react";
+
 const NavBar = () => {
   const pathname = usePathname();
+
+  const { checkedItems, setCheckedItems } = useIsCheckedStore();
+
+  useEffect(() => {
+    setCheckedItems(pathname);
+  }, [pathname, setCheckedItems]);
+
   const invisiblePaths = [
     MAILSCAN_PATH === pathname,
     MAILUPLOAD_PATH === pathname,
@@ -31,11 +42,19 @@ const NavBar = () => {
 
   return (
     !invisibleNav && (
-      <nav className="bg-background w-[343px] h-20 sticky bottom-0 left-0 right-0 mx-auto shrink-0">
-        <ul className="h-full flex justify-around items-center">
+      <nav className="bg-background w-[375px] h-20 ml-[-16px] sticky bottom-0 left-0 right-0 mx-auto navbar_border shrink-0">
+        <ul className="h-full flex justify-around items-center pt-2 pb-8">
           {ITEMS.map((item) => (
             <NavMenu key={item.ko} path={item.path}>
-              {item.ko}
+              <div className="flex flex-col justify-center items-center gap-1 w-9 h-[46px]">
+                <Image
+                  src={checkedItems[item.path] ? item.checkedImage : item.image}
+                  width={24}
+                  height={24}
+                  alt={item.ko}
+                />
+                <span className="footnote3">{item.ko}</span>
+              </div>
             </NavMenu>
           ))}
         </ul>
