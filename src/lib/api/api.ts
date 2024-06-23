@@ -127,3 +127,9 @@ export const authUser = async () => {
 
   return data;
 };
+
+export const loggedOut = async () => {
+  const { data } = await axiosClient.delete("/auth");
+
+  return data;
+};

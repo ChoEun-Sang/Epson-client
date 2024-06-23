@@ -14,8 +14,8 @@ function LetterImage({ item, letterDocumentId }: { item: MailItem; letterDocumen
 
   return (
     <>
-      <div className="border-2 rounded-lg w-[168px] h-[90px] object-cover">
-        <Image src={imageUrl || ""} width={168} height={90} alt={`편지 ${item.title}`} className="w-full h-full p-1" />
+      <div className="border-2 rounded-lg w-[168px] h-[90px] overflow-hidden flex justify-center items-center">
+        <Image src={imageUrl || "/cover.jpg"} width={168} height={90} alt={`편지 ${item.title}`} className="p-1" />
       </div>
       <h3 className="text-center body2 text-text-info">{item.title}</h3>
     </>
