@@ -22,7 +22,7 @@ function Material({ data, idx }: { data: MaterialProps; idx: number }) {
         <div className="flex justify-between">
           <span className="text-text-disabled">{date}</span>
 
-          <strong className="text-text-info">키워드 {data.keywords.length}개</strong>
+          <strong className="text-text-info">{data.keywords.length} Keywords</strong>
         </div>
       </Link>
     </li>

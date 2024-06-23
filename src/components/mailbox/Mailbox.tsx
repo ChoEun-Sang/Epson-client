@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import MailList from "./MailList";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import ScrollTopBtn from "../common/button/ScrollTop";
 
 function Mailbox() {
   const receivedRef = useRef<HTMLDivElement | null>(null);
@@ -26,8 +27,8 @@ function Mailbox() {
   return (
     <Tabs defaultValue="received" className="w-full h-[634px] relative">
       <TabsList className="w-full h-10">
-        <TabsTrigger value="received">받은 편지</TabsTrigger>
-        <TabsTrigger value="sent">보낸 편지</TabsTrigger>
+        <TabsTrigger value="received">Received Letters</TabsTrigger>
+        <TabsTrigger value="sent">Sent Letters</TabsTrigger>
       </TabsList>
       <TabsContent ref={receivedRef} value="received" className="scrollon h-full overflow-auto">
         <MailList object="received" />
@@ -35,9 +36,7 @@ function Mailbox() {
       <TabsContent ref={sentRef} value="sent" className="scrollon h-full overflow-auto">
         <MailList object="sent" />
       </TabsContent>
-      <button onClick={scrollToTop} className="absolute bottom-1 right-0 bg-yellow-200 h-[60px] w-[60px] rounded-full">
-        TOP
-      </button>
+      <ScrollTopBtn onClick={scrollToTop} />
     </Tabs>
   );
 }
