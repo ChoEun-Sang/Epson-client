@@ -45,15 +45,15 @@ const NavBar = () => {
       <nav className="bg-background w-[375px] h-20 ml-[-16px] sticky bottom-0 left-0 right-0 mx-auto navbar_border shrink-0">
         <ul className="h-full flex justify-around items-center pt-2 pb-8">
           {ITEMS.map((item) => (
-            <NavMenu key={item.ko} path={item.path}>
+            <NavMenu key={item.en} path={item.path}>
               <div className="flex flex-col justify-center items-center gap-1 w-9 h-[46px]">
                 <Image
                   src={checkedItems[item.path] ? item.checkedImage : item.image}
                   width={24}
                   height={24}
-                  alt={item.ko}
+                  alt={item.en}
                 />
-                <span className="footnote3">{item.ko}</span>
+                <span className="footnote3 text-text-info">{item.en}</span>
               </div>
             </NavMenu>
           ))}

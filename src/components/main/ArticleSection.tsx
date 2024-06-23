@@ -8,7 +8,7 @@ function ArticleSection() {
       <aside className="w-40 h-40 border-2 rounded-lg overflow-hidden">
         <Image
           src={MAIN_MOCKING.img}
-          alt={`${MAIN_MOCKING.fandom} 메인 이미지`}
+          alt={`${MAIN_MOCKING.fandom} artist_main_image`}
           width={160}
           height={160}
           className="object-cover w-full h-full"
@@ -16,7 +16,7 @@ function ArticleSection() {
       </aside>
 
       <div className="flex flex-col gap-4 ">
-        <h2 className="title3 text-text-sub"> 최근 소식</h2>
+        <h2 className="title3 text-text-sub">Latest news</h2>
         {MAIN_MOCKING.news.map((item) =>
           Object.values(item).map((newsItem, newsIndex) => (
             <Link

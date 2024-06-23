@@ -58,7 +58,7 @@ export default function SendMailScanPage() {
       setImgFile(selectedFile);
       setPreview(URL.createObjectURL(selectedFile));
     }
-    toast.success("이미지를 업로드했어요!");
+    toast.success("I have uploaded the image!");
   };
 
   const handleUpload = async () => {
@@ -70,11 +70,11 @@ export default function SendMailScanPage() {
       const data = await sendLetterUpload(imgFile, ["text"], title, "2");
 
       if (data) {
-        toast.success("편지를 보내고 있어요!");
+        toast.success("I'm sending a letter!");
       }
     } catch (error) {
       console.error(error);
-      toast.error("편지 보내기에 실패했어요!");
+      toast.error("failed to send a letter!");
     } finally {
       setIsLoadingUpload(false);
     }
@@ -88,7 +88,7 @@ export default function SendMailScanPage() {
       <List number={1}>
         <div>
           <Label htmlFor="title" className="body1">
-            편지 제목을 적고
+            Please write the letter title
           </Label>
         </div>
       </List>
@@ -97,7 +97,7 @@ export default function SendMailScanPage() {
         <Input
           id="title"
           type="text"
-          placeholder="제목을 입력하세요."
+          placeholder="Please enter a title."
           className={`focus-visible:ring-transparent ${
             !titleTouched ? "border-gray-300" : isTitleValid ? "border-green-500" : "border-red-500"
           }`}
@@ -110,7 +110,7 @@ export default function SendMailScanPage() {
       <List number={2}>
         <div>
           <Label htmlFor="file" className="body1">
-            손편지 이미지를 선택하면
+            If you select a handwritten letter image
           </Label>
         </div>
       </List>
@@ -118,12 +118,12 @@ export default function SendMailScanPage() {
       <Label className="flex flex-col justify-center items-center w-[339px] h-[303px] outline-dashed outline-2 outline-gray-8 rounded-lg mx-0.5 cursor-pointer">
         {preview ? (
           <div className="w-[339px] h-[303px] object-cover">
-            <Image src={preview} width={339} height={303} alt="미리보기" className="w-full h-full" />
+            <Image src={preview} width={339} height={303} alt="preview" className="w-full h-full" />
           </div>
         ) : (
           <>
-            <Image src="/add.png" width={48} height={48} alt="이미지 업로드" />
-            <p className="body3 text-gray-8">이미지 업로드하기</p>
+            <Image src="/add.png" width={48} height={48} alt="upload_image" />
+            <p className="body3 text-gray-8">Upload an image</p>
           </>
         )}
         <Input
@@ -137,23 +137,23 @@ export default function SendMailScanPage() {
       <Spacing size={24} />
       <List number={3}>
         <div>
-          <p>보내기 버튼을 누르면</p>
+          <p>If you press the &quot;Send&quot; button</p>
         </div>
       </List>
       <Spacing size={24} />
       <List number={4}>
         <div>
-          <p>아이유에게 편지 전송 완료!💌</p>
+          <p>Letter sent to IU!💌</p>
         </div>
       </List>
-      <Spacing size={66} />
+      <Spacing size={43} />
       <div>
         <Button
           onClick={handleUpload}
           disabled={!isTitleValid || !imgFile || isLoadingUpload}
           className={`w-full h-14 body1 ${!isTitleValid || !imgFile || isLoadingUpload ? "" : "bg-primary-8"}`}
         >
-          보내기
+          Send
         </Button>
       </div>
     </section>

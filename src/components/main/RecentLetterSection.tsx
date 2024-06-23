@@ -8,7 +8,7 @@ function RecentLetterSection() {
   return (
     <section>
       <div className="h-[73px] pt-8 pb-2">
-        <h2 className="title2">받은편지</h2>
+        <h2 className="title2">Received Letters</h2>
       </div>
 
       <DynamicLetterComponet />
