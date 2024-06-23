@@ -1,5 +1,5 @@
 function MaterialHeader() {
-  return <span>Material</span>;
+  return <span>Notes</span>;
 }
 
 export default MaterialHeader;
