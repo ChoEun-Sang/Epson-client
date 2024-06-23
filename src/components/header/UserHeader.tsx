@@ -17,9 +17,9 @@ function UserHeader() {
         {pathname === "/" ? <MainSelectArtist /> : pathname === "/material" ? <MaterialHeader /> : <MailBox />}
       </div>
 
-      <div className="flex justify-end w-full gap-6">
+      <div className="flex justify-end w-full gap-6 relative z-50">
         <button>
-          <Image src="/notifications.png" width={24} height={24} alt="notifications" />
+          <Image src="/notifications.svg" width={24} height={24} alt="notifications" />
         </button>
         {userData?.id ? <UserInfo /> : <Signin />}
       </div>
