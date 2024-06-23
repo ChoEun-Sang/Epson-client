@@ -11,6 +11,8 @@ import { IMAGE_BASE_URL, NO_TOOL_BAR, REG_EXP } from "@/lib/constants/constants"
 import usePrintStateStore from "@/store/usePrintStateStore";
 import { useParams } from "next/navigation";
 import { useState } from "react";
+import Image from "next/image";
+import { isEnglishSentence } from "@/lib/util/utilFunctions";
 
 function PrintMail() {
   const [printType, setPrintType] = useState<string>("image");
@@ -20,47 +22,66 @@ function PrintMail() {
   const { print } = usePrintStateStore();
   const { handlePrint, isError, isPending, isSuccess } = usePrintHandler(imageURL);
 
+  const renderImage = (url: string) => {
+    if (imageURL.includes("pdf")) {
+      return <iframe src={url} width={"100%"} height={"100%"} />;
+    }
+    return <Image src={url} alt="" fill />;
+  };
+
   // 현재는 사진만 인쇄하도록 전달
   // 추후 텍스트 인쇄 방식이 추가되면 기능 추가 예정
 
   const renderPrintContent = (type: string) => {
     switch (type) {
       case "image":
-        return (
-          <div className="w-full h-full pb-20">
-            <iframe className="border-4" src={imageURL} width={"100%"} height={"100%"} />
-          </div>
-        );
+        return <div className="w-full h-full pb-20 relative">{renderImage(imageURL)}</div>;
       case "text":
         return (
           <ul className="flex flex-col gap-y-3">
-            {data?.letterDocument.pages[0].originText.map((originSentence, index) => (
-              <li key={index} className="flex gap-x-2">
-                <span className="text-xs font-bold text-primary-3">{index + 1}</span>
-                <div className="flex-flex-col text-start">
-                  <p className="text-text-info">{originSentence.replace(REG_EXP, "$1")}</p>
-                  <p className="text-text-info text-sm">{data.letterDocument.pages[0].translatedText[index]}</p>
-                </div>
-              </li>
-            ))}
+            {data?.letterDocument.pages[0].originText.map((sentence, index) => {
+              const isEnglish = isEnglishSentence(sentence);
+              const krSentence = isEnglish
+                ? data?.letterDocument.pages[0].translatedText[index]
+                : data?.letterDocument.pages[0].originText[index];
+              const EnSentence = isEnglish
+                ? data?.letterDocument.pages[0].originText[index]
+                : data?.letterDocument.pages[0].translatedText[index];
+              return (
+                <li key={index} className="flex gap-x-2">
+                  <span className="text-xs font-bold text-primary-3">{index + 1}</span>
+                  <div className="flex-flex-col text-start">
+                    <p className="text-text-info">{krSentence.replace(REG_EXP, "$1")}</p>
+                    <p className="text-text-info text-sm">{EnSentence}</p>
+                  </div>
+                </li>
+              );
+            })}
           </ul>
         );
       case "all":
         return (
-          <div className="flex-flex-col">
-            <div className="w-full h-[300px] mb-4">
-              <iframe className="border-4" src={imageURL} width={"100%"} height={"100%"} />
-            </div>
+          <div className="flex-flex-col h-full">
+            <div className="w-full h-[300px] mb-4 relative">{renderImage(imageURL)}</div>
             <ul className="flex flex-col gap-y-3">
-              {data?.letterDocument.pages[0].originText.map((originSentence, index) => (
-                <li key={index} className="flex gap-x-2">
-                  <span className="text-xs font-bold text-primary-3">{index + 1}</span>
-                  <div className="flex-flex-col text-start">
-                    <p className="text-text-info">{originSentence.replace(REG_EXP, "$1")}</p>
-                    <p className="text-text-info text-sm">{data.letterDocument.pages[0].translatedText[index]}</p>
-                  </div>
-                </li>
-              ))}
+              {data?.letterDocument.pages[0].originText.map((sentence, index) => {
+                const isEnglish = isEnglishSentence(sentence);
+                const krSentence = isEnglish
+                  ? data?.letterDocument.pages[0].translatedText[index]
+                  : data?.letterDocument.pages[0].originText[index];
+                const EnSentence = isEnglish
+                  ? data?.letterDocument.pages[0].originText[index]
+                  : data?.letterDocument.pages[0].translatedText[index];
+                return (
+                  <li key={index} className="flex gap-x-2">
+                    <span className="text-xs font-bold text-primary-3">{index + 1}</span>
+                    <div className="flex-flex-col text-start">
+                      <p className="text-text-info">{krSentence.replace(REG_EXP, "$1")}</p>
+                      <p className="text-text-info text-sm">{EnSentence}</p>
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         );
@@ -87,7 +108,7 @@ function PrintMail() {
             </ToggleGroup>
             <Button
               onClick={() => data && handlePrint(data?.letterDocument.pages[0].url)}
-              className="bg-primary-8 w-full font-bold h-14"
+              className="bg-primary-8 w-full font-bold h-14 mb-4"
             >
               Print
             </Button>
