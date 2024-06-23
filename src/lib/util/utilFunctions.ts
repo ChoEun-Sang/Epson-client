@@ -25,14 +25,7 @@ export const getKeywordsInSentence = (sentence: string) => {
   return words;
 };
 
-export const isEnglishSentence = (sentence: string) => {
-  const alp = "abcdefghijklmnopqrstuvwxyz";
-  for (let i = 0; i < sentence.length; i++) {
-    if (alp.includes(sentence[i])) {
-      return true;
-    }
-    if (sentence.length === i) {
-      return false;
-    }
-  }
+export const isEnglishSentence = (textList: string) => {
+  const englishPattern = /^[\d\s!"#$%&'()*+,./:;<=>?@A-Za-z-]+$/;
+  return englishPattern.test(textList);
 };
