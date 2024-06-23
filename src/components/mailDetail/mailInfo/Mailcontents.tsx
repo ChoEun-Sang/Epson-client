@@ -3,7 +3,7 @@
 import usePostKeywords from "@/hooks/mutations/usePostKeywords";
 import { REG_EXP } from "@/lib/constants/constants";
 import { LetterDetailDocument } from "@/lib/types/mailDetailTypes";
-import { getKeywordsInSentence } from "@/lib/util/utilFunctions";
+import { getKeywordsInSentence, isEnglishSentence } from "@/lib/util/utilFunctions";
 import useMailDetailStore from "@/store/useMailDetailStore";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -89,10 +89,12 @@ function MailContents({ letterDocumentData, letterDocumentId, letterTitle }: Mai
     return <p>{styledSentence}</p>;
   };
 
-  const handleclickSentence = (sentence: string, index: number) => {
+  const handleclickSentence = (sentence: string, isEnglish: boolean, index: number) => {
     setSelectedText(sentence);
     if (letterDocumentData) {
-      setSelectedTranslatedText(letterDocumentData?.pages[0].translatedText[index]);
+      setSelectedTranslatedText(
+        isEnglish ? letterDocumentData?.pages[0].originText[index] : letterDocumentData?.pages[0].translatedText[index]
+      );
     }
     setTextNumber(index + 1);
     if (getKeywordsInSentence(sentence).length) {
@@ -105,22 +107,36 @@ function MailContents({ letterDocumentData, letterDocumentId, letterTitle }: Mai
   return (
     <ul className="w-full flex flex-col overflow-auto main">
       {letterDocumentData?.pages[0].originText
-        ? letterDocumentData?.pages[0].originText.map((sentence, index) => (
-            <li key={index} className="flex flex-col">
-              <button className="flex gap-2 p-2" onClick={() => handleclickSentence(sentence, index)}>
-                <span className="text-xs font-bold text-primary-3">{index + 1}</span>
-                <div className="flex flex-col text-start" style={{ fontSize: size }}>
-                  {renderStyledSentence(sentence)}
-                  <p className="text-text-info" style={{ fontSize: size - 2 }}>
-                    {letterDocumentData.pages[0].translatedText[index]}
-                  </p>
-                </div>
-              </button>
-              {index < letterDocumentData.pages[0].originText.length - 1 && (
-                <hr className="border-b border-gray-1 my-1" />
-              )}
-            </li>
-          ))
+        ? letterDocumentData?.pages[0].originText.map((sentence, index) => {
+            const isEnglish = isEnglishSentence(sentence);
+            const krSentence = isEnglish
+              ? letterDocumentData?.pages[0].translatedText[index]
+              : letterDocumentData?.pages[0].originText[index];
+            const EnSentence = isEnglish
+              ? letterDocumentData?.pages[0].originText[index]
+              : letterDocumentData?.pages[0].translatedText[index];
+            return (
+              <li key={index} className="flex flex-col">
+                <button
+                  className="flex gap-2 p-2"
+                  onClick={() => {
+                    if (isEnglish) {
+                      handleclickSentence(krSentence, isEnglish, index);
+                    }
+                  }}
+                >
+                  <span className="text-xs font-bold text-primary-3">{index + 1}</span>
+                  <div className="flex flex-col text-start" style={{ fontSize: size }}>
+                    {renderStyledSentence(krSentence)}
+                    <p className="text-text-info" style={{ fontSize: size - 2 }}>
+                      {EnSentence}
+                    </p>
+                  </div>
+                </button>
+                {index < krSentence.length - 1 && <hr className="border-b border-gray-1 my-1" />}
+              </li>
+            );
+          })
         : null}
       {keywords.length ? (
         <button
