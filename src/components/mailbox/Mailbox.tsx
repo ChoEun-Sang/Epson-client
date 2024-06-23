@@ -25,17 +25,19 @@ function Mailbox() {
   };
 
   return (
-    <Tabs defaultValue="received" ref={sentRef} className="w-full relative innerheight scrollon">
-      <TabsList className="w-full h-10 sticky top-0">
+    <Tabs defaultValue="received" className="w-full innerheight relative">
+      <TabsList className="w-full h-10">
         <TabsTrigger value="received">Received Letters</TabsTrigger>
         <TabsTrigger value="sent">Sent Letters</TabsTrigger>
       </TabsList>
-      <TabsContent ref={receivedRef} value="received" className="h-full">
-        <MailList object="received" />
-      </TabsContent>
-      <TabsContent value="sent" className="h-full ">
-        <MailList object="sent" />
-      </TabsContent>
+      <div ref={sentRef || receivedRef} className="scrollon" style={{ height: "calc(100vh - 217px)" }}>
+        <TabsContent value="received">
+          <MailList object="received" />
+        </TabsContent>
+        <TabsContent value="sent">
+          <MailList object="sent" />
+        </TabsContent>
+      </div>
       <ScrollTopBtn onClick={scrollToTop} />
     </Tabs>
   );

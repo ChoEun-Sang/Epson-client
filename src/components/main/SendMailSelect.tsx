@@ -33,7 +33,7 @@ function SendMailSelect() {
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
-        <div className="flex flex-row-reverse w-[343px] sticky bottom-4 pointer-events-none z-50">
+        <div className="flex flex-row-reverse absolute bottom-4 right-0 pointer-events-none z-50">
           <button className="pointer-events-auto">
             <div
               className={`w-12 h-12 rounded-full px-0.5 py-1 flex justify-center items-center custom-box-shadow ${

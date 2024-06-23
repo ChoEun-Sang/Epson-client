@@ -79,71 +79,72 @@ export default function SendMailScanPage() {
   };
 
   return (
-    <section className="innerheight scrollon">
-      <Spacing size={32} />
-      <List number={1}>
-        <div>
-          <Label htmlFor="connect" className="body1">
-            Enter the access key to connect to the printer
-          </Label>
+    <section className="innerheight scrollon h-full flex flex-col justify-between pb-4">
+      <div className="flex flex-col">
+        <Spacing size={32} />
+        <List number={1}>
+          <div>
+            <Label htmlFor="connect" className="body1">
+              Enter the access key to connect to the printer
+            </Label>
+          </div>
+        </List>
+        <Spacing size={8} />
+        <div className="pl-10 flex gap-1.5">
+          <Input
+            id="connect"
+            type="text"
+            placeholder="Please enter a print access key."
+            className={`focus-visible:ring-transparent border ${
+              !deviceTouched ? "border-gray-300" : isDeviceValid ? "border-green-500" : "border-red-500"
+            }`}
+            value={device}
+            onBlur={handleDeviceBlur}
+            onChange={handleChangeDevice}
+          />
+          <Button
+            className={`${isDeviceConnected && "bg-green-500"}`}
+            onClick={handleConnectDevice}
+            disabled={!isDeviceValid || isLoading || isDeviceConnected}
+          >
+            Connect
+          </Button>
         </div>
-      </List>
-      <Spacing size={8} />
-      <div className="pl-10 flex gap-1.5">
-        <Input
-          id="connect"
-          type="text"
-          placeholder="Please enter a print access key."
-          className={`focus-visible:ring-transparent border ${
-            !deviceTouched ? "border-gray-300" : isDeviceValid ? "border-green-500" : "border-red-500"
-          }`}
-          value={device}
-          onBlur={handleDeviceBlur}
-          onChange={handleChangeDevice}
-        />
-        <Button
-          className={`${isDeviceConnected && "bg-green-500"}`}
-          onClick={handleConnectDevice}
-          disabled={!isDeviceValid || isLoading || isDeviceConnected}
-        >
-          Connect
-        </Button>
+        <Spacing size={24} />
+        <List number={2}>
+          <div>
+            <Label htmlFor="title" className="body1">
+              Enter the letter title
+            </Label>
+          </div>
+        </List>
+        <Spacing size={8} />
+        <div className="pl-10">
+          <Input
+            id="title"
+            type="text"
+            placeholder="Please enter a title."
+            className={`focus-visible:ring-transparent border ${
+              !titleTouched ? "border-gray-300" : isTitleValid ? "border-green-500" : "border-red-500"
+            }`}
+            value={title}
+            onBlur={handleTitleBlur}
+            onChange={handleChangeTitle}
+          />
+        </div>
+        <Spacing size={24} />
+        <List number={3}>
+          <div>
+            <p>If you press the &quot;pressed&quot; button on the next page</p>
+          </div>
+        </List>
+        <Spacing size={24} />
+        <List number={4} backgroundColor="#949494" color="white">
+          <div>
+            <p>Letter sent to IU!💌</p>
+          </div>
+        </List>
       </div>
-      <Spacing size={24} />
-      <List number={2}>
-        <div>
-          <Label htmlFor="title" className="body1">
-            Enter the letter title
-          </Label>
-        </div>
-      </List>
-      <Spacing size={8} />
-      <div className="pl-10">
-        <Input
-          id="title"
-          type="text"
-          placeholder="Please enter a title."
-          className={`focus-visible:ring-transparent border ${
-            !titleTouched ? "border-gray-300" : isTitleValid ? "border-green-500" : "border-red-500"
-          }`}
-          value={title}
-          onBlur={handleTitleBlur}
-          onChange={handleChangeTitle}
-        />
-      </div>
-      <Spacing size={24} />
-      <List number={3}>
-        <div>
-          <p>If you press the &quot;pressed&quot; button on the next page</p>
-        </div>
-      </List>
-      <Spacing size={24} />
-      <List number={4} backgroundColor="#949494" color="white">
-        <div>
-          <p>Letter sent to IU!💌</p>
-        </div>
-      </List>
-      <Spacing size={282} />
       <Link href="/mailscan/scan">
         <Button
           className={`w-full h-14 body1`}

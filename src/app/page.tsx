@@ -10,7 +10,7 @@ export default function Home() {
   const { userData } = useUserStore();
   const userName = userData?.username;
   return (
-    <section className="innerheight scrollon">
+    <section className="innerheight scrollon relative">
       <div className="h-[82px] pt-4 pb-2 title2">
         {userName ? (
           <h1>Dear {userData?.username}, only one day left until the solo concert!</h1>

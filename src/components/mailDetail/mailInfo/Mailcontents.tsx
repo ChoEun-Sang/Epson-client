@@ -105,53 +105,55 @@ function MailContents({ letterDocumentData, letterDocumentId, letterTitle }: Mai
   if (isError) <p>오류: {error.message}</p>;
 
   return (
-    <ul className="w-full flex flex-col overflow-auto main">
-      {letterDocumentData?.pages[0].originText
-        ? letterDocumentData?.pages[0].originText.map((sentence, index) => {
-            const isEnglish = isEnglishSentence(sentence);
-            const krSentence = isEnglish
-              ? letterDocumentData?.pages[0].translatedText[index]
-              : letterDocumentData?.pages[0].originText[index];
-            const EnSentence = isEnglish
-              ? letterDocumentData?.pages[0].originText[index]
-              : letterDocumentData?.pages[0].translatedText[index];
-            return (
-              <li key={index} className="flex flex-col">
-                <button
-                  className="flex gap-2 p-2"
-                  onClick={() => {
-                    handleclickSentence(krSentence, isEnglish, index);
-                  }}
-                >
-                  <span className="text-xs font-bold text-primary-3">{index + 1}</span>
-                  <div className="flex flex-col text-start" style={{ fontSize: size }}>
-                    {renderStyledSentence(krSentence)}
-                    <p className="text-text-info" style={{ fontSize: size - 2 }}>
-                      {EnSentence}
-                    </p>
-                  </div>
-                </button>
-                {index < krSentence.length - 1 && <hr className="border-b border-gray-1 my-1" />}
-              </li>
-            );
-          })
-        : null}
-      {keywords.length ? (
-        <button
-          onClick={() => {
-            setShowToast(true);
-          }}
-          className="absolute bottom-8 self-center z-10 flex bg-gray-3 gap-x-1 border-2 border-gray-4 px-3 py-2 rounded-3xl w-[300px]"
-        >
-          <Image src="/book.svg" alt="" width={24} height={24} />
-          <p className="text-text-info font-bold">
-            <span>
-              Save <span className="text-primary-8">{keywords.length}</span> keywords to study note
-            </span>
-          </p>
-        </button>
-      ) : null}
-    </ul>
+    <div className="w-full flex flex-col h-full">
+      <ul className="flex flex-col overflow-auto main h-full">
+        {letterDocumentData?.pages[0].originText
+          ? letterDocumentData?.pages[0].originText.map((sentence, index) => {
+              const isEnglish = isEnglishSentence(sentence);
+              const krSentence = isEnglish
+                ? letterDocumentData?.pages[0].translatedText[index]
+                : letterDocumentData?.pages[0].originText[index];
+              const EnSentence = isEnglish
+                ? letterDocumentData?.pages[0].originText[index]
+                : letterDocumentData?.pages[0].translatedText[index];
+              return (
+                <li key={index} className="flex flex-col">
+                  <button
+                    className="flex gap-2 p-2"
+                    onClick={() => {
+                      handleclickSentence(krSentence, isEnglish, index);
+                    }}
+                  >
+                    <span className="text-xs font-bold text-primary-3">{index + 1}</span>
+                    <div className="flex flex-col text-start" style={{ fontSize: size }}>
+                      {renderStyledSentence(krSentence)}
+                      <p className="text-text-info" style={{ fontSize: size - 2 }}>
+                        {EnSentence}
+                      </p>
+                    </div>
+                  </button>
+                  {index < krSentence.length - 1 && <hr className="border-b border-gray-1 my-1" />}
+                </li>
+              );
+            })
+          : null}
+        {keywords.length ? (
+          <button
+            onClick={() => {
+              setShowToast(true);
+            }}
+            className="absolute bottom-8 self-center z-10 flex bg-gray-3 gap-x-1 border-2 border-gray-4 px-3 py-2 rounded-3xl w-[300px]"
+          >
+            <Image src="/book.svg" alt="" width={24} height={24} />
+            <p className="text-text-info font-bold">
+              <span>
+                Save <span className="text-primary-8">{keywords.length}</span> keywords to study note
+              </span>
+            </p>
+          </button>
+        ) : null}
+      </ul>
+    </div>
   );
 }
 

@@ -21,7 +21,7 @@ function PrintLoading({ isPending, isSuccess, isError, study }: PrintLoadingProp
       return <Image src="/check.png" width={240} height={240} alt="success" />;
     }
     if (isError) {
-      return <Image src="/error.svg" width={240} height={240} alt="error" />;
+      return <Image src="/printerror.gif" width={240} height={240} alt="error" />;
     }
     return null;
   };
@@ -34,17 +34,19 @@ function PrintLoading({ isPending, isSuccess, isError, study }: PrintLoadingProp
   };
 
   return (
-    <section className="innerheight flex justify-center items-center flex-col relative">
-      <div className="w-full h-full flex flex-col justify-center items-center">
+    <section className="innerheight flex justify-between items-center flex-col">
+      <div className="flex flex-col justify-center items-center flex-1">
         {renderImage()}
         <div className="text-center title2 mt-8">
           <p>{renderMessage()}</p>
         </div>
       </div>
       {(isSuccess || isError) && (
-        <Button onClick={() => setPrint(false)} className="w-full h-14 bg-primary-8 font-bold absolute bottom-9">
-          Close Print
-        </Button>
+        <div className="w-full flex items-end pb-4 pt-6">
+          <Button onClick={() => setPrint(false)} className="w-full h-14 bg-primary-8 font-bold">
+            Close Print
+          </Button>
+        </div>
       )}
     </section>
   );

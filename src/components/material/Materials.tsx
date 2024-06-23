@@ -27,9 +27,9 @@ function Materials() {
   };
 
   return (
-    <section ref={receivedRef} className="scrollon innerheight">
+    <section className="innerheight">
       <div className="w-full h-full relative">
-        <div className="w-full h-14 sticky pt-4 top-0 bg-white">
+        <div className="w-full h-14 pt-4 top-0 bg-white">
           <input
             type="text"
             placeholder="Enter search term"
@@ -43,9 +43,9 @@ function Materials() {
             className="absolute right-4 top-6"
           />
         </div>
-        <div className="h-full pt-2">
+        <div className="pt-2 scrollon" ref={receivedRef} style={{ height: "calc(100vh - 233px)" }}>
           {data && (
-            <ul>
+            <ul className="h-full">
               {data.map((value: MaterialProps, idx: number) => (
                 <Material key={value.id} data={value} idx={idx} />
               ))}

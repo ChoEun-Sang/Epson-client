@@ -14,7 +14,7 @@ function MailDeatil() {
   }
 
   return (
-    <section className="flex flex-col gap-y-6 relative innerheight">
+    <section style={{ height: "calc(100vh - 210px)" }} className="flex flex-col gap-y-6 relative overflow-hiddeen">
       <MailDescription letterImageUrl={data?.letterDocument.pages[0].url} letterInfoData={data?.letter} />
       <Mailcontents
         letterDocumentData={data?.letterDocument}
