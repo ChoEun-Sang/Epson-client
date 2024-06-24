@@ -25,21 +25,25 @@ function Mail({ data, object }: { data: MailProps; object: string }) {
   const userData = useUserStore((state) => state.userData);
   const date = dayjs(data.createdAt).format("YYYY-MM-DD (ddd) hh:mm");
 
-  const isPendding = data.status === "pendding";
+  const isPending = data.status === "pending";
 
-  const penddingStyles = isPendding ? "opacity-50 pointer-events-none" : "";
+  const isFailed = data.status === "failed";
+
+  const pendingStyles = isPending || isFailed ? "opacity-50 pointer-events-none" : "";
 
   return (
-    <li className={`p-4 mb-2 bg-gray-100 rounded-sm ${penddingStyles}`}>
+    <li className={`p-4 mb-2 bg-gray-100 rounded-sm ${pendingStyles}`}>
       <Link href={`/mailbox/${data.letterDocumentId}`} className="space-y-2">
         <div className="flex justify-between">
           <span className="callout1 text-text-info">
             <strong>To.</strong> {object === "sent" ? data.receiver?.username : userData?.username}
           </span>
-          <strong className="body1 text-text-sub">{isPendding ? "˙ ˙ ˙" : data.title}</strong>
+          <strong className="body1 text-text-sub">{isPending || isFailed ? "˙ ˙ ˙" : data.title}</strong>
         </div>
         <div className="flex justify-between">
-          <span className="footnote3 text-text-disabled">{isPendding ? "Loading Letter" : date}</span>
+          <span className="footnote3 text-text-disabled">
+            {isPending ? "Loading Letter" : isFailed ? "Failed" : date}
+          </span>
           <span className="callout1 text-text-info">
             <strong>From.</strong> {object === "sent" ? userData?.username : data.sender?.username}
           </span>
