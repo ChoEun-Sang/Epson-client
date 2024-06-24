@@ -4,7 +4,7 @@
 > 개발기간: 2024.06.07 ~ 2024.06.23 <br/>
 > [AIGOO 데모 페이지](https://www.aigoo.online/) <br/>
 > 테스트 계정 <br/>
-> ID: aigoo@gmail.com PW: 1234
+> ID: aigoo@gmail.com PW: aigoo
 <br/>
 
 ## 개발 팀원 소개
