@@ -1,18 +1,22 @@
 "use client";
 
+import useIsCheckedLoadingStroe from "@/store/useIsCheckedLoadingStroe";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 function Redirect() {
   const router = useRouter();
   const [seconds, setSeconds] = useState(3);
+  const { setIsCheckedLoading } = useIsCheckedLoadingStroe();
 
   useEffect(() => {
+    setIsCheckedLoading(true);
     const countdown = setInterval(() => {
       setSeconds((prevSeconds) => prevSeconds - 1);
     }, 1000);
 
     const timer = setTimeout(() => {
+      setIsCheckedLoading(false);
       router.replace("/");
     }, 3000);
 
@@ -20,7 +24,7 @@ function Redirect() {
       clearInterval(countdown);
       clearTimeout(timer);
     };
-  }, [router]);
+  }, [router, setIsCheckedLoading]);
 
   return (
     <section className="innerheight w-full flex justify-center items-center">
