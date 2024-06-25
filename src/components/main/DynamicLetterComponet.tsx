@@ -4,6 +4,7 @@ import useMailListQuery from "@/hooks/queries/useMailListQuery";
 import { useEffect } from "react";
 import LetterImage from "./LetterImage";
 import useRecentLettersStore from "@/store/useRecentLettersStore";
+import { useRouter } from "next/navigation";
 
 export interface MailItem {
   id: number;
@@ -17,6 +18,7 @@ export interface MailItem {
 function DynamicLetterComponent() {
   const { data: mailListData } = useMailListQuery("received");
   const { recentLetters, setRecentLetters } = useRecentLettersStore();
+  const router = useRouter();
 
   useEffect(() => {
     if (mailListData) {
@@ -25,11 +27,19 @@ function DynamicLetterComponent() {
     }
   }, [mailListData, setRecentLetters]);
 
+  const handleLetterClick = (letterDocumentId: string | null) => {
+    router.push(`/mailbox/${letterDocumentId}`);
+  };
+
   return (
     <div className="gap-2 grid grid-cols-2">
       {recentLetters.length > 0 ? (
         recentLetters.map((item: MailItem) => (
-          <div key={item.id} className="flex flex-col gap-2 cursor-pointer">
+          <div
+            key={item.id}
+            className="flex flex-col gap-2 cursor-pointer"
+            onClick={() => handleLetterClick(item.letterDocumentId)}
+          >
             <LetterImage item={item} letterDocumentId={item.letterDocumentId} />
           </div>
         ))
