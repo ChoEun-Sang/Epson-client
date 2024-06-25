@@ -21,11 +21,16 @@ function UserInfo() {
   };
 
   const handleSignout = async () => {
-    await loggedOut();
-    setUserData(null);
-    setIsOpen(false);
-    setRecentLetters([]);
-    toast.success("You've been logged out!");
+    try {
+      await loggedOut();
+      setUserData(null);
+      setIsOpen(false);
+      setRecentLetters([]);
+      toast.success("You've been logged out!");
+    } catch (error) {
+      console.error("Logout failed", error);
+      toast.error("Logout failed. Please try again.");
+    }
   };
 
   const { img } = userData || {};
