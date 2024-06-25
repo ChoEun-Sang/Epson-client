@@ -1,9 +1,9 @@
 "use client";
 
 import useUserStore from "@/store/useUserStore";
+
 import { useRouter } from "next/navigation";
 import { FunctionComponent, useEffect, ComponentType } from "react";
-
 import RedirectPage from "@/components/RedirectPage";
 import useIsCheckedLoadingStroe from "@/store/useIsCheckedLoadingStroe";
 
@@ -14,16 +14,24 @@ const WithAuth = <P extends object>(Component: ComponentType<P>): FunctionCompon
     const { setIsCheckedLoading } = useIsCheckedLoadingStroe();
 
     useEffect(() => {
-      setIsCheckedLoading(true);
-      if (!userData) {
-        const timeout = setTimeout(() => {
-          setIsCheckedLoading(false);
-          router.replace("/");
-        }, 3000);
+      const checkAuth = () => {
+        if (!userData) {
+          setIsCheckedLoading(true);
 
-        return () => clearTimeout(timeout);
-      }
-    }, [router, setIsCheckedLoading, userData]);
+          const timer = setTimeout(() => {
+            setIsCheckedLoading(false);
+
+            router.replace("/");
+          }, 3000);
+
+          return () => clearTimeout(timer);
+        } else {
+          setIsCheckedLoading(false);
+        }
+      };
+
+      checkAuth();
+    }, [router, userData, setIsCheckedLoading]);
 
     if (!userData) {
       return <RedirectPage />;
