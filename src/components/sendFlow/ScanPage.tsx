@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import useScanStore from "@/store/useScanStore";
 import SendLoading from "@/components/sendFlow/SendLoading";
 import ScanGuideLine from "@/components/sendFlow/ScanGuideLine";
+import WithAuth from "@/lib/util/WithAuth";
 
 function ScanPage() {
   const { scanned, setScanned } = useScanStore();
@@ -13,7 +14,7 @@ function ScanPage() {
   useEffect(() => {
     if (scanned) {
       const timer = setTimeout(() => {
-        router.push("/");
+        router.replace("/");
       }, 2000);
       return () => clearTimeout(timer);
     }
@@ -22,4 +23,4 @@ function ScanPage() {
   return scanned ? <SendLoading /> : <ScanGuideLine onScanClick={() => setScanned(true)} />;
 }
 
-export default ScanPage;
+export default WithAuth(ScanPage);

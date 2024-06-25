@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import Material from "./Material";
 import Image from "next/image";
 import ScrollTopBtn from "../common/button/ScrollTop";
+import WithAuth from "@/lib/util/WithAuth";
 
 interface MaterialProps {
   id: number;
@@ -58,4 +59,4 @@ function Materials() {
   );
 }
 
-export default Materials;
+export default WithAuth(Materials);

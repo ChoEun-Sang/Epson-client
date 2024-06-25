@@ -10,8 +10,9 @@ import useUserStore from "@/store/useUserStore";
 import Link from "next/link";
 import { requestScanDevice } from "@/lib/api/api";
 import useDeviceRegistration from "@/hooks/useDeviceConnect";
+import WithAuth from "@/lib/util/WithAuth";
 
-export default function SendMailScanPage() {
+function SendMailScan() {
   const [title, setTitle] = useState("");
   const [isTitleValid, setIsTitleValid] = useState(false);
   const [titleTouched, setTitleTouched] = useState(false);
@@ -156,3 +157,5 @@ export default function SendMailScanPage() {
     </section>
   );
 }
+
+export default WithAuth(SendMailScan);

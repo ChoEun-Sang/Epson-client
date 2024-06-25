@@ -11,8 +11,9 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import SendLoading from "../sendFlow/SendLoading";
 import useSentStore from "@/store/useSentStore";
+import withAuth from "@/lib/util/WithAuth";
 
-export default function SendMailScanPage() {
+function SendMailScanPage() {
   const [title, setTitle] = useState("");
   const [isTitleValid, setIsTitleValid] = useState(false);
   const [titleTouched, setTitleTouched] = useState(false);
@@ -159,3 +160,5 @@ export default function SendMailScanPage() {
     </section>
   );
 }
+
+export default withAuth(SendMailScanPage);

@@ -4,6 +4,7 @@ import AddedKeywordsList from "@/components/mailDetail/keywordSelect/AddedKeywor
 import KeywordDetails from "@/components/mailDetail/keywordSelect/KeywordDetails";
 import KeywordSlider from "@/components/mailDetail/keywordSelect/KeywordSlider";
 import useGetGPTDataQueries from "@/hooks/queries/useGetGPTDataQuery";
+import WithAuth from "@/lib/util/WithAuth";
 import { getKeywordsInSentence } from "@/lib/util/utilFunctions";
 import useMailDetailStore from "@/store/useMailDetailStore";
 import { useParams, useRouter } from "next/navigation";
@@ -40,4 +41,4 @@ function SelectKeywords() {
   );
 }
 
-export default SelectKeywords;
+export default WithAuth(SelectKeywords);
