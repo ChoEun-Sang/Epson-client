@@ -13,7 +13,7 @@ function Material({ data, idx }: { data: MaterialProps; idx: number }) {
 
   return (
     <li className="p-4 mb-2 bg-gray-100 rounded-sm">
-      <Link href={{ pathname: `/material/${data.id}`, query: { pdf: data.url } }} className="space-y-2">
+      <Link href={{ pathname: `/notes/${data.id}`, query: { pdf: data.url } }} className="space-y-2">
         <div className="flex justify-between">
           <strong className="text-text-info">No. {idx + 1}</strong>
 
