@@ -13,6 +13,7 @@ import { useParams } from "next/navigation";
 import { useState } from "react";
 import Image from "next/image";
 import { isEnglishSentence } from "@/lib/util/utilFunctions";
+import WithAuth from "@/lib/util/WithAuth";
 
 function PrintMail() {
   const [printType, setPrintType] = useState<string>("image");
@@ -122,4 +123,4 @@ function PrintMail() {
   );
 }
 
-export default PrintMail;
+export default WithAuth(PrintMail);

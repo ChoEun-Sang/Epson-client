@@ -3,6 +3,7 @@
 import MailDescription from "@/components/mailDetail/mailInfo/MailDescription";
 import Mailcontents from "@/components/mailDetail/mailInfo/Mailcontents";
 import useGetMailDetail from "@/hooks/queries/useGetMailDetail";
+import WithAuth from "@/lib/util/WithAuth";
 import { useParams } from "next/navigation";
 
 function MailDeatil() {
@@ -25,4 +26,4 @@ function MailDeatil() {
   );
 }
 
-export default MailDeatil;
+export default WithAuth(MailDeatil);

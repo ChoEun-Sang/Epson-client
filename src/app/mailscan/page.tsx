@@ -1,7 +1,7 @@
-import SendMailScanPage from "@/components/sendMail/SendMailScanPage";
+import SendMailScan from "@/components/sendMail/SendMailScanPage";
 
-const page = () => {
-  return <SendMailScanPage />;
+const SendMailScanPage = () => {
+  return <SendMailScan />;
 };
 
-export default page;
+export default SendMailScanPage;

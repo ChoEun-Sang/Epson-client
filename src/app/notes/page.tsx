@@ -1,8 +1,8 @@
 "use client";
 import Materials from "@/components/material/Materials";
 
-function Material() {
+const Material = () => {
   return <Materials />;
-}
+};
 
 export default Material;

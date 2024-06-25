@@ -4,6 +4,7 @@ import { useRef } from "react";
 import MailList from "./MailList";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ScrollTopBtn from "../common/button/ScrollTop";
+import withAuth from "@/lib/util/WithAuth";
 
 function Mailbox() {
   const receivedRef = useRef<HTMLDivElement | null>(null);
@@ -43,4 +44,4 @@ function Mailbox() {
   );
 }
 
-export default Mailbox;
+export default withAuth(Mailbox);
