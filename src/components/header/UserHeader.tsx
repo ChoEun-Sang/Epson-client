@@ -14,7 +14,7 @@ function UserHeader() {
   return (
     <div className="flex items-end w-full">
       <div className="relative inline-block w-64 title2">
-        {pathname === "/" ? <MainSelectArtist /> : pathname === "/material" ? <MaterialHeader /> : <MailBox />}
+        {pathname === "/" ? <MainSelectArtist /> : pathname === "/notes" ? <MaterialHeader /> : <MailBox />}
       </div>
 
       <div className="flex justify-end w-full gap-6 relative z-50">
