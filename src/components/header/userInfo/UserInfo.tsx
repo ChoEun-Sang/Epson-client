@@ -1,4 +1,4 @@
-import { MouseEvent, useEffect, useRef, useState } from "react";
+import { MouseEvent, useRef, useState } from "react";
 import Image from "next/image";
 import useUserStore from "@/store/useUserStore";
 import useOutsideClick from "@/hooks/useOutsideClick";
@@ -27,12 +27,6 @@ function UserInfo() {
     setRecentLetters([]);
     toast.success("You've been logged out!");
   };
-
-  useEffect(() => {
-    if (!userData) {
-      toast.success("Please log in to access the service!");
-    }
-  }, [userData]);
 
   const { img } = userData || {};
 
