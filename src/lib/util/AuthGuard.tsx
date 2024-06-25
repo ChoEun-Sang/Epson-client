@@ -42,7 +42,12 @@ const AuthGuard = ({ children }: { children: ReactNode }) => {
     };
 
     getData();
-    getAuthUser();
+
+    const interval = setInterval(() => {
+      getAuthUser();
+    }, 600000);
+
+    return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setUserData, userData]);
 
