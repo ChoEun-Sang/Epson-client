@@ -1,7 +1,7 @@
 import SendMailUpload from "@/components/sendMail/SendMailUpload";
 
-const ScanPage = () => {
+const SendMailUploadPage = () => {
   return <SendMailUpload />;
 };
 
-export default ScanPage;
+export default SendMailUploadPage;
