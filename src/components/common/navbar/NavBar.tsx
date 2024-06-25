@@ -17,11 +17,13 @@ import {
 
 import useIsCheckedStore from "@/store/useIsCheckedStore";
 import { useEffect } from "react";
+import useIsCheckedLoadingStroe from "@/store/useIsCheckedLoadingStroe";
 
 const NavBar = () => {
   const pathname = usePathname();
 
   const { checkedItems, setCheckedItems } = useIsCheckedStore();
+  const { isCheckedLoading } = useIsCheckedLoadingStroe();
 
   useEffect(() => {
     setCheckedItems(pathname);
@@ -39,6 +41,8 @@ const NavBar = () => {
   ];
 
   const invisibleNav = invisiblePaths.includes(true);
+
+  if (isCheckedLoading) return;
 
   return (
     !invisibleNav && (
