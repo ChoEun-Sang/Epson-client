@@ -12,7 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import useMailListQuery from "@/hooks/queries/useMailListQuery";
-import { signin } from "@/lib/api/api";
+import { authUser, signin } from "@/lib/api/api";
 import useRecentLettersStore from "@/store/useRecentLettersStore";
 import useUserStore from "@/store/useUserStore";
 import { ChangeEvent, useState, FormEvent } from "react";
@@ -41,6 +41,7 @@ function Signin() {
 
     try {
       const data = await signin(email, password);
+      const checkedData = await authUser();
 
       if (!isMailListLoading && mailListData) {
         const slicedData = mailListData.slice(0, 4);
@@ -55,7 +56,7 @@ function Signin() {
           id: data.userId,
           username: data.username,
           myFavorite: "",
-          epsonDevice: "",
+          epsonDevice: checkedData.epsonDevice,
         };
 
         setUserData(userData);
@@ -90,6 +91,7 @@ function Signin() {
               </Label>
               <Input
                 id="ID"
+                type="email"
                 placeholder="Please enter your ID."
                 value={email}
                 onChange={handleChangeEmail}
@@ -100,6 +102,7 @@ function Signin() {
               </Label>
               <Input
                 id="Password"
+                type="password"
                 placeholder="Please enter your Password."
                 value={password}
                 onChange={handleChangePassword}
@@ -110,7 +113,7 @@ function Signin() {
           <Spacing size={8} />
           <DialogFooter className="sm:justify-start">
             <Button className="w-full bg-primary-8" type="submit" disabled={loading}>
-              {loading ? "Loggin in" : "Login"}
+              {loading ? "Loggin in" : "Log in"}
             </Button>
           </DialogFooter>
           {error && <p style={{ color: "red" }}>{error}</p>}
