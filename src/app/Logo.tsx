@@ -1,6 +1,12 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect } from "react";
 
 function Logo() {
+  useEffect(() => {
+    sessionStorage.setItem("firstVisit", "checked");
+  }, []);
   return (
     <section className="innerheight w-[375px] flex justify-center items-center bg-secondary-1 absolute ml-[-16px]">
       <div className="flex flex-col justify-center items-center gap-[67px]">
