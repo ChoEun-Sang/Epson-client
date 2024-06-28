@@ -1,49 +1,24 @@
 "use client";
 
-import ArticleSection from "@/components/main/ArticleSection";
-import DateSection from "@/components/main/DateSection";
-import RecentLetterSection from "@/components/main/RecentLetterSection";
-import SendMailSelect from "@/components/main/SendMailSelect";
-import useUserStore from "@/store/useUserStore";
-import { useEffect, useState } from "react";
-import { toast } from "sonner";
+import { useEffect } from "react";
+import MainPage from "@/components/main/MainPage";
+import useIsCheckedLoadingStroe from "@/store/useIsCheckedLoadingStroe";
+import Logo from "./Logo";
 
-export default function Home() {
-  const [mounted, setMounted] = useState(false);
-  const { userData } = useUserStore();
-  const userName = userData?.username;
+function Main() {
+  const { isCheckedLoading, setIsCheckedLoading } = useIsCheckedLoadingStroe();
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    setIsCheckedLoading(true);
 
-  useEffect(() => {
-    if (!mounted || userData) return;
-    toast.info("Please log in to access the service!", {
-      duration: 1500,
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mounted]);
+    const timer = setTimeout(() => {
+      setIsCheckedLoading(false);
+    }, 3000);
 
-  return (
-    <section className="innerheight scrollon relative">
-      <div className="h-[82px] pt-4 pb-2 title2">
-        {userName ? (
-          <h1>Dear {userData?.username}, only one day left until the solo concert!</h1>
-        ) : (
-          <>
-            <h1>only one day left until the solo concert!</h1>
-          </>
-        )}
-      </div>
+    return () => clearTimeout(timer);
+  }, [setIsCheckedLoading]);
 
-      <ArticleSection />
-
-      <DateSection />
-
-      <RecentLetterSection />
-
-      <SendMailSelect />
-    </section>
-  );
+  return <>{isCheckedLoading ? <Logo /> : <MainPage />}</>;
 }
+
+export default Main;
