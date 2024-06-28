@@ -9,13 +9,19 @@ function Main() {
   const { isCheckedLoading, setIsCheckedLoading } = useIsCheckedLoadingStroe();
 
   useEffect(() => {
-    setIsCheckedLoading(true);
+    const firstVisit = sessionStorage.getItem("firstVisit");
 
-    const timer = setTimeout(() => {
+    if (!firstVisit) {
+      setIsCheckedLoading(true);
+
+      const timer = setTimeout(() => {
+        setIsCheckedLoading(false);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    } else {
       setIsCheckedLoading(false);
-    }, 3000);
-
-    return () => clearTimeout(timer);
+    }
   }, [setIsCheckedLoading]);
 
   return <>{isCheckedLoading ? <Logo /> : <MainPage />}</>;
