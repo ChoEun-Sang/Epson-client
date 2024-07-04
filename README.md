@@ -1,3 +1,6 @@
+# 2024 Epson Innovation Challenge in Korea
+>Epson Innovation Challenge는 Epson 프린터와 스캐너의 새로운 사용자 경험과 문제 해결을 위해 혁신적인 개발자들과 관심 있는 모든 분을 위한 챌린지입니다. 
+
 # AIGOO (아이고)
 
 **프로젝트 소개** <br/>
