@@ -14,16 +14,6 @@
 
 <br/>
 
-**DEMO** <br/>
-[AIGOO 페이지 바로가기](https://www.aigoo.online/) <br/>
-
-<br/>
-
-**테스트 계정** <br/>
-ID: aigoo@gmail.com PW: aigoo <br/>
-
-
-
 ## 사용 기술
 
 **Development**
